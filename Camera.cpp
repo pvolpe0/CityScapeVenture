@@ -12,8 +12,6 @@ Camera::Camera()
     c.set(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, e[0], e[1], e[2], 1);
     ci.set(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -e[0], -e[1], -e[2], 1);
 	update();
-	c.print("normal");
-	ci.print("inverse");
 }
 
 Camera::~Camera()
