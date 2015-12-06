@@ -107,16 +107,16 @@ void Window::keyboard(unsigned char key, int x, int y)
 	switch (key)
 	{
 	case 'w':
-		Globals::camera.transform(Matrix4().makeTranslate(0, 0, -5));
+		Globals::camera.move(Vector3(0, 0, -5));
 		break;
 	case 'a':
-		Globals::camera.transform(Matrix4().makeTranslate(-5, 0, 0));
+		Globals::camera.move(Vector3(-5, 0, 0));
 		break;
 	case 's':
-		Globals::camera.transform(Matrix4().makeTranslate(0, 0, 5));
+		Globals::camera.move(Vector3(0, 0, 5));
 		break;
 	case 'd':
-		Globals::camera.transform(Matrix4().makeTranslate(5, 0, 0));
+		Globals::camera.move(Vector3(5, 0, 0));
 		break;
 	}
 }
@@ -135,7 +135,7 @@ void Window::onMouseMove(int x, int y)
 	mouseX = x;
 	mouseY = y;
 
-	Globals::camera.transform(Matrix4().makeRotateY(-movedx / 50) * Matrix4().makeRotateX(-movedy / 50));
+	Globals::camera.rotate(Matrix4().makeRotateY(-movedx / 50)/* * Matrix4().makeRotateX(-movedy / 50)*/);
 }
 
 //TODO: Keyboard callbacks!

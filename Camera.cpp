@@ -3,8 +3,8 @@
 Camera::Camera()
 {
     c.identity();
-    e.set(0.0, 5.0, 20.0);
-    d.set(0.0, 0.0, 0.0);
+    e.set(0.0, 3.5, 20.0);
+    d.set(0.0, 3.5, 0.0);
     up.set(0.0, 1.0, 0.0);
     
     //Pre-define a camera matrix (and its inverse) that are shifted 'e' from the origin
@@ -50,21 +50,24 @@ void Camera::set(Vector3& e, Vector3& d, Vector3& up)
     update();
 }
 
+// Transforms camera matrix based on passed in matrix
 void Camera::transform(Matrix4& transformation)
 {
 	c = c * transformation;
 	ci = c.rigidInverse();
 }
 
+// Rotates camera about camera position
 void Camera::rotate(Matrix4& rotation)
 {
-	//up = (rotation * up).normalize();
 	d = (rotation * (d - e)) + e;
 	update();
 }
 
+// Moves camera based on movement vector
 void Camera::move(Vector3& movement)
 {
 	this->e = this->e + movement;
+	this->d = this->d + movement;
 	update();
 }
