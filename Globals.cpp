@@ -3,7 +3,7 @@
 Camera Globals::camera;
 
 Cube Globals::cube(10.0);
-Sphere Globals::player(1, 20, 20);
+Player Globals::player;
 
 Light Globals::light;
 

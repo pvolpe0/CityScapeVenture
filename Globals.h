@@ -7,6 +7,7 @@
 #include "DrawData.h"
 #include "UpdateData.h"
 #include "Sphere.h"
+#include "Player.h"
 
 class Globals
 {
@@ -15,7 +16,7 @@ public:
     
     static Camera camera;
     static Cube cube;
-	static Sphere player;
+	static Player player;
     static Light light;
     static DrawData drawData;
     static UpdateData updateData;
