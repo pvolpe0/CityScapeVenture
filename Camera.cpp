@@ -4,8 +4,8 @@ Camera::Camera()
 {
     c.identity();
     e.set(0.0, 5.0, 20.0);
-    d.set(0.0, 9.0, 0.0);
-    up.set(0.0, 1.0, 0.5);
+    d.set(0.0, 0.0, 0.0);
+    up.set(0.0, 1.0, 0.0);
     
     //Pre-define a camera matrix (and its inverse) that are shifted 'e' from the origin
     //This is used as a default camera position for Project 1
@@ -54,4 +54,17 @@ void Camera::transform(Matrix4& transformation)
 {
 	c = c * transformation;
 	ci = c.rigidInverse();
+}
+
+void Camera::rotate(Matrix4& rotation)
+{
+	//up = (rotation * up).normalize();
+	d = (rotation * (d - e)) + e;
+	update();
+}
+
+void Camera::move(Vector3& movement)
+{
+	this->e = this->e + movement;
+	update();
 }
