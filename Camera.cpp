@@ -71,3 +71,13 @@ void Camera::move(Vector3& movement)
 	this->d = this->d + movement;
 	update();
 }
+
+void Camera::look(int dir)
+{
+	if (d[1] + dir > 40)
+		d[1] = 40;
+	else if (d[1] + dir < -40)
+		d[1] = -40;
+	else
+		d[1] += dir;
+}

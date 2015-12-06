@@ -27,7 +27,9 @@ void Window::initialize(void)
     
     //Initialize cube matrix:
     Globals::cube.toWorld.identity();
-    
+	Globals::player.toWorld.identity();
+	Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(0, 3, 10);
+
     //Setup the cube's material properties
     Color color(0x23ff27ff);
     Globals::cube.material.color = color;
@@ -46,6 +48,7 @@ void Window::idleCallback()
     
     //Call the update function on cube
     Globals::cube.update(Globals::updateData);
+
     
     //Call the display routine to draw the cube
     displayCallback();
@@ -89,6 +92,7 @@ void Window::displayCallback()
     
     //Draw the cube!
     Globals::cube.draw(Globals::drawData);
+	Globals::player.draw(Globals::drawData);
     
     //Pop off the changes we made to the matrix stack this frame
     glPopMatrix();
@@ -104,7 +108,8 @@ void Window::displayCallback()
 
 void Window::keyboard(unsigned char key, int x, int y)
 {
-	switch (key)
+	//Commented out is for first person camera
+	/*switch (key)
 	{
 	case 'w':
 		Globals::camera.move(Vector3(0, 0, -5));
@@ -118,7 +123,36 @@ void Window::keyboard(unsigned char key, int x, int y)
 	case 'd':
 		Globals::camera.move(Vector3(5, 0, 0));
 		break;
+	}*/
+	//Below code is for debug camera
+	switch(key)
+	{
+	case 'w':
+		Globals::camera.transform(Matrix4().makeTranslate(0, 0, -5));
+		break;
+	case 'a':
+		Globals::camera.transform(Matrix4().makeTranslate(-5, 0, 0));
+		break;
+	case 's':
+		Globals::camera.transform(Matrix4().makeTranslate(0, 0, 5));
+		break;
+	case 'd':
+		Globals::camera.transform(Matrix4().makeTranslate(5, 0, 0));
+		break;
+	case 'i':
+		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(0, 0, -5);
+		break;
+	case 'j':
+		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(-5, 0, 0);
+		break;
+	case 'k':
+		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(0, 0, 5);
+		break;
+	case 'l':
+		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(5, 0, 0);
+		break;
 	}
+
 }
 
 void Window::onMouseClick(int button, int state, int x, int y)
@@ -134,8 +168,12 @@ void Window::onMouseMove(int x, int y)
 	float movedy = y - mouseY;
 	mouseX = x;
 	mouseY = y;
+	/*
+	Globals::camera.rotate(Matrix4().makeRotateY(-movedx / 50));
+	Globals::camera.look(-movedy / 2.0);
+	*/
 
-	Globals::camera.rotate(Matrix4().makeRotateY(-movedx / 50)/* * Matrix4().makeRotateX(-movedy / 50)*/);
+	Globals::camera.transform(Matrix4().makeRotateY(-movedx / 50) * Matrix4().makeRotateX(-movedy / 50));
 }
 
 //TODO: Keyboard callbacks!
