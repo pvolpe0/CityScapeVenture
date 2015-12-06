@@ -10,6 +10,7 @@
 #include "Cube.h"
 #include "Matrix4.h"
 #include "Globals.h"
+#include "Block.h"
 
 int Window::width  = 512;   //Set window width in pixels here
 int Window::height = 512;   //Set window height in pixels here
@@ -33,6 +34,7 @@ void Window::initialize(void)
     //Setup the cube's material properties
     Color color(0x23ff27ff);
     Globals::cube.material.color = color;
+
 }
 
 //----------------------------------------------------------------------------
@@ -91,8 +93,12 @@ void Window::displayCallback()
     Globals::light.bind(0);
     
     //Draw the cube!
-    Globals::cube.draw(Globals::drawData);
+    //Globals::cube.draw(Globals::drawData);
 	Globals::player.draw(Globals::drawData);
+	
+
+	Globals::city.draw(Globals::drawData);
+	
 
 	std::cout << "Player location: (" << Globals::player.x << ","
 		<< Globals::player.y << ")" << std::endl;

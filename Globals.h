@@ -8,6 +8,8 @@
 #include "UpdateData.h"
 #include "Sphere.h"
 #include "Player.h"
+#include "Block.h"
+#include "City.h"
 
 class Globals
 {
@@ -21,7 +23,10 @@ public:
     static DrawData drawData;
     static UpdateData updateData;
     //Feel free to add more member variables as needed
-    
+
+
+	static City city;
+
 };
 
 #endif

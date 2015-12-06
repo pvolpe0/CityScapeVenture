@@ -9,3 +9,6 @@ Light Globals::light;
 
 DrawData Globals::drawData;
 UpdateData Globals::updateData;
+
+
+City Globals::city;
