@@ -96,12 +96,12 @@ void Window::displayCallback()
     //Globals::cube.draw(Globals::drawData);
 	Globals::player.draw(Globals::drawData);
 	
-
+	//Globals::block.draw(Globals::drawData);
 	Globals::city.draw(Globals::drawData);
 	
 
-	std::cout << "Player location: (" << Globals::player.x << ","
-		<< Globals::player.y << ")" << std::endl;
+	//std::cout << "Player location: (" << Globals::player.x << ","
+	//	<< Globals::player.y << ")" << std::endl;
     
     //Pop off the changes we made to the matrix stack this frame
     glPopMatrix();
