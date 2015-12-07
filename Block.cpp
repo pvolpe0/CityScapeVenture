@@ -10,8 +10,8 @@
 #define BLOCK_LENGTH 2
 #define ROAD_WIDTH 15
 #define COORD_DIST 200
-#define COORD_DIST_HALF COORD_DIST / 2
-#define COORD_DIST_QUARTER COORD_DIST / 4
+#define COORD_DIST_HALF COORD_DIST / 1
+#define COORD_DIST_QUARTER COORD_DIST / 2
 
 // line color
 #define LINE_RED 242
@@ -22,25 +22,17 @@
 Block::Block(int xCenter, int yCenter) : Drawable()
 {
 
-	lineColor = Color::Color(LINE_RED, LINE_GREEN, LINE_BLUE);
-
 	locX = xCenter;
 	locY = yCenter;
+	srand(locX + locY);
 
 	for (int i = 0; i < BLOCK_LENGTH; i++) {
 		for (int j = 0; j < BLOCK_LENGTH; j++) {
 
-			coords[i][j] = std::make_pair(xCenter - 100 + 200 * i, yCenter - 100 + 200 * j);
+			coords[i][j] = std::make_pair(xCenter - COORD_DIST_HALF + COORD_DIST * i, yCenter - COORD_DIST_HALF + COORD_DIST * j);
+			setCoordDisplacement(coords[i][j]);
 		}
 	}
-	
-	srand(locX + locY);
-	
-	setCoordDisplacement(coords[0][0]);
-	setCoordDisplacement(coords[0][1]);
-	setCoordDisplacement(coords[1][0]);
-	setCoordDisplacement(coords[1][1]);
-
 }
 
 Block::Block(int xCenter, int yCenter, std::pair<int, int> topLeftCoord, 
@@ -50,10 +42,11 @@ Block::Block(int xCenter, int yCenter, std::pair<int, int> topLeftCoord,
 
 	locX = xCenter;
 	locY = yCenter;
+	srand(locX + locY);
 
 	std::pair<int, int> null_pair = std::make_pair(NULL, NULL);
 
-	srand(locX + locY);
+	
 
 	if (botLeftCoord == null_pair) {
 
@@ -125,14 +118,13 @@ void Block::draw(DrawData& data)
 	for (int i = 0; i < BLOCK_LENGTH; i++){
 		for (int j = 0; j < BLOCK_LENGTH; j++) {
 
-			//std::cout << "row: " << i << " col: " << j << " x: " << coords[i][j].first << " y: " << coords[i][j].second << std::endl;
 			glVertex3i(coords[i][j].first, 0, coords[i][j].second );
 		}
 	}
 	glEnd();
 
 
-	// draw normals
+	// draw normals at block center
 	glLineWidth(2.0);
 	glBegin(GL_LINES);
 
@@ -143,8 +135,7 @@ void Block::draw(DrawData& data)
 
 	
 
-	
-	glColor3fv(lineColor.ptr());
+
 	glBegin(GL_QUADS);
 
 	// west roads
@@ -180,8 +171,31 @@ void Block::draw(DrawData& data)
 
 	
 	glEnd();
-	
 
+	// draw road lines
+	
+	glLineWidth(3.0);
+	glColor3f(255.0f, 255.0f, 0.0f);
+
+	glEnable(GL_LINE_STIPPLE);
+	glLineStipple(2, 0x00FF);
+
+	glBegin(GL_LINES);
+		
+	glVertex3i(coords[0][0].first, 0, coords[0][0].second);
+	glVertex3i(coords[0][1].first, 0, coords[0][1].second);
+
+	glVertex3i(coords[0][0].first, 0, coords[0][0].second);
+	glVertex3i(coords[1][0].first, 0, coords[1][0].second);
+
+	glVertex3i(coords[1][0].first, 0, coords[1][0].second);
+	glVertex3i(coords[1][1].first, 0, coords[1][1].second);
+
+	glVertex3i(coords[1][1].first, 0, coords[1][1].second);
+	glVertex3i(coords[0][1].first, 0, coords[0][1].second);
+
+	glEnd();
+	glDisable(GL_LINE_STIPPLE);
 	glPopMatrix();
 }
 
@@ -192,24 +206,9 @@ void Block::update(UpdateData& data)
 }
 
 
-void Block::setCoordDisplacement(std::pair<int, int>& coord1 ) {
+void Block::setCoordDisplacement(std::pair<int, int>& coord ) {
 
-	
-
-	std::cout << "initial x: " << coord1.first << " initial y: " << coord1.second << std::endl;
-
-	coord1.first += rand() % COORD_DIST_HALF - COORD_DIST_QUARTER;
-	coord1.second += rand() % COORD_DIST_HALF - COORD_DIST_QUARTER;
-
-	std::cout << "new x: " << coord1.first << " new y: " << coord1.second << std::endl;
-
-	/*for (int i = 0; i < BLOCK_LENGTH; i++) {
-		for (int j = 0; j < BLOCK_LENGTH; j++) {
-
-			coords[i][j].first += rand() % COORD_DIST_HALF;
-			coords[i][j].second += rand() % COORD_DIST_HALF;
-
-		}
-	}*/
+	coord.first += rand() % COORD_DIST_HALF - COORD_DIST_QUARTER;
+	coord.second += rand() % COORD_DIST_HALF - COORD_DIST_QUARTER;
 
 }
