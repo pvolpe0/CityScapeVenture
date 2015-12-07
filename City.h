@@ -21,7 +21,14 @@ public:
 
 	void generateSingleEast(int, int, std::pair<int, int>, std::pair<int, int>);
 
+
+	// used for construction of city
 	void generateRowNorth(int);
+
+	void generateRowNorth();
+	void generateRowSouth();
+	void generateRowWest();
+	void generateRowEast();
 
 	/*
 	

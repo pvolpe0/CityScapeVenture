@@ -99,6 +99,7 @@ void Window::displayCallback()
 	//Globals::block.draw(Globals::drawData);
 	Globals::city.draw(Globals::drawData);
 	
+	std::cout << "Player Location | (x,y) : (" << Globals::player.x << "," << Globals::player.y << ")" << std::endl;
 
 	//std::cout << "Player location: (" << Globals::player.x << ","
 	//	<< Globals::player.y << ")" << std::endl;
@@ -149,20 +150,29 @@ void Window::keyboard(unsigned char key, int x, int y)
 		Globals::camera.transform(Matrix4().makeTranslate(5, 0, 0));
 		break;
 	case 'i':
-		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(0, 0, -5);
+
+		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(0, 0, 5);
 		Globals::player.setDeltaLocation(0, 5);
+		if (Globals::player.y % 200 == 0)
+			Globals::city.generateRowNorth(); 
 		break;
 	case 'j':
-		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(-5, 0, 0);
+		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(5, 0, 0);
 		Globals::player.setDeltaLocation(-5, 0);
+		if (Globals::player.x % 200 == 0)
+			Globals::city.generateRowWest();
 		break;
 	case 'k':
-		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(0, 0, 5);
+		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(0, 0, -5);
 		Globals::player.setDeltaLocation(0, -5);
+		if (Globals::player.y % 200 == 0)
+			Globals::city.generateRowSouth();
 		break;
 	case 'l':
-		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(5, 0, 0);
+		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(-5, 0, 0);
 		Globals::player.setDeltaLocation(5, 0);
+		if (Globals::player.x % 200 == 0)
+			Globals::city.generateRowEast();
 		break;
 	}
 

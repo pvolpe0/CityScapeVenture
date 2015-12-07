@@ -10,6 +10,7 @@ class Player : public Drawable
 public:
 
 	int x, y;
+	int prevX, prevY;
 
 	Sphere * sphere;
 
