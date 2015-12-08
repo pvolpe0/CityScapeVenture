@@ -300,18 +300,23 @@ void Building::drawSize(DrawData & data)
 	{
 	case 0:
 		size = Matrix4().makeScale(10);
+		front = 10;
 		break;
 	case 1:
 		size = Matrix4().makeScale(10, 20, 10);
+		front = 10;
 		break;
 	case 2:
 		size = Matrix4().makeScale(15, 10, 10);
+		front = 10;
 		break;
 	case 3:
 		size = Matrix4().makeScale(10, 15, 15);
+		front = 15;
 		break;
 	case 4:
 		size = Matrix4().makeScale(15, 8, 15);
+		front = 15;
 		break;
 	}
 }
@@ -798,6 +803,332 @@ void Building::drawRoof(DrawData & data)
 
 void Building::drawDoor(DrawData & data)
 {
+	material.apply();
+
+	//Set the OpenGL Matrix mode to ModelView (used when drawing geometry)
+	glMatrixMode(GL_MODELVIEW);
+
+	//Push a save state onto the matrix stack, and multiply in the toWorld matrix
+	glPushMatrix();
+	glMultMatrixf(toWorld.ptr());
+
+	switch (grammar[4] % 5)
+	{
+	case 0:
+		glBegin(GL_QUADS);
+		glNormal3f(0.0, 0.0, 1.0);
+		glVertex3f(-2, 5, front + 0.5);
+		glVertex3f(2, 5, front + 0.5);
+		glVertex3f(2, 0, front + 0.5);
+		glVertex3f(-2, 0, front + 0.5);
+
+		// Draw left side:
+		glNormal3f(-1.0, 0.0, 0.0);
+		glVertex3f(-2, 5, front);
+		glVertex3f(-2, 5, front + 0.5);
+		glVertex3f(-2, 0, front + 0.5);
+		glVertex3f(-2, 0, front);
+
+		// Draw right side:
+		glNormal3f(1.0, 0.0, 0.0);
+		glVertex3f(2, 5, front);
+		glVertex3f(2, 5, front + 0.5);
+		glVertex3f(2, 0, front + 0.5);
+		glVertex3f(2, 0, front);;
+
+		// Draw top side:
+		glNormal3f(0.0, 1.0, 0.0);
+		glVertex3f(-2, 5, front);
+		glVertex3f(2, 5, front);
+		glVertex3f(2, 5, front + 0.5);
+		glVertex3f(-2, 5, front + 0.5);
+
+		// Draw bottom side:
+		glNormal3f(0.0, -1.0, 0.0);
+		glVertex3f(-2, 0, front);
+		glVertex3f(2, 0, front);
+		glVertex3f(2, 0, front + 0.5);
+		glVertex3f(-2, 0, front + 0.5);
+		glEnd();
+		break;
+
+	case 1:
+		glBegin(GL_QUADS);
+		glNormal3f(0.0, 0.0, 1.0);
+		glVertex3f(-4, 5, front + 0.5);
+		glVertex3f(0, 5, front + 0.5);
+		glVertex3f(0, 0, front + 0.5);
+		glVertex3f(-4, 0, front + 0.5);
+
+		// Draw left side:
+		glNormal3f(-1.0, 0.0, 0.0);
+		glVertex3f(-4, 5, front);
+		glVertex3f(-4, 5, front + 0.5);
+		glVertex3f(-4, 0, front + 0.5);
+		glVertex3f(-4, 0, front);
+
+		// Draw right side:
+		glNormal3f(1.0, 0.0, 0.0);
+		glVertex3f(0, 5, front);
+		glVertex3f(0, 5, front + 0.5);
+		glVertex3f(0, 0, front + 0.5);
+		glVertex3f(0, 0, front);;
+
+		// Draw top side:
+		glNormal3f(0.0, 1.0, 0.0);
+		glVertex3f(-4, 5, front);
+		glVertex3f(0, 5, front);
+		glVertex3f(0, 5, front + 0.5);
+		glVertex3f(-4, 5, front + 0.5);
+
+		// Draw bottom side:
+		glNormal3f(0.0, -1.0, 0.0);
+		glVertex3f(-4, 0, front);
+		glVertex3f(0, 0, front);
+		glVertex3f(0, 0, front + 0.5);
+		glVertex3f(-4, 0, front + 0.5);
+
+		glNormal3f(0.0, 0.0, 1.0);
+		glVertex3f(4, 5, front + 0.5);
+		glVertex3f(0, 5, front + 0.5);
+		glVertex3f(0, 0, front + 0.5);
+		glVertex3f(4, 0, front + 0.5);
+
+		// Draw left side:
+		glNormal3f(-1.0, 0.0, 0.0);
+		glVertex3f(4, 5, front);
+		glVertex3f(4, 5, front + 0.5);
+		glVertex3f(4, 0, front + 0.5);
+		glVertex3f(4, 0, front);
+
+		// Draw right side:
+		glNormal3f(1.0, 0.0, 0.0);
+		glVertex3f(0, 5, front);
+		glVertex3f(0, 5, front + 0.5);
+		glVertex3f(0, 0, front + 0.5);
+		glVertex3f(0, 0, front);;
+
+		// Draw top side:
+		glNormal3f(0.0, 1.0, 0.0);
+		glVertex3f(4, 5, front);
+		glVertex3f(0, 5, front);
+		glVertex3f(0, 5, front + 0.5);
+		glVertex3f(4, 5, front + 0.5);
+
+		// Draw bottom side:
+		glNormal3f(0.0, -1.0, 0.0);
+		glVertex3f(4, 0, front);
+		glVertex3f(0, 0, front);
+		glVertex3f(0, 0, front + 0.5);
+		glVertex3f(4, 0, front + 0.5);
+		glEnd();
+		break;
+
+	case 2:
+		glBegin(GL_QUADS);
+		glNormal3f(0.0, 0.0, 1.0);
+		glVertex3f(-2, 5, front + 4 + 0.5);
+		glVertex3f(2, 5, front + 4 + 0.5);
+		glVertex3f(2, 0, front + 4 + 0.5);
+		glVertex3f(-2, 0, front + 4 + 0.5);
+
+		// Draw left side:
+		glNormal3f(-1.0, 0.0, 0.0);
+		glVertex3f(-2, 5, front + 4);
+		glVertex3f(-2, 5, front + 4 + 0.5);
+		glVertex3f(-2, 0, front + 4 + 0.5);
+		glVertex3f(-2, 0, front + 4);
+
+		// Draw right side:
+		glNormal3f(1.0, 0.0, 0.0);
+		glVertex3f(2, 5, front + 4);
+		glVertex3f(2, 5, front + 4 + 0.5);
+		glVertex3f(2, 0, front + 4 + 0.5);
+		glVertex3f(2, 0, front + 4);;
+
+		// Draw top side:
+		glNormal3f(0.0, 1.0, 0.0);
+		glVertex3f(-2, 5, front + 4);
+		glVertex3f(2, 5, front + 4);
+		glVertex3f(2, 5, front + 4 + 0.5);
+		glVertex3f(-2, 5, front + 4 + 0.5);
+
+		// Draw bottom side:
+		glNormal3f(0.0, -1.0, 0.0);
+		glVertex3f(-2, 0, front + 4);
+		glVertex3f(2, 0, front + 4);
+		glVertex3f(2, 0, front + 4 + 0.5);
+		glVertex3f(-2, 0, front + 4 + 0.5);
+
+		glNormal3f(0.0, 0.0, 1.0);
+		glVertex3f(-2.5, 5.5, front + 4);
+		glVertex3f(2.5, 5.5, front + 4);
+		glVertex3f(2.5, 0, front + 4);
+		glVertex3f(-2.5, 0, front + 4);
+
+		// Draw left side:
+		glNormal3f(-1.0, 0.0, 0.0);
+		glVertex3f(-2.5, 5.5, 0);
+		glVertex3f(-2.5, 5.5, front + 4);
+		glVertex3f(-2.5, 0, front + 4);
+		glVertex3f(-2.5, 0, 0);
+
+		// Draw right side:
+		glNormal3f(1.0, 0.0, 0.0);
+		glVertex3f(2.5, 5.5, front + 4);
+		glVertex3f(2.5, 5.5, 0);
+		glVertex3f(2.5, 0, 0);
+		glVertex3f(2.5, 0, front + 4);
+
+		// Draw top side:
+		glNormal3f(0.0, 1.0, 0.0);
+		glVertex3f(-2.5, 5.5, 0);
+		glVertex3f(2.5, 5.5, 0);
+		glVertex3f(2.5, 5.5, front + 4);
+		glVertex3f(-2.5, 5.5, front + 4);
+
+		glEnd();
+		break;
+
+	case 3:
+		glBegin(GL_QUADS);
+		glNormal3f(0.0, 0.0, 1.0);
+		glVertex3f(-4, 5, front + 4 + 0.5);
+		glVertex3f(0, 5, front + 4 + 0.5);
+		glVertex3f(0, 0, front + 4 + 0.5);
+		glVertex3f(-4, 0, front + 4 + 0.5);
+
+		// Draw left side:
+		glNormal3f(-1.0, 0.0, 0.0);
+		glVertex3f(-4, 5, front + 4);
+		glVertex3f(-4, 5, front + 4 + 0.5);
+		glVertex3f(-4, 0, front + 4 + 0.5);
+		glVertex3f(-4, 0, front + 4);
+
+		// Draw right side:
+		glNormal3f(1.0, 0.0, 0.0);
+		glVertex3f(0, 5, front + 4);
+		glVertex3f(0, 5, front + 4 + 0.5);
+		glVertex3f(0, 0, front + 4 + 0.5);
+		glVertex3f(0, 0, front + 4);;
+
+		// Draw top side:
+		glNormal3f(0.0, 1.0, 0.0);
+		glVertex3f(-4, 5, front + 4);
+		glVertex3f(0, 5, front + 4);
+		glVertex3f(0, 5, front + 4 + 0.5);
+		glVertex3f(-4, 5, front + 4 + 0.5);
+
+		// Draw bottom side:
+		glNormal3f(0.0, -1.0, 0.0);
+		glVertex3f(-4, 0, front + 4);
+		glVertex3f(0, 0, front + 4);
+		glVertex3f(0, 0, front + 4 + 0.5);
+		glVertex3f(-4, 0, front + 4 + 0.5);
+
+		glNormal3f(0.0, 0.0, 1.0);
+		glVertex3f(4, 5, front + 4 + 0.5);
+		glVertex3f(0, 5, front + 4 + 0.5);
+		glVertex3f(0, 0, front + 4 + 0.5);
+		glVertex3f(4, 0, front + 4 + 0.5);
+
+		// Draw left side:
+		glNormal3f(-1.0, 0.0, 0.0);
+		glVertex3f(4, 5, front + 4);
+		glVertex3f(4, 5, front + 4 + 0.5);
+		glVertex3f(4, 0, front + 4 + 0.5);
+		glVertex3f(4, 0, front + 4);
+
+		// Draw right side:
+		glNormal3f(1.0, 0.0, 0.0);
+		glVertex3f(0, 5, front + 4);
+		glVertex3f(0, 5, front + 4 + 0.5);
+		glVertex3f(0, 0, front + 4 + 0.5);
+		glVertex3f(0, 0, front + 4);;
+
+		// Draw top side:
+		glNormal3f(0.0, 1.0, 0.0);
+		glVertex3f(4, 5, front + 4);
+		glVertex3f(0, 5, front + 4);
+		glVertex3f(0, 5, front + 4 + 0.5);
+		glVertex3f(4, 5, front + 4 + 0.5);
+
+		// Draw bottom side:
+		glNormal3f(0.0, -1.0, 0.0);
+		glVertex3f(4, 0, front + 4);
+		glVertex3f(0, 0, front + 4);
+		glVertex3f(0, 0, front + 4 + 0.5);
+		glVertex3f(4, 0, front + 4 + 0.5);
+
+		glNormal3f(0.0, 0.0, 1.0);
+		glVertex3f(-4.5, 5.5, front + 4);
+		glVertex3f(4.5, 5.5, front + 4);
+		glVertex3f(4.5, 0, front + 4);
+		glVertex3f(-4.5, 0, front + 4);
+
+		// Draw left side:
+		glNormal3f(-1.0, 0.0, 0.0);
+		glVertex3f(-4.5, 5.5, 0);
+		glVertex3f(-4.5, 5.5, front + 4);
+		glVertex3f(-4.5, 0, front + 4);
+		glVertex3f(-4.5, 0, 0);
+
+		// Draw right side:
+		glNormal3f(1.0, 0.0, 0.0);
+		glVertex3f(4.5, 5.5, front + 4);
+		glVertex3f(4.5, 5.5, 0);
+		glVertex3f(4.5, 0, 0);
+		glVertex3f(4.5, 0, front + 4);
+
+		// Draw top side:
+		glNormal3f(0.0, 1.0, 0.0);
+		glVertex3f(-4.5, 5.5, 0);
+		glVertex3f(4.5, 5.5, 0);
+		glVertex3f(4.5, 5.5, front + 4);
+		glVertex3f(-4.5, 5.5, front + 4);
+		glEnd();
+		break;
+
+	case 4:
+		glBegin(GL_QUADS);
+		glNormal3f(0.0, 0.0, 1.0);
+		glVertex3f(-3, 5, front + 0.5);
+		glVertex3f(3, 5, front + 0.5);
+		glVertex3f(3, 0, front + 0.5);
+		glVertex3f(-3, 0, front + 0.5);
+
+		// Draw left side:
+		glNormal3f(-1.0, 0.0, 0.0);
+		glVertex3f(-3, 5, front);
+		glVertex3f(-3, 5, front + 0.5);
+		glVertex3f(-3, 0, front + 0.5);
+		glVertex3f(-3, 0, front);
+
+		// Draw right side:
+		glNormal3f(1.0, 0.0, 0.0);
+		glVertex3f(3, 5, front);
+		glVertex3f(3, 5, front + 0.5);
+		glVertex3f(3, 0, front + 0.5);
+		glVertex3f(3, 0, front);;
+
+		// Draw top side:
+		glNormal3f(0.0, 1.0, 0.0);
+		glVertex3f(-3, 5, front);
+		glVertex3f(3, 5, front);
+		glVertex3f(3, 5, front + 0.5);
+		glVertex3f(-3, 5, front + 0.5);
+
+		// Draw bottom side:
+		glNormal3f(0.0, -1.0, 0.0);
+		glVertex3f(-3, 0, front);
+		glVertex3f(3, 0, front);
+		glVertex3f(3, 0, front + 0.5);
+		glVertex3f(-3, 0, front + 0.5);
+		glEnd();
+		break;
+	}
+
+	glPopMatrix();
 }
 
 void Building::drawWindow(DrawData & data)

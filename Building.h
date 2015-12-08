@@ -12,6 +12,7 @@ private:
 	int grammar[6];
 	void defineGrammar(int x, int z);
 	Matrix4 size;
+	int front;
 
 public:
 	Building(int x, int z, Matrix4 rotation, int blockGrammar);
