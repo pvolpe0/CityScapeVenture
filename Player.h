@@ -3,6 +3,7 @@
 
 #include "Drawable.h"
 #include "Sphere.h"
+#include "Vector4.h"
 
 class Player : public Drawable
 {
@@ -21,6 +22,8 @@ public:
 
 	virtual void draw(DrawData&);
 	virtual void update(UpdateData&);
+
+	Vector4 getLocation(void);
 
 
 };

@@ -11,6 +11,7 @@
 #include "Matrix4.h"
 #include "Globals.h"
 #include "Block.h"
+#include "Building.h"
 
 int Window::width  = 512;   //Set window width in pixels here
 int Window::height = 512;   //Set window height in pixels here
@@ -22,9 +23,9 @@ int mouseY;
 void Window::initialize(void)
 {
     //Setup the light
-    Vector4 lightPos(0.0, 10.0, 15.0, 1.0);
+    Vector4 lightPos = Globals::player.getLocation() + Vector4(0, 500, 0, 0);
     Globals::light.position = lightPos;
-    Globals::light.quadraticAttenuation = 0.02;
+    Globals::light.quadraticAttenuation = 0.00;
     
     //Initialize cube matrix:
     Globals::cube.toWorld.identity();
@@ -98,8 +99,17 @@ void Window::displayCallback()
 	
 	//Globals::block.draw(Globals::drawData);
 	Globals::city.draw(Globals::drawData);
+	srand(500);
+	for (int i = -250;i < 250;i += 50)
+	{
+		for (int j = -250;j < 250;j += 50)
+		{
+
+			Building(i, j, Matrix4().makeRotateY(0), rand() % 10).draw(Globals::drawData);
+		}
+	}
 	
-	std::cout << "Player Location | (x,y) : (" << Globals::player.x << "," << Globals::player.y << ")" << std::endl;
+	//std::cout << "Player Location | (x,y) : (" << Globals::player.x << "," << Globals::player.y << ")" << std::endl;
 
 	//std::cout << "Player location: (" << Globals::player.x << ","
 	//	<< Globals::player.y << ")" << std::endl;
@@ -175,6 +185,8 @@ void Window::keyboard(unsigned char key, int x, int y)
 			Globals::city.generateRowEast();
 		break;
 	}
+	Vector4 lightPos = Globals::player.getLocation() + Vector4(0, 500, 0, 0);
+	Globals::light.position = lightPos;
 
 }
 

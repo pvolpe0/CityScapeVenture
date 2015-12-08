@@ -8,6 +8,7 @@
 
 #include "Window.h"
 #include "math.h"
+#include "Matrix4.h"
 
 Player::Player() : Drawable()
 {
@@ -59,5 +60,10 @@ void Player::setDeltaLocation(int deltaX, int deltaY) {
 void Player::update(UpdateData& data)
 {
 	//
+}
+
+Vector4 Player::getLocation(void)
+{
+	return Vector4(x, 0, y, 1);
 }
 
