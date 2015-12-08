@@ -43,7 +43,19 @@ Block::Block(int xCenter, int yCenter) : Drawable()
 	setLineDistances();
 
 
-	generateBuildings(inner_coords[0][1], northVec, northLineDist);
+	srand(xCenter);
+	int xseed = rand();
+	srand(yCenter);
+	int zseed = rand();
+	srand((xseed << 16) + zseed);
+	rand();
+	blockGrammar = rand() % 10;
+	std::cout << blockGrammar << std::endl;
+
+	generateBuildings(inner_coords[0][0], northVec, northLineDist);
+	generateBuildings(inner_coords[0][1], eastVec, eastLineDist);
+	generateBuildings(inner_coords[1][1], southVec, southLineDist);
+	generateBuildings(inner_coords[1][0], westVec, westLineDist);
 	
 }
 
