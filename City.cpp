@@ -8,12 +8,12 @@
 #endif
 
 #define CITY_LENGTH 5
-#define BLOCK_DIST 200
+#define BLOCK_DIST 300
 
 City::City() : Drawable()
 {
 	// create starting block
-	blocks[0][0] = new Block(-400, -400);
+	blocks[0][0] = new Block(-600, -600);
 
 	
 	// generate first row of blocks

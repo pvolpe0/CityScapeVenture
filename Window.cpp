@@ -167,25 +167,25 @@ void Window::keyboard(unsigned char key, int x, int y)
 
 		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(0, 0, 5);
 		Globals::player.setDeltaLocation(0, 5);
-		if (Globals::player.y % 200 == 0)
+		if (Globals::player.y % 300 == 0)
 			Globals::city.generateRowNorth(); 
 		break;
 	case 'j':
 		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(5, 0, 0);
 		Globals::player.setDeltaLocation(-5, 0);
-		if (Globals::player.x % 200 == 0)
+		if (Globals::player.x % 300 == 0)
 			Globals::city.generateRowWest();
 		break;
 	case 'k':
 		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(0, 0, -5);
 		Globals::player.setDeltaLocation(0, -5);
-		if (Globals::player.y % 200 == 0)
+		if (Globals::player.y % 300 == 0)
 			Globals::city.generateRowSouth();
 		break;
 	case 'l':
 		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(-5, 0, 0);
 		Globals::player.setDeltaLocation(5, 0);
-		if (Globals::player.x % 200 == 0)
+		if (Globals::player.x % 300 == 0)
 			Globals::city.generateRowEast();
 		break;
 	}

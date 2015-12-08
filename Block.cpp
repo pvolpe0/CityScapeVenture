@@ -14,7 +14,7 @@
 #define BLOCK_LENGTH 2
 #define ROAD_WIDTH 15
 #define BUILDING_LENGTH 40
-#define COORD_DIST 200
+#define COORD_DIST 300
 #define COORD_DIST_HALF COORD_DIST / 2
 #define COORD_DIST_QUARTER COORD_DIST / 4
 
@@ -294,7 +294,7 @@ void Block::draw(DrawData& data)
 
 	
 
-
+	glColor3f(2.0f, 2.0f, 2.0f);
 	glBegin(GL_QUADS);
 
 	// west roads
