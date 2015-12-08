@@ -106,7 +106,7 @@ Color Color::black(void)
 
 Color Color::lightBrown(void)
 {
-    return Color(0xFFCCAAFF);
+    return Color(0x99664499);
 }
 
 Color Color::randomPastel(void)

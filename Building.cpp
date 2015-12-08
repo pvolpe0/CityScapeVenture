@@ -351,6 +351,8 @@ void Building::drawAddition(DrawData & data)
 
 void Building::drawRoof(DrawData & data)
 {
+	Color oldColor = material.color;
+	material.color = Color().lightBrown();
 	material.apply();
 
 	//Set the OpenGL Matrix mode to ModelView (used when drawing geometry)
@@ -799,11 +801,14 @@ void Building::drawRoof(DrawData & data)
 		break;
 	}
 	glPopMatrix();
+
+	material.color = oldColor;
 }
 
 void Building::drawDoor(DrawData & data)
 {
 	material.apply();
+	Color oldColor = material.color;
 
 	//Set the OpenGL Matrix mode to ModelView (used when drawing geometry)
 	glMatrixMode(GL_MODELVIEW);
@@ -814,152 +819,195 @@ void Building::drawDoor(DrawData & data)
 
 	switch (grammar[4] % 5)
 	{
-	case 0:
+	case 0: //Normal door
+		material.color = Color().lightBrown();
+		material.apply();
 		glBegin(GL_QUADS);
 		glNormal3f(0.0, 0.0, 1.0);
-		glVertex3f(-2, 5, front + 0.5);
-		glVertex3f(2, 5, front + 0.5);
-		glVertex3f(2, 0, front + 0.5);
-		glVertex3f(-2, 0, front + 0.5);
+		glVertex3f(-2, 5, front + 0.1);
+		glVertex3f(2, 5, front + 0.1);
+		glVertex3f(2, 0, front + 0.1);
+		glVertex3f(-2, 0, front + 0.1);
 
 		// Draw left side:
 		glNormal3f(-1.0, 0.0, 0.0);
 		glVertex3f(-2, 5, front);
-		glVertex3f(-2, 5, front + 0.5);
-		glVertex3f(-2, 0, front + 0.5);
+		glVertex3f(-2, 5, front + 0.1);
+		glVertex3f(-2, 0, front + 0.1);
 		glVertex3f(-2, 0, front);
 
 		// Draw right side:
 		glNormal3f(1.0, 0.0, 0.0);
 		glVertex3f(2, 5, front);
-		glVertex3f(2, 5, front + 0.5);
-		glVertex3f(2, 0, front + 0.5);
+		glVertex3f(2, 5, front + 0.1);
+		glVertex3f(2, 0, front + 0.1);
 		glVertex3f(2, 0, front);;
 
 		// Draw top side:
 		glNormal3f(0.0, 1.0, 0.0);
 		glVertex3f(-2, 5, front);
 		glVertex3f(2, 5, front);
-		glVertex3f(2, 5, front + 0.5);
-		glVertex3f(-2, 5, front + 0.5);
+		glVertex3f(2, 5, front + 0.1);
+		glVertex3f(-2, 5, front + 0.1);
 
 		// Draw bottom side:
 		glNormal3f(0.0, -1.0, 0.0);
 		glVertex3f(-2, 0, front);
 		glVertex3f(2, 0, front);
-		glVertex3f(2, 0, front + 0.5);
-		glVertex3f(-2, 0, front + 0.5);
+		glVertex3f(2, 0, front + 0.1);
+		glVertex3f(-2, 0, front + 0.1);
 		glEnd();
+		material.color = oldColor;
+
+		glPushMatrix();
+		glMultMatrixf(Matrix4().makeTranslate(1.2, 2, front + 0.2).ptr());
+		material.color = Color().yellow();
+		material.apply();
+		glutSolidSphere(.25, 10, 10);
+		glPopMatrix();
+		material.color = oldColor;
 		break;
 
-	case 1:
+	case 1: // Double door
+		material.color = Color().lightBrown();
+		material.apply();
 		glBegin(GL_QUADS);
 		glNormal3f(0.0, 0.0, 1.0);
-		glVertex3f(-4, 5, front + 0.5);
-		glVertex3f(0, 5, front + 0.5);
-		glVertex3f(0, 0, front + 0.5);
-		glVertex3f(-4, 0, front + 0.5);
+		glVertex3f(-4, 5, front + 0.1);
+		glVertex3f(-0.02, 5, front + 0.1);
+		glVertex3f(-0.02, 0, front + 0.1);
+		glVertex3f(-4, 0, front + 0.1);
 
 		// Draw left side:
 		glNormal3f(-1.0, 0.0, 0.0);
 		glVertex3f(-4, 5, front);
-		glVertex3f(-4, 5, front + 0.5);
-		glVertex3f(-4, 0, front + 0.5);
+		glVertex3f(-4, 5, front + 0.1);
+		glVertex3f(-4, 0, front + 0.1);
 		glVertex3f(-4, 0, front);
 
 		// Draw right side:
 		glNormal3f(1.0, 0.0, 0.0);
-		glVertex3f(0, 5, front);
-		glVertex3f(0, 5, front + 0.5);
-		glVertex3f(0, 0, front + 0.5);
-		glVertex3f(0, 0, front);;
+		glVertex3f(-0.02, 5, front);
+		glVertex3f(-0.02, 5, front + 0.1);
+		glVertex3f(-0.02, 0, front + 0.1);
+		glVertex3f(-0.02, 0, front);;
 
 		// Draw top side:
 		glNormal3f(0.0, 1.0, 0.0);
 		glVertex3f(-4, 5, front);
-		glVertex3f(0, 5, front);
-		glVertex3f(0, 5, front + 0.5);
-		glVertex3f(-4, 5, front + 0.5);
+		glVertex3f(-0.02, 5, front);
+		glVertex3f(-0.02, 5, front + 0.1);
+		glVertex3f(-4, 5, front + 0.1);
 
 		// Draw bottom side:
 		glNormal3f(0.0, -1.0, 0.0);
 		glVertex3f(-4, 0, front);
-		glVertex3f(0, 0, front);
-		glVertex3f(0, 0, front + 0.5);
-		glVertex3f(-4, 0, front + 0.5);
+		glVertex3f(-0.02, 0, front);
+		glVertex3f(-0.02, 0, front + 0.1);
+		glVertex3f(-4, 0, front + 0.1);
 
 		glNormal3f(0.0, 0.0, 1.0);
-		glVertex3f(4, 5, front + 0.5);
-		glVertex3f(0, 5, front + 0.5);
-		glVertex3f(0, 0, front + 0.5);
-		glVertex3f(4, 0, front + 0.5);
+		glVertex3f(4, 5, front + 0.1);
+		glVertex3f(0.02, 5, front + 0.1);
+		glVertex3f(0.02, 0, front + 0.1);
+		glVertex3f(4, 0, front + 0.1);
 
 		// Draw left side:
 		glNormal3f(-1.0, 0.0, 0.0);
 		glVertex3f(4, 5, front);
-		glVertex3f(4, 5, front + 0.5);
-		glVertex3f(4, 0, front + 0.5);
+		glVertex3f(4, 5, front + 0.1);
+		glVertex3f(4, 0, front + 0.1);
 		glVertex3f(4, 0, front);
 
 		// Draw right side:
 		glNormal3f(1.0, 0.0, 0.0);
-		glVertex3f(0, 5, front);
-		glVertex3f(0, 5, front + 0.5);
-		glVertex3f(0, 0, front + 0.5);
-		glVertex3f(0, 0, front);;
+		glVertex3f(0.02, 5, front);
+		glVertex3f(0.02, 5, front + 0.1);
+		glVertex3f(0.02, 0, front + 0.1);
+		glVertex3f(0.02, 0, front);;
 
 		// Draw top side:
 		glNormal3f(0.0, 1.0, 0.0);
 		glVertex3f(4, 5, front);
-		glVertex3f(0, 5, front);
-		glVertex3f(0, 5, front + 0.5);
-		glVertex3f(4, 5, front + 0.5);
+		glVertex3f(0.02, 5, front);
+		glVertex3f(0.02, 5, front + 0.1);
+		glVertex3f(4, 5, front + 0.1);
 
 		// Draw bottom side:
 		glNormal3f(0.0, -1.0, 0.0);
 		glVertex3f(4, 0, front);
-		glVertex3f(0, 0, front);
-		glVertex3f(0, 0, front + 0.5);
-		glVertex3f(4, 0, front + 0.5);
+		glVertex3f(0.02, 0, front);
+		glVertex3f(0.02, 0, front + 0.1);
+		glVertex3f(4, 0, front + 0.1);
 		glEnd();
+
+		glPushMatrix();
+		glMultMatrixf(Matrix4().makeTranslate(0.8, 2, front + 0.2).ptr());
+		material.color = Color().yellow();
+		material.apply();
+		glutSolidSphere(.25, 10, 10);
+		glPopMatrix();
+		material.color = oldColor;
+
+		glPushMatrix();
+		glMultMatrixf(Matrix4().makeTranslate(-0.8, 2, front + 0.2).ptr());
+		material.color = Color().yellow();
+		material.apply();
+		glutSolidSphere(.25, 10, 10);
+		glPopMatrix();
+		material.color = oldColor;
 		break;
 
-	case 2:
+	case 2: // Door with entranceway
+		material.color = Color().lightBrown();
+		material.apply();
 		glBegin(GL_QUADS);
 		glNormal3f(0.0, 0.0, 1.0);
-		glVertex3f(-2, 5, front + 4 + 0.5);
-		glVertex3f(2, 5, front + 4 + 0.5);
-		glVertex3f(2, 0, front + 4 + 0.5);
-		glVertex3f(-2, 0, front + 4 + 0.5);
+		glVertex3f(-2, 5, front + 4 + 0.1);
+		glVertex3f(2, 5, front + 4 + 0.1);
+		glVertex3f(2, 0, front + 4 + 0.1);
+		glVertex3f(-2, 0, front + 4 + 0.1);
 
 		// Draw left side:
 		glNormal3f(-1.0, 0.0, 0.0);
 		glVertex3f(-2, 5, front + 4);
-		glVertex3f(-2, 5, front + 4 + 0.5);
-		glVertex3f(-2, 0, front + 4 + 0.5);
+		glVertex3f(-2, 5, front + 4 + 0.1);
+		glVertex3f(-2, 0, front + 4 + 0.1);
 		glVertex3f(-2, 0, front + 4);
 
 		// Draw right side:
 		glNormal3f(1.0, 0.0, 0.0);
 		glVertex3f(2, 5, front + 4);
-		glVertex3f(2, 5, front + 4 + 0.5);
-		glVertex3f(2, 0, front + 4 + 0.5);
+		glVertex3f(2, 5, front + 4 + 0.1);
+		glVertex3f(2, 0, front + 4 + 0.1);
 		glVertex3f(2, 0, front + 4);;
 
 		// Draw top side:
 		glNormal3f(0.0, 1.0, 0.0);
 		glVertex3f(-2, 5, front + 4);
 		glVertex3f(2, 5, front + 4);
-		glVertex3f(2, 5, front + 4 + 0.5);
-		glVertex3f(-2, 5, front + 4 + 0.5);
+		glVertex3f(2, 5, front + 4 + 0.1);
+		glVertex3f(-2, 5, front + 4 + 0.1);
 
 		// Draw bottom side:
 		glNormal3f(0.0, -1.0, 0.0);
 		glVertex3f(-2, 0, front + 4);
 		glVertex3f(2, 0, front + 4);
-		glVertex3f(2, 0, front + 4 + 0.5);
-		glVertex3f(-2, 0, front + 4 + 0.5);
+		glVertex3f(2, 0, front + 4 + 0.1);
+		glVertex3f(-2, 0, front + 4 + 0.1);
 
+		glEnd();
+
+		glPushMatrix();
+		glMultMatrixf(Matrix4().makeTranslate(1.2, 2, front + 4 + 0.2).ptr());
+		material.color = Color().yellow();
+		material.apply();
+		glutSolidSphere(.25, 10, 10);
+		glPopMatrix();
+		material.color = oldColor;
+
+		material.apply();
+		glBegin(GL_QUADS);
 		glNormal3f(0.0, 0.0, 1.0);
 		glVertex3f(-2.5, 5.5, front + 4);
 		glVertex3f(2.5, 5.5, front + 4);
@@ -990,76 +1038,83 @@ void Building::drawDoor(DrawData & data)
 		glEnd();
 		break;
 
-	case 3:
+	case 3: // Double door with entranceway
+		material.color = Color().lightBrown();
+		material.apply();
 		glBegin(GL_QUADS);
 		glNormal3f(0.0, 0.0, 1.0);
-		glVertex3f(-4, 5, front + 4 + 0.5);
-		glVertex3f(0, 5, front + 4 + 0.5);
-		glVertex3f(0, 0, front + 4 + 0.5);
-		glVertex3f(-4, 0, front + 4 + 0.5);
+		glVertex3f(-4, 5, front + 4 + 0.1);
+		glVertex3f(-0.02, 5, front + 4 + 0.1);
+		glVertex3f(-0.02, 0, front + 4 + 0.1);
+		glVertex3f(-4, 0, front + 4 + 0.1);
 
 		// Draw left side:
 		glNormal3f(-1.0, 0.0, 0.0);
 		glVertex3f(-4, 5, front + 4);
-		glVertex3f(-4, 5, front + 4 + 0.5);
-		glVertex3f(-4, 0, front + 4 + 0.5);
+		glVertex3f(-4, 5, front + 4 + 0.1);
+		glVertex3f(-4, 0, front + 4 + 0.1);
 		glVertex3f(-4, 0, front + 4);
 
 		// Draw right side:
 		glNormal3f(1.0, 0.0, 0.0);
-		glVertex3f(0, 5, front + 4);
-		glVertex3f(0, 5, front + 4 + 0.5);
-		glVertex3f(0, 0, front + 4 + 0.5);
-		glVertex3f(0, 0, front + 4);;
+		glVertex3f(-0.02, 5, front + 4);
+		glVertex3f(-0.02, 5, front + 4 + 0.1);
+		glVertex3f(-0.02, 0, front + 4 + 0.1);
+		glVertex3f(-0.02, 0, front + 4);;
 
 		// Draw top side:
 		glNormal3f(0.0, 1.0, 0.0);
 		glVertex3f(-4, 5, front + 4);
-		glVertex3f(0, 5, front + 4);
-		glVertex3f(0, 5, front + 4 + 0.5);
-		glVertex3f(-4, 5, front + 4 + 0.5);
+		glVertex3f(-0.02, 5, front + 4);
+		glVertex3f(-0.02, 5, front + 4 + 0.1);
+		glVertex3f(-4, 5, front + 4 + 0.1);
 
 		// Draw bottom side:
 		glNormal3f(0.0, -1.0, 0.0);
 		glVertex3f(-4, 0, front + 4);
-		glVertex3f(0, 0, front + 4);
-		glVertex3f(0, 0, front + 4 + 0.5);
-		glVertex3f(-4, 0, front + 4 + 0.5);
+		glVertex3f(-0.02, 0, front + 4);
+		glVertex3f(-0.02, 0, front + 4 + 0.1);
+		glVertex3f(-4, 0, front + 4 + 0.1);
 
 		glNormal3f(0.0, 0.0, 1.0);
-		glVertex3f(4, 5, front + 4 + 0.5);
-		glVertex3f(0, 5, front + 4 + 0.5);
-		glVertex3f(0, 0, front + 4 + 0.5);
-		glVertex3f(4, 0, front + 4 + 0.5);
+		glVertex3f(4, 5, front + 4 + 0.1);
+		glVertex3f(0.02, 5, front + 4 + 0.1);
+		glVertex3f(0.02, 0, front + 4 + 0.1);
+		glVertex3f(4, 0, front + 4 + 0.1);
 
 		// Draw left side:
 		glNormal3f(-1.0, 0.0, 0.0);
 		glVertex3f(4, 5, front + 4);
-		glVertex3f(4, 5, front + 4 + 0.5);
-		glVertex3f(4, 0, front + 4 + 0.5);
+		glVertex3f(4, 5, front + 4 + 0.1);
+		glVertex3f(4, 0, front + 4 + 0.1);
 		glVertex3f(4, 0, front + 4);
 
 		// Draw right side:
 		glNormal3f(1.0, 0.0, 0.0);
-		glVertex3f(0, 5, front + 4);
-		glVertex3f(0, 5, front + 4 + 0.5);
-		glVertex3f(0, 0, front + 4 + 0.5);
-		glVertex3f(0, 0, front + 4);;
+		glVertex3f(0.02, 5, front + 4);
+		glVertex3f(0.02, 5, front + 4 + 0.1);
+		glVertex3f(0.02, 0, front + 4 + 0.1);
+		glVertex3f(0.02, 0, front + 4);;
 
 		// Draw top side:
 		glNormal3f(0.0, 1.0, 0.0);
 		glVertex3f(4, 5, front + 4);
-		glVertex3f(0, 5, front + 4);
-		glVertex3f(0, 5, front + 4 + 0.5);
-		glVertex3f(4, 5, front + 4 + 0.5);
+		glVertex3f(0.02, 5, front + 4);
+		glVertex3f(0.02, 5, front + 4 + 0.1);
+		glVertex3f(4, 5, front + 4 + 0.1);
 
 		// Draw bottom side:
 		glNormal3f(0.0, -1.0, 0.0);
 		glVertex3f(4, 0, front + 4);
-		glVertex3f(0, 0, front + 4);
-		glVertex3f(0, 0, front + 4 + 0.5);
-		glVertex3f(4, 0, front + 4 + 0.5);
+		glVertex3f(0.02, 0, front + 4);
+		glVertex3f(0.02, 0, front + 4 + 0.1);
+		glVertex3f(4, 0, front + 4 + 0.1);
 
+		glEnd();
+
+		material.color = oldColor;
+		material.apply();
+		glBegin(GL_QUADS);
 		glNormal3f(0.0, 0.0, 1.0);
 		glVertex3f(-4.5, 5.5, front + 4);
 		glVertex3f(4.5, 5.5, front + 4);
@@ -1087,44 +1142,42 @@ void Building::drawDoor(DrawData & data)
 		glVertex3f(4.5, 5.5, front + 4);
 		glVertex3f(-4.5, 5.5, front + 4);
 		glEnd();
+
+		glPushMatrix();
+		glMultMatrixf(Matrix4().makeTranslate(-0.8, 2, front + 4 + 0.2).ptr());
+		material.color = Color().yellow();
+		material.apply();
+		glutSolidSphere(.25, 10, 10);
+		glPopMatrix();
+		material.color = oldColor;
+
+		glPushMatrix();
+		glMultMatrixf(Matrix4().makeTranslate(0.8, 2, front + 4 + 0.2).ptr());
+		material.color = Color().yellow();
+		material.apply();
+		glutSolidSphere(.25, 10, 10);
+		glPopMatrix();
+		material.color = oldColor;
 		break;
 
 	case 4:
-		glBegin(GL_QUADS);
-		glNormal3f(0.0, 0.0, 1.0);
-		glVertex3f(-3, 5, front + 0.5);
-		glVertex3f(3, 5, front + 0.5);
-		glVertex3f(3, 0, front + 0.5);
-		glVertex3f(-3, 0, front + 0.5);
+		glPopMatrix();
 
-		// Draw left side:
-		glNormal3f(-1.0, 0.0, 0.0);
-		glVertex3f(-3, 5, front);
-		glVertex3f(-3, 5, front + 0.5);
-		glVertex3f(-3, 0, front + 0.5);
-		glVertex3f(-3, 0, front);
+		glPushMatrix();
+		glMultMatrixf((toWorld * Matrix4().makeTranslate(0, 3, front + 0.1) * Matrix4().makeRotateX(pi)).ptr());
 
-		// Draw right side:
-		glNormal3f(1.0, 0.0, 0.0);
-		glVertex3f(3, 5, front);
-		glVertex3f(3, 5, front + 0.5);
-		glVertex3f(3, 0, front + 0.5);
-		glVertex3f(3, 0, front);;
+		material.color = Color().lightBrown();
+		material.apply();
+		gluCylinder(gluNewQuadric(), 3, 3, 0.1, 50, 1);
+		gluDisk(gluNewQuadric(), 0, 3, 50, 1);
 
-		// Draw top side:
-		glNormal3f(0.0, 1.0, 0.0);
-		glVertex3f(-3, 5, front);
-		glVertex3f(3, 5, front);
-		glVertex3f(3, 5, front + 0.5);
-		glVertex3f(-3, 5, front + 0.5);
-
-		// Draw bottom side:
-		glNormal3f(0.0, -1.0, 0.0);
-		glVertex3f(-3, 0, front);
-		glVertex3f(3, 0, front);
-		glVertex3f(3, 0, front + 0.5);
-		glVertex3f(-3, 0, front + 0.5);
-		glEnd();
+		glPushMatrix();
+		glMultMatrixf(Matrix4().makeTranslate(0, 0, -0.2).ptr());
+		material.color = Color().yellow();
+		material.apply();
+		glutSolidSphere(.25, 10, 10);
+		glPopMatrix();
+		material.color = oldColor;
 		break;
 	}
 
