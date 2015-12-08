@@ -824,46 +824,46 @@ void Building::drawDoor(DrawData & data)
 		material.apply();
 		glBegin(GL_QUADS);
 		glNormal3f(0.0, 0.0, 1.0);
-		glVertex3f(-2, 5, front + 0.1);
-		glVertex3f(2, 5, front + 0.1);
-		glVertex3f(2, 0, front + 0.1);
-		glVertex3f(-2, 0, front + 0.1);
+		glVertex3f(-1.5, 5, front + 0.1);
+		glVertex3f(1.5, 5, front + 0.1);
+		glVertex3f(1.5, 0, front + 0.1);
+		glVertex3f(-1.5, 0, front + 0.1);
 
 		// Draw left side:
 		glNormal3f(-1.0, 0.0, 0.0);
-		glVertex3f(-2, 5, front);
-		glVertex3f(-2, 5, front + 0.1);
-		glVertex3f(-2, 0, front + 0.1);
-		glVertex3f(-2, 0, front);
+		glVertex3f(-1.5, 5, front);
+		glVertex3f(-1.5, 5, front + 0.1);
+		glVertex3f(-1.5, 0, front + 0.1);
+		glVertex3f(-1.5, 0, front);
 
 		// Draw right side:
 		glNormal3f(1.0, 0.0, 0.0);
-		glVertex3f(2, 5, front);
-		glVertex3f(2, 5, front + 0.1);
-		glVertex3f(2, 0, front + 0.1);
-		glVertex3f(2, 0, front);;
+		glVertex3f(1.5, 5, front);
+		glVertex3f(1.5, 5, front + 0.1);
+		glVertex3f(1.5, 0, front + 0.1);
+		glVertex3f(1.5, 0, front);;
 
 		// Draw top side:
 		glNormal3f(0.0, 1.0, 0.0);
-		glVertex3f(-2, 5, front);
-		glVertex3f(2, 5, front);
-		glVertex3f(2, 5, front + 0.1);
-		glVertex3f(-2, 5, front + 0.1);
+		glVertex3f(-1.5, 5, front);
+		glVertex3f(1.5, 5, front);
+		glVertex3f(1.5, 5, front + 0.1);
+		glVertex3f(-1.5, 5, front + 0.1);
 
 		// Draw bottom side:
 		glNormal3f(0.0, -1.0, 0.0);
-		glVertex3f(-2, 0, front);
-		glVertex3f(2, 0, front);
-		glVertex3f(2, 0, front + 0.1);
-		glVertex3f(-2, 0, front + 0.1);
+		glVertex3f(-1.5, 0, front);
+		glVertex3f(1.5, 0, front);
+		glVertex3f(1.5, 0, front + 0.1);
+		glVertex3f(-1.5, 0, front + 0.1);
 		glEnd();
 		material.color = oldColor;
 
 		glPushMatrix();
-		glMultMatrixf(Matrix4().makeTranslate(1.2, 2, front + 0.2).ptr());
+		glMultMatrixf(Matrix4().makeTranslate(1, 2, front + 0.2).ptr());
 		material.color = Color().yellow();
 		material.apply();
-		glutSolidSphere(.25, 10, 10);
+		glutSolidSphere(.25, 10, 5);
 		glPopMatrix();
 		material.color = oldColor;
 		break;
@@ -873,17 +873,17 @@ void Building::drawDoor(DrawData & data)
 		material.apply();
 		glBegin(GL_QUADS);
 		glNormal3f(0.0, 0.0, 1.0);
-		glVertex3f(-4, 5, front + 0.1);
+		glVertex3f(-3, 5, front + 0.1);
 		glVertex3f(-0.02, 5, front + 0.1);
 		glVertex3f(-0.02, 0, front + 0.1);
-		glVertex3f(-4, 0, front + 0.1);
+		glVertex3f(-3, 0, front + 0.1);
 
 		// Draw left side:
 		glNormal3f(-1.0, 0.0, 0.0);
-		glVertex3f(-4, 5, front);
-		glVertex3f(-4, 5, front + 0.1);
-		glVertex3f(-4, 0, front + 0.1);
-		glVertex3f(-4, 0, front);
+		glVertex3f(-3, 5, front);
+		glVertex3f(-3, 5, front + 0.1);
+		glVertex3f(-3, 0, front + 0.1);
+		glVertex3f(-3, 0, front);
 
 		// Draw right side:
 		glNormal3f(1.0, 0.0, 0.0);
@@ -894,30 +894,30 @@ void Building::drawDoor(DrawData & data)
 
 		// Draw top side:
 		glNormal3f(0.0, 1.0, 0.0);
-		glVertex3f(-4, 5, front);
+		glVertex3f(-3, 5, front);
 		glVertex3f(-0.02, 5, front);
 		glVertex3f(-0.02, 5, front + 0.1);
-		glVertex3f(-4, 5, front + 0.1);
+		glVertex3f(-3, 5, front + 0.1);
 
 		// Draw bottom side:
 		glNormal3f(0.0, -1.0, 0.0);
-		glVertex3f(-4, 0, front);
+		glVertex3f(-3, 0, front);
 		glVertex3f(-0.02, 0, front);
 		glVertex3f(-0.02, 0, front + 0.1);
-		glVertex3f(-4, 0, front + 0.1);
+		glVertex3f(-3, 0, front + 0.1);
 
 		glNormal3f(0.0, 0.0, 1.0);
-		glVertex3f(4, 5, front + 0.1);
+		glVertex3f(3, 5, front + 0.1);
 		glVertex3f(0.02, 5, front + 0.1);
 		glVertex3f(0.02, 0, front + 0.1);
-		glVertex3f(4, 0, front + 0.1);
+		glVertex3f(3, 0, front + 0.1);
 
 		// Draw left side:
 		glNormal3f(-1.0, 0.0, 0.0);
-		glVertex3f(4, 5, front);
-		glVertex3f(4, 5, front + 0.1);
-		glVertex3f(4, 0, front + 0.1);
-		glVertex3f(4, 0, front);
+		glVertex3f(3, 5, front);
+		glVertex3f(3, 5, front + 0.1);
+		glVertex3f(3, 0, front + 0.1);
+		glVertex3f(3, 0, front);
 
 		// Draw right side:
 		glNormal3f(1.0, 0.0, 0.0);
@@ -928,32 +928,32 @@ void Building::drawDoor(DrawData & data)
 
 		// Draw top side:
 		glNormal3f(0.0, 1.0, 0.0);
-		glVertex3f(4, 5, front);
+		glVertex3f(3, 5, front);
 		glVertex3f(0.02, 5, front);
 		glVertex3f(0.02, 5, front + 0.1);
-		glVertex3f(4, 5, front + 0.1);
+		glVertex3f(3, 5, front + 0.1);
 
 		// Draw bottom side:
 		glNormal3f(0.0, -1.0, 0.0);
-		glVertex3f(4, 0, front);
+		glVertex3f(3, 0, front);
 		glVertex3f(0.02, 0, front);
 		glVertex3f(0.02, 0, front + 0.1);
-		glVertex3f(4, 0, front + 0.1);
+		glVertex3f(3, 0, front + 0.1);
 		glEnd();
 
 		glPushMatrix();
-		glMultMatrixf(Matrix4().makeTranslate(0.8, 2, front + 0.2).ptr());
+		glMultMatrixf(Matrix4().makeTranslate(0.5, 2, front + 0.2).ptr());
 		material.color = Color().yellow();
 		material.apply();
-		glutSolidSphere(.25, 10, 10);
+		glutSolidSphere(.25, 10, 5);
 		glPopMatrix();
 		material.color = oldColor;
 
 		glPushMatrix();
-		glMultMatrixf(Matrix4().makeTranslate(-0.8, 2, front + 0.2).ptr());
+		glMultMatrixf(Matrix4().makeTranslate(-0.5, 2, front + 0.2).ptr());
 		material.color = Color().yellow();
 		material.apply();
-		glutSolidSphere(.25, 10, 10);
+		glutSolidSphere(.25, 10, 5);
 		glPopMatrix();
 		material.color = oldColor;
 		break;
@@ -963,77 +963,77 @@ void Building::drawDoor(DrawData & data)
 		material.apply();
 		glBegin(GL_QUADS);
 		glNormal3f(0.0, 0.0, 1.0);
-		glVertex3f(-2, 5, front + 4 + 0.1);
-		glVertex3f(2, 5, front + 4 + 0.1);
-		glVertex3f(2, 0, front + 4 + 0.1);
-		glVertex3f(-2, 0, front + 4 + 0.1);
+		glVertex3f(-1.5, 5, front + 4 + 0.1);
+		glVertex3f(1.5, 5, front + 4 + 0.1);
+		glVertex3f(1.5, 0, front + 4 + 0.1);
+		glVertex3f(-1.5, 0, front + 4 + 0.1);
 
 		// Draw left side:
 		glNormal3f(-1.0, 0.0, 0.0);
-		glVertex3f(-2, 5, front + 4);
-		glVertex3f(-2, 5, front + 4 + 0.1);
-		glVertex3f(-2, 0, front + 4 + 0.1);
-		glVertex3f(-2, 0, front + 4);
+		glVertex3f(-1.5, 5, front + 4);
+		glVertex3f(-1.5, 5, front + 4 + 0.1);
+		glVertex3f(-1.5, 0, front + 4 + 0.1);
+		glVertex3f(-1.5, 0, front + 4);
 
 		// Draw right side:
 		glNormal3f(1.0, 0.0, 0.0);
-		glVertex3f(2, 5, front + 4);
-		glVertex3f(2, 5, front + 4 + 0.1);
-		glVertex3f(2, 0, front + 4 + 0.1);
-		glVertex3f(2, 0, front + 4);;
+		glVertex3f(1.5, 5, front + 4);
+		glVertex3f(1.5, 5, front + 4 + 0.1);
+		glVertex3f(1.5, 0, front + 4 + 0.1);
+		glVertex3f(1.5, 0, front + 4);;
 
 		// Draw top side:
 		glNormal3f(0.0, 1.0, 0.0);
-		glVertex3f(-2, 5, front + 4);
-		glVertex3f(2, 5, front + 4);
-		glVertex3f(2, 5, front + 4 + 0.1);
-		glVertex3f(-2, 5, front + 4 + 0.1);
+		glVertex3f(-1.5, 5, front + 4);
+		glVertex3f(1.5, 5, front + 4);
+		glVertex3f(1.5, 5, front + 4 + 0.1);
+		glVertex3f(-1.5, 5, front + 4 + 0.1);
 
 		// Draw bottom side:
 		glNormal3f(0.0, -1.0, 0.0);
-		glVertex3f(-2, 0, front + 4);
-		glVertex3f(2, 0, front + 4);
-		glVertex3f(2, 0, front + 4 + 0.1);
-		glVertex3f(-2, 0, front + 4 + 0.1);
+		glVertex3f(-1.5, 0, front + 4);
+		glVertex3f(1.5, 0, front + 4);
+		glVertex3f(1.5, 0, front + 4 + 0.1);
+		glVertex3f(-1.5, 0, front + 4 + 0.1);
 
 		glEnd();
 
 		glPushMatrix();
-		glMultMatrixf(Matrix4().makeTranslate(1.2, 2, front + 4 + 0.2).ptr());
+		glMultMatrixf(Matrix4().makeTranslate(1, 2, front + 4 + 0.2).ptr());
 		material.color = Color().yellow();
 		material.apply();
-		glutSolidSphere(.25, 10, 10);
+		glutSolidSphere(.25, 10, 5);
 		glPopMatrix();
 		material.color = oldColor;
 
 		material.apply();
 		glBegin(GL_QUADS);
 		glNormal3f(0.0, 0.0, 1.0);
-		glVertex3f(-2.5, 5.5, front + 4);
-		glVertex3f(2.5, 5.5, front + 4);
-		glVertex3f(2.5, 0, front + 4);
-		glVertex3f(-2.5, 0, front + 4);
+		glVertex3f(-2, 5.5, front + 4);
+		glVertex3f(2, 5.5, front + 4);
+		glVertex3f(2, 0, front + 4);
+		glVertex3f(-2, 0, front + 4);
 
 		// Draw left side:
 		glNormal3f(-1.0, 0.0, 0.0);
-		glVertex3f(-2.5, 5.5, 0);
-		glVertex3f(-2.5, 5.5, front + 4);
-		glVertex3f(-2.5, 0, front + 4);
-		glVertex3f(-2.5, 0, 0);
+		glVertex3f(-2, 5.5, 0);
+		glVertex3f(-2, 5.5, front + 4);
+		glVertex3f(-2, 0, front + 4);
+		glVertex3f(-2, 0, 0);
 
 		// Draw right side:
 		glNormal3f(1.0, 0.0, 0.0);
-		glVertex3f(2.5, 5.5, front + 4);
-		glVertex3f(2.5, 5.5, 0);
-		glVertex3f(2.5, 0, 0);
-		glVertex3f(2.5, 0, front + 4);
+		glVertex3f(2, 5.5, front + 4);
+		glVertex3f(2, 5.5, 0);
+		glVertex3f(2, 0, 0);
+		glVertex3f(2, 0, front + 4);
 
 		// Draw top side:
 		glNormal3f(0.0, 1.0, 0.0);
-		glVertex3f(-2.5, 5.5, 0);
-		glVertex3f(2.5, 5.5, 0);
-		glVertex3f(2.5, 5.5, front + 4);
-		glVertex3f(-2.5, 5.5, front + 4);
+		glVertex3f(-2, 5.5, 0);
+		glVertex3f(2, 5.5, 0);
+		glVertex3f(2, 5.5, front + 4);
+		glVertex3f(-2, 5.5, front + 4);
 
 		glEnd();
 		break;
@@ -1043,17 +1043,17 @@ void Building::drawDoor(DrawData & data)
 		material.apply();
 		glBegin(GL_QUADS);
 		glNormal3f(0.0, 0.0, 1.0);
-		glVertex3f(-4, 5, front + 4 + 0.1);
+		glVertex3f(-3, 5, front + 4 + 0.1);
 		glVertex3f(-0.02, 5, front + 4 + 0.1);
 		glVertex3f(-0.02, 0, front + 4 + 0.1);
-		glVertex3f(-4, 0, front + 4 + 0.1);
+		glVertex3f(-3, 0, front + 4 + 0.1);
 
 		// Draw left side:
 		glNormal3f(-1.0, 0.0, 0.0);
-		glVertex3f(-4, 5, front + 4);
-		glVertex3f(-4, 5, front + 4 + 0.1);
-		glVertex3f(-4, 0, front + 4 + 0.1);
-		glVertex3f(-4, 0, front + 4);
+		glVertex3f(-3, 5, front + 4);
+		glVertex3f(-3, 5, front + 4 + 0.1);
+		glVertex3f(-3, 0, front + 4 + 0.1);
+		glVertex3f(-3, 0, front + 4);
 
 		// Draw right side:
 		glNormal3f(1.0, 0.0, 0.0);
@@ -1064,30 +1064,30 @@ void Building::drawDoor(DrawData & data)
 
 		// Draw top side:
 		glNormal3f(0.0, 1.0, 0.0);
-		glVertex3f(-4, 5, front + 4);
+		glVertex3f(-3, 5, front + 4);
 		glVertex3f(-0.02, 5, front + 4);
 		glVertex3f(-0.02, 5, front + 4 + 0.1);
-		glVertex3f(-4, 5, front + 4 + 0.1);
+		glVertex3f(-3, 5, front + 4 + 0.1);
 
 		// Draw bottom side:
 		glNormal3f(0.0, -1.0, 0.0);
-		glVertex3f(-4, 0, front + 4);
+		glVertex3f(-3, 0, front + 4);
 		glVertex3f(-0.02, 0, front + 4);
 		glVertex3f(-0.02, 0, front + 4 + 0.1);
-		glVertex3f(-4, 0, front + 4 + 0.1);
+		glVertex3f(-3, 0, front + 4 + 0.1);
 
 		glNormal3f(0.0, 0.0, 1.0);
-		glVertex3f(4, 5, front + 4 + 0.1);
+		glVertex3f(3, 5, front + 4 + 0.1);
 		glVertex3f(0.02, 5, front + 4 + 0.1);
 		glVertex3f(0.02, 0, front + 4 + 0.1);
-		glVertex3f(4, 0, front + 4 + 0.1);
+		glVertex3f(3, 0, front + 4 + 0.1);
 
 		// Draw left side:
 		glNormal3f(-1.0, 0.0, 0.0);
-		glVertex3f(4, 5, front + 4);
-		glVertex3f(4, 5, front + 4 + 0.1);
-		glVertex3f(4, 0, front + 4 + 0.1);
-		glVertex3f(4, 0, front + 4);
+		glVertex3f(3, 5, front + 4);
+		glVertex3f(3, 5, front + 4 + 0.1);
+		glVertex3f(3, 0, front + 4 + 0.1);
+		glVertex3f(3, 0, front + 4);
 
 		// Draw right side:
 		glNormal3f(1.0, 0.0, 0.0);
@@ -1098,17 +1098,17 @@ void Building::drawDoor(DrawData & data)
 
 		// Draw top side:
 		glNormal3f(0.0, 1.0, 0.0);
-		glVertex3f(4, 5, front + 4);
+		glVertex3f(3, 5, front + 4);
 		glVertex3f(0.02, 5, front + 4);
 		glVertex3f(0.02, 5, front + 4 + 0.1);
-		glVertex3f(4, 5, front + 4 + 0.1);
+		glVertex3f(3, 5, front + 4 + 0.1);
 
 		// Draw bottom side:
 		glNormal3f(0.0, -1.0, 0.0);
-		glVertex3f(4, 0, front + 4);
+		glVertex3f(3, 0, front + 4);
 		glVertex3f(0.02, 0, front + 4);
 		glVertex3f(0.02, 0, front + 4 + 0.1);
-		glVertex3f(4, 0, front + 4 + 0.1);
+		glVertex3f(3, 0, front + 4 + 0.1);
 
 		glEnd();
 
@@ -1116,46 +1116,46 @@ void Building::drawDoor(DrawData & data)
 		material.apply();
 		glBegin(GL_QUADS);
 		glNormal3f(0.0, 0.0, 1.0);
-		glVertex3f(-4.5, 5.5, front + 4);
-		glVertex3f(4.5, 5.5, front + 4);
-		glVertex3f(4.5, 0, front + 4);
-		glVertex3f(-4.5, 0, front + 4);
+		glVertex3f(-3.5, 5.5, front + 4);
+		glVertex3f(3.5, 5.5, front + 4);
+		glVertex3f(3.5, 0, front + 4);
+		glVertex3f(-3.5, 0, front + 4);
 
 		// Draw left side:
 		glNormal3f(-1.0, 0.0, 0.0);
-		glVertex3f(-4.5, 5.5, 0);
-		glVertex3f(-4.5, 5.5, front + 4);
-		glVertex3f(-4.5, 0, front + 4);
-		glVertex3f(-4.5, 0, 0);
+		glVertex3f(-3.5, 5.5, 0);
+		glVertex3f(-3.5, 5.5, front + 4);
+		glVertex3f(-3.5, 0, front + 4);
+		glVertex3f(-3.5, 0, 0);
 
 		// Draw right side:
 		glNormal3f(1.0, 0.0, 0.0);
-		glVertex3f(4.5, 5.5, front + 4);
-		glVertex3f(4.5, 5.5, 0);
-		glVertex3f(4.5, 0, 0);
-		glVertex3f(4.5, 0, front + 4);
+		glVertex3f(3.5, 5.5, front + 4);
+		glVertex3f(3.5, 5.5, 0);
+		glVertex3f(3.5, 0, 0);
+		glVertex3f(3.5, 0, front + 4);
 
 		// Draw top side:
 		glNormal3f(0.0, 1.0, 0.0);
-		glVertex3f(-4.5, 5.5, 0);
-		glVertex3f(4.5, 5.5, 0);
-		glVertex3f(4.5, 5.5, front + 4);
-		glVertex3f(-4.5, 5.5, front + 4);
+		glVertex3f(-3.5, 5.5, 0);
+		glVertex3f(3.5, 5.5, 0);
+		glVertex3f(3.5, 5.5, front + 4);
+		glVertex3f(-3.5, 5.5, front + 4);
 		glEnd();
 
 		glPushMatrix();
-		glMultMatrixf(Matrix4().makeTranslate(-0.8, 2, front + 4 + 0.2).ptr());
+		glMultMatrixf(Matrix4().makeTranslate(-0.5, 2, front + 4 + 0.2).ptr());
 		material.color = Color().yellow();
 		material.apply();
-		glutSolidSphere(.25, 10, 10);
+		glutSolidSphere(.25, 10, 5);
 		glPopMatrix();
 		material.color = oldColor;
 
 		glPushMatrix();
-		glMultMatrixf(Matrix4().makeTranslate(0.8, 2, front + 4 + 0.2).ptr());
+		glMultMatrixf(Matrix4().makeTranslate(0.5, 2, front + 4 + 0.2).ptr());
 		material.color = Color().yellow();
 		material.apply();
-		glutSolidSphere(.25, 10, 10);
+		glutSolidSphere(.25, 10, 5);
 		glPopMatrix();
 		material.color = oldColor;
 		break;
@@ -1168,14 +1168,14 @@ void Building::drawDoor(DrawData & data)
 
 		material.color = Color().lightBrown();
 		material.apply();
-		gluCylinder(gluNewQuadric(), 3, 3, 0.1, 50, 1);
-		gluDisk(gluNewQuadric(), 0, 3, 50, 1);
+		gluCylinder(gluNewQuadric(), 3, 3, 0.1, 40, 1);
+		gluDisk(gluNewQuadric(), 0, 3, 40, 1);
 
 		glPushMatrix();
 		glMultMatrixf(Matrix4().makeTranslate(0, 0, -0.2).ptr());
 		material.color = Color().yellow();
 		material.apply();
-		glutSolidSphere(.25, 10, 10);
+		glutSolidSphere(.25, 10, 5);
 		glPopMatrix();
 		material.color = oldColor;
 		break;
@@ -1186,5 +1186,923 @@ void Building::drawDoor(DrawData & data)
 
 void Building::drawWindow(DrawData & data)
 {
+	Color oldColor = material.color;
+
+	//Set the OpenGL Matrix mode to ModelView (used when drawing geometry)
+	glMatrixMode(GL_MODELVIEW);
+
+	//Push a save state onto the matrix stack, and multiply in the toWorld matrix
+	glPushMatrix();
+	glMultMatrixf((toWorld * size).ptr());
+
+	switch (grammar[5] % 5)
+	{
+	case 0:
+		switch (grammar[0] % 4)
+		{
+		case 0:
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeTranslate(0.5, 1.0, 1) * Matrix4().makeScale(0.3)).ptr());
+
+			material.color = Color().black();
+			material.apply();
+
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeTranslate(0, 0.4, 0) * Matrix4().makeScale(1, 0.2, 0.2)).ptr());
+
+			glutSolidCube(1);
+
+			glPopMatrix();
+
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeTranslate(0, -0.4, 0) * Matrix4().makeScale(1, 0.2, 0.2)).ptr());
+
+			glutSolidCube(1);
+
+			glPopMatrix();
+
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeTranslate(-0.4, 0, 0) * Matrix4().makeScale(0.2, 1, 0.2)).ptr());
+
+			glutSolidCube(1);
+
+			glPopMatrix();
+
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeTranslate(0.4, 0, 0) * Matrix4().makeScale(0.2, 1, 0.2)).ptr());
+
+			glutSolidCube(1);
+
+			glPopMatrix();
+
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeScale(1, 0.2, 0.2)).ptr());
+
+			glutSolidCube(1);
+
+			glPopMatrix();
+
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeScale(0.2, 1, 0.2)).ptr());
+
+			glutSolidCube(1);
+
+			glPopMatrix();
+
+			material.color = Color().blue();
+			material.apply();
+
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeScale(0.9, 0.9, 0.1)).ptr());
+
+			glutSolidCube(1);
+
+			glPopMatrix();
+
+			glPopMatrix();
+
+			material.color = oldColor;
+
+			break;
+
+		case 1:
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeTranslate(0.2, 1.0, 1) * Matrix4().makeScale(0.3)).ptr());
+
+			material.color = Color().black();
+			material.apply();
+
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeTranslate(0, 0.4, 0) * Matrix4().makeScale(1, 0.2, 0.2)).ptr());
+
+			glutSolidCube(1);
+
+			glPopMatrix();
+
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeTranslate(0, -0.4, 0) * Matrix4().makeScale(1, 0.2, 0.2)).ptr());
+
+			glutSolidCube(1);
+
+			glPopMatrix();
+
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeTranslate(-0.4, 0, 0) * Matrix4().makeScale(0.2, 1, 0.2)).ptr());
+
+			glutSolidCube(1);
+
+			glPopMatrix();
+
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeTranslate(0.4, 0, 0) * Matrix4().makeScale(0.2, 1, 0.2)).ptr());
+
+			glutSolidCube(1);
+
+			glPopMatrix();
+
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeScale(1, 0.2, 0.2)).ptr());
+
+			glutSolidCube(1);
+
+			glPopMatrix();
+
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeScale(0.2, 1, 0.2)).ptr());
+
+			glutSolidCube(1);
+
+			glPopMatrix();
+
+			material.color = Color().blue();
+			material.apply();
+
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeScale(0.9, 0.9, 0.1)).ptr());
+
+			glutSolidCube(1);
+
+			glPopMatrix();
+
+			glPopMatrix();
+
+			material.color = oldColor;
+
+			break;
+
+		case 2:
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeTranslate(0.3, 1.0, 1) * Matrix4().makeScale(0.3)).ptr());
+
+			material.color = Color().black();
+			material.apply();
+
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeTranslate(0, 0.4, 0) * Matrix4().makeScale(1, 0.2, 0.2)).ptr());
+
+			glutSolidCube(1);
+
+			glPopMatrix();
+
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeTranslate(0, -0.4, 0) * Matrix4().makeScale(1, 0.2, 0.2)).ptr());
+
+			glutSolidCube(1);
+
+			glPopMatrix();
+
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeTranslate(-0.4, 0, 0) * Matrix4().makeScale(0.2, 1, 0.2)).ptr());
+
+			glutSolidCube(1);
+
+			glPopMatrix();
+
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeTranslate(0.4, 0, 0) * Matrix4().makeScale(0.2, 1, 0.2)).ptr());
+
+			glutSolidCube(1);
+
+			glPopMatrix();
+
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeScale(1, 0.2, 0.2)).ptr());
+
+			glutSolidCube(1);
+
+			glPopMatrix();
+
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeScale(0.2, 1, 0.2)).ptr());
+
+			glutSolidCube(1);
+
+			glPopMatrix();
+
+			material.color = Color().blue();
+			material.apply();
+
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeScale(0.9, 0.9, 0.1)).ptr());
+
+			glutSolidCube(1);
+
+			glPopMatrix();
+
+			glPopMatrix();
+
+			material.color = oldColor;
+
+			break;
+
+		case 3:
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeTranslate(0.2, 1.0, 1) * Matrix4().makeScale(0.3)).ptr());
+
+			material.color = Color().black();
+			material.apply();
+
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeTranslate(0, 0.4, 0) * Matrix4().makeScale(1, 0.2, 0.2)).ptr());
+
+			glutSolidCube(1);
+
+			glPopMatrix();
+
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeTranslate(0, -0.4, 0) * Matrix4().makeScale(1, 0.2, 0.2)).ptr());
+
+			glutSolidCube(1);
+
+			glPopMatrix();
+
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeTranslate(-0.4, 0, 0) * Matrix4().makeScale(0.2, 1, 0.2)).ptr());
+
+			glutSolidCube(1);
+
+			glPopMatrix();
+
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeTranslate(0.4, 0, 0) * Matrix4().makeScale(0.2, 1, 0.2)).ptr());
+
+			glutSolidCube(1);
+
+			glPopMatrix();
+
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeScale(1, 0.2, 0.2)).ptr());
+
+			glutSolidCube(1);
+
+			glPopMatrix();
+
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeScale(0.2, 1, 0.2)).ptr());
+
+			glutSolidCube(1);
+
+			glPopMatrix();
+
+			material.color = Color().blue();
+			material.apply();
+
+			glPushMatrix();
+			glMultMatrixf((Matrix4().makeScale(0.9, 0.9, 0.1)).ptr());
+
+			glutSolidCube(1);
+
+			glPopMatrix();
+
+			glPopMatrix();
+
+			material.color = oldColor;
+
+			break;
+		}
+
+		break;
+
+		case 1:
+			switch (grammar[0] % 4)
+			{
+			case 0:
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(-0.5, 1.0, 1) * Matrix4().makeScale(0.3)).ptr());
+
+				material.color = Color().black();
+				material.apply();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0, 0.4, 0) * Matrix4().makeScale(1, 0.2, 0.2)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0, -0.4, 0) * Matrix4().makeScale(1, 0.2, 0.2)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(-0.4, 0, 0) * Matrix4().makeScale(0.2, 1, 0.2)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0.4, 0, 0) * Matrix4().makeScale(0.2, 1, 0.2)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeScale(1, 0.2, 0.2)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeScale(0.2, 1, 0.2)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				material.color = Color().blue();
+				material.apply();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeScale(0.9, 0.9, 0.1)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPopMatrix();
+
+				material.color = oldColor;
+
+				break;
+
+			case 1:
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(-0.2, 1.0, 1) * Matrix4().makeScale(0.3)).ptr());
+
+				material.color = Color().black();
+				material.apply();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0, 0.4, 0) * Matrix4().makeScale(1, 0.2, 0.2)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0, -0.4, 0) * Matrix4().makeScale(1, 0.2, 0.2)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(-0.4, 0, 0) * Matrix4().makeScale(0.2, 1, 0.2)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0.4, 0, 0) * Matrix4().makeScale(0.2, 1, 0.2)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeScale(1, 0.2, 0.2)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeScale(0.2, 1, 0.2)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				material.color = Color().blue();
+				material.apply();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeScale(0.9, 0.9, 0.1)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPopMatrix();
+
+				material.color = oldColor;
+
+				break;
+
+			case 2:
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(-0.3, 1.0, 1) * Matrix4().makeScale(0.3)).ptr());
+
+				material.color = Color().black();
+				material.apply();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0, 0.4, 0) * Matrix4().makeScale(1, 0.2, 0.2)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0, -0.4, 0) * Matrix4().makeScale(1, 0.2, 0.2)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(-0.4, 0, 0) * Matrix4().makeScale(0.2, 1, 0.2)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0.4, 0, 0) * Matrix4().makeScale(0.2, 1, 0.2)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeScale(1, 0.2, 0.2)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeScale(0.2, 1, 0.2)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				material.color = Color().blue();
+				material.apply();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeScale(0.9, 0.9, 0.1)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPopMatrix();
+
+				material.color = oldColor;
+
+				break;
+
+			case 3:
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(-0.2, 1.0, 1) * Matrix4().makeScale(0.3)).ptr());
+
+				material.color = Color().black();
+				material.apply();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0, 0.4, 0) * Matrix4().makeScale(1, 0.2, 0.2)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0, -0.4, 0) * Matrix4().makeScale(1, 0.2, 0.2)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(-0.4, 0, 0) * Matrix4().makeScale(0.2, 1, 0.2)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0.4, 0, 0) * Matrix4().makeScale(0.2, 1, 0.2)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeScale(1, 0.2, 0.2)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeScale(0.2, 1, 0.2)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				material.color = Color().blue();
+				material.apply();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeScale(0.9, 0.9, 0.1)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPopMatrix();
+
+				material.color = oldColor;
+
+				break;
+			}
+
+			break;
+
+		case 2:
+			switch (grammar[0] % 4)
+			{
+			case 0:
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(-0.5, 1, 1) * Matrix4().makeScale(0.3)).ptr());
+
+				material.color = Color().black();
+				material.apply();
+
+				gluCylinder(gluNewQuadric(), 0.5, 0.5, 0.2, 20, 1);
+				gluCylinder(gluNewQuadric(), 0.4, 0.4, 0.2, 20, 1);
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0, 0, 0.2)).ptr());
+				gluDisk(gluNewQuadric(), 0.4, 0.5, 20, 1);
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeScale(1, 0.1, 0.2) * Matrix4().makeTranslate(0, 0, 0.1)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeScale(0.1, 1, 0.2) * Matrix4().makeTranslate(0, 0, 0.1)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				material.color = Color().blue();
+				material.apply();
+
+				glPushMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0, 0, 0.1)).ptr());
+				gluDisk(gluNewQuadric(), 0, 0.4, 20, 1);
+				glPopMatrix();
+
+				glPopMatrix();
+
+				material.color = oldColor;
+
+				break;
+
+			case 1:
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(-0.2, 1.0, 1) * Matrix4().makeScale(0.3)).ptr());
+
+				material.color = Color().black();
+				material.apply();
+
+				gluCylinder(gluNewQuadric(), 0.5, 0.5, 0.2, 20, 1);
+				gluCylinder(gluNewQuadric(), 0.4, 0.4, 0.2, 20, 1);
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0, 0, 0.2)).ptr());
+				gluDisk(gluNewQuadric(), 0.4, 0.5, 20, 1);
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeScale(1, 0.1, 0.2) * Matrix4().makeTranslate(0, 0, 0.1)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeScale(0.1, 1, 0.2) * Matrix4().makeTranslate(0, 0, 0.1)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				material.color = Color().blue();
+				material.apply();
+
+				glPushMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0, 0, 0.1)).ptr());
+				gluDisk(gluNewQuadric(), 0, 0.4, 20, 1);
+				glPopMatrix();
+
+				glPopMatrix();
+
+				material.color = oldColor;
+
+				break;
+
+			case 2:
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(-0.3, 1.0, 1) * Matrix4().makeScale(0.3)).ptr());
+
+				material.color = Color().black();
+				material.apply();
+
+				gluCylinder(gluNewQuadric(), 0.5, 0.5, 0.2, 20, 1);
+				gluCylinder(gluNewQuadric(), 0.4, 0.4, 0.2, 20, 1);
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0, 0, 0.2)).ptr());
+				gluDisk(gluNewQuadric(), 0.4, 0.5, 20, 1);
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeScale(1, 0.1, 0.2) * Matrix4().makeTranslate(0, 0, 0.1)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeScale(0.1, 1, 0.2) * Matrix4().makeTranslate(0, 0, 0.1)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				material.color = Color().blue();
+				material.apply();
+
+				glPushMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0, 0, 0.1)).ptr());
+				gluDisk(gluNewQuadric(), 0, 0.4, 20, 1);;
+				glPopMatrix();
+
+				glPopMatrix();
+
+				material.color = oldColor;
+
+				break;
+
+			case 3:
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(-0.2, 1.0, 1) * Matrix4().makeScale(0.3)).ptr());
+
+				material.color = Color().black();
+				material.apply();
+
+				gluCylinder(gluNewQuadric(), 0.5, 0.5, 0.2, 20, 1);
+				gluCylinder(gluNewQuadric(), 0.4, 0.4, 0.2, 20, 1);
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0, 0, 0.2)).ptr());
+				gluDisk(gluNewQuadric(), 0.4, 0.5, 20, 1);
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeScale(1, 0.1, 0.2) * Matrix4().makeTranslate(0, 0, 0.1)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeScale(0.1, 1, 0.2) * Matrix4().makeTranslate(0, 0, 0.1)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				material.color = Color().blue();
+				material.apply();
+
+				glPushMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0, 0, 0.1)).ptr());
+				gluDisk(gluNewQuadric(), 0, 0.4, 20, 1);
+				glPopMatrix();
+
+				glPopMatrix();
+
+				material.color = oldColor;
+
+				break;
+			}
+
+			break;
+
+		case 3:
+			switch (grammar[0] % 4)
+			{
+			case 0:
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0.5, 1, 1) * Matrix4().makeScale(0.3)).ptr());
+
+				material.color = Color().black();
+				material.apply();
+
+				gluCylinder(gluNewQuadric(), 0.5, 0.5, 0.2, 20, 1);
+				gluCylinder(gluNewQuadric(), 0.4, 0.4, 0.2, 20, 1);
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0, 0, 0.2)).ptr());
+				gluDisk(gluNewQuadric(), 0.4, 0.5, 20, 1);
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeScale(1, 0.1, 0.2) * Matrix4().makeTranslate(0, 0, 0.1)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeScale(0.1, 1, 0.2) * Matrix4().makeTranslate(0, 0, 0.1)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				material.color = Color().blue();
+				material.apply();
+
+				glPushMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0, 0, 0.1)).ptr());
+				gluDisk(gluNewQuadric(), 0, 0.4, 20, 1);
+				glPopMatrix();
+
+				glPopMatrix();
+
+				material.color = oldColor;
+
+				break;
+
+			case 1:
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0.2, 1.0, 1) * Matrix4().makeScale(0.3)).ptr());
+
+				material.color = Color().black();
+				material.apply();
+
+				gluCylinder(gluNewQuadric(), 0.5, 0.5, 0.2, 20, 1);
+				gluCylinder(gluNewQuadric(), 0.4, 0.4, 0.2, 20, 1);
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0, 0, 0.2)).ptr());
+				gluDisk(gluNewQuadric(), 0.4, 0.5, 20, 1);
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeScale(1, 0.1, 0.2) * Matrix4().makeTranslate(0, 0, 0.1)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeScale(0.1, 1, 0.2) * Matrix4().makeTranslate(0, 0, 0.1)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				material.color = Color().blue();
+				material.apply();
+
+				glPushMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0, 0, 0.1)).ptr());
+				gluDisk(gluNewQuadric(), 0, 0.4, 20, 1);
+				glPopMatrix();
+
+				glPopMatrix();
+
+				material.color = oldColor;
+
+				break;
+
+			case 2:
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0.3, 1.0, 1) * Matrix4().makeScale(0.3)).ptr());
+
+				material.color = Color().black();
+				material.apply();
+
+				gluCylinder(gluNewQuadric(), 0.5, 0.5, 0.2, 20, 1);
+				gluCylinder(gluNewQuadric(), 0.4, 0.4, 0.2, 20, 1);
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0, 0, 0.2)).ptr());
+				gluDisk(gluNewQuadric(), 0.4, 0.5, 20, 1);
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeScale(1, 0.1, 0.2) * Matrix4().makeTranslate(0, 0, 0.1)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeScale(0.1, 1, 0.2) * Matrix4().makeTranslate(0, 0, 0.1)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				material.color = Color().blue();
+				material.apply();
+
+				glPushMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0, 0, 0.1)).ptr());
+				gluDisk(gluNewQuadric(), 0, 0.4, 20, 1);;
+				glPopMatrix();
+
+				glPopMatrix();
+
+				material.color = oldColor;
+
+				break;
+
+			case 3:
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0.2, 1.0, 1) * Matrix4().makeScale(0.3)).ptr());
+
+				material.color = Color().black();
+				material.apply();
+
+				gluCylinder(gluNewQuadric(), 0.5, 0.5, 0.2, 20, 1);
+				gluCylinder(gluNewQuadric(), 0.4, 0.4, 0.2, 20, 1);
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0, 0, 0.2)).ptr());
+				gluDisk(gluNewQuadric(), 0.4, 0.5, 20, 1);
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeScale(1, 0.1, 0.2) * Matrix4().makeTranslate(0, 0, 0.1)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeScale(0.1, 1, 0.2) * Matrix4().makeTranslate(0, 0, 0.1)).ptr());
+
+				glutSolidCube(1);
+
+				glPopMatrix();
+
+				material.color = Color().blue();
+				material.apply();
+
+				glPushMatrix();
+
+				glPushMatrix();
+				glMultMatrixf((Matrix4().makeTranslate(0, 0, 0.1)).ptr());
+				gluDisk(gluNewQuadric(), 0, 0.4, 20, 1);
+				glPopMatrix();
+
+				glPopMatrix();
+
+				material.color = oldColor;
+
+				break;
+			}
+
+			break;
+
+	}
+
+	glPopMatrix();
 }
 
