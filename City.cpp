@@ -15,6 +15,7 @@ City::City() : Drawable()
 	// create starting block
 	blocks[0][0] = new Block(-400, -400);
 
+	
 	// generate first row of blocks
 	for (int i = 0; i < CITY_LENGTH; i++) {
 		generateSingleEast(0, i, blocks[0][i]->getTopRightCoord(), blocks[0][i]->getBotRightCoord());
@@ -136,16 +137,6 @@ void City::generateRowNorth() {
 			blocks[3][i + 1]->getTopRightCoord());
 	}
 
-	/*for (int i = 0; i < CITY_LENGTH - 4; i++) {
-
-		blocks[0][i + 1] = new Block(blocks[1][i + 1]->locX,
-			newYLoc,
-
-			blocks[1][i + 1]->getBotRightCoord(),
-			blocks[0][i]->getTopLeftCoord(),
-			std::make_pair<int, int>(NULL, NULL),
-			blocks[0][i]->getBotLeftCoord());
-	}*/
 
 }
 

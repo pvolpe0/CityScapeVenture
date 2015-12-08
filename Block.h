@@ -2,6 +2,9 @@
 #define CSE167_Block_h
 
 #include "Drawable.h"
+#include "Building.h"
+#include "Vector3.h"
+#include <vector>
 #include <utility>
 #include <tuple>
 
@@ -10,11 +13,19 @@ class Block : public Drawable
 
 private:
 
-	// std::pair<int, int> coords[5][5];
-
 	std::pair<int, int> coords[2][2];
-	Color lineColor;
-	Color groundColor;
+	std::pair<float, float> inner_coords[2][2];
+
+	std::vector<Building *> Buildings;
+
+	double northLineDist, southLineDist, westLineDist, eastLineDist;
+	Vector3 westVec, northVec, eastVec, southVec;
+
+	double getDistanceBetweenPoints(std::pair<int, int>, std::pair<int, int>);
+	void setRealCoords();
+	void setLineDistances();
+
+	void generateBuildings(std::pair<float, float>, Vector3, double);
 
 public:
 

@@ -99,7 +99,8 @@ void Window::displayCallback()
 	
 	//Globals::block.draw(Globals::drawData);
 	Globals::city.draw(Globals::drawData);
-	srand(500);
+	
+	/*srand(500);
 	for (int i = -250;i < 250;i += 40)
 	{
 		for (int j = -250;j < 250;j += 40)
@@ -107,7 +108,7 @@ void Window::displayCallback()
 
 			Building(i, j, Matrix4().makeRotateY(0), rand() % 10).draw(Globals::drawData);
 		}
-	}
+	}*/
 	
 	//std::cout << "Player Location | (x,y) : (" << Globals::player.x << "," << Globals::player.y << ")" << std::endl;
 

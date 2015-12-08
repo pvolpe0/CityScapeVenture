@@ -24,7 +24,7 @@ public:
     static UpdateData updateData;
     //Feel free to add more member variables as needed
 
-	//static Block block;
+	static Block block;
 	static City city;
 
 };

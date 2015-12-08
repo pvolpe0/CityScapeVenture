@@ -38,14 +38,6 @@ void Player::draw(DrawData& data)
 	//The above glBegin, glEnd, glNormal and glVertex calls can be replaced with a glut convenience function
 	//glutSolidCube(size);
 
-	glLineWidth(50.0);
-	glBegin(GL_LINES);
-
-	glVertex3i(x, 0, y);
-	glVertex3i(x, 300, y);
-
-	glEnd();
-
 	//Pop the save state off the matrix stack
 	//This will undo the multiply we did earlier
 	glPopMatrix();
