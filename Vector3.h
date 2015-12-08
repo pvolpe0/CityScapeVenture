@@ -36,6 +36,8 @@ public:
     Vector3 operator * (float);
     Vector3 multiply(Vector3);
     Vector3 operator * (Vector3);
+
+	bool operator==(Vector3 a);
     
     float dot(Vector3);
     Vector3 cross(Vector3);

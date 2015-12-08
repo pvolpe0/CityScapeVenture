@@ -96,10 +96,11 @@ Block::Block(int xCenter, int yCenter, std::pair<int, int> topLeftCoord,
 	setRealCoords();
 	setLineDistances();
 
-	generateBuildings(inner_coords[0][0], westVec, westLineDist);
-	generateBuildings(inner_coords[0][1], northVec, northLineDist);
-	generateBuildings(inner_coords[1][1], eastVec, eastLineDist);
-	generateBuildings(inner_coords[1][0], southVec, southLineDist);
+
+	generateBuildings(inner_coords[0][0], northVec, northLineDist);
+	generateBuildings(inner_coords[0][1], eastVec, eastLineDist);
+	generateBuildings(inner_coords[1][1], southVec, southLineDist);
+	generateBuildings(inner_coords[1][0], westVec, westLineDist);
 
 }
 
@@ -137,10 +138,10 @@ double Block::getDistanceBetweenPoints(std::pair<int, int> coord1, std::pair<int
 
 void Block::setLineDistances() {
 
-	westLineDist = getDistanceBetweenPoints(inner_coords[0][0], inner_coords[0][1]);
-	northLineDist = getDistanceBetweenPoints(inner_coords[0][1], inner_coords[1][1]);
-	eastLineDist = getDistanceBetweenPoints(inner_coords[1][1], inner_coords[1][0]);
-	southLineDist = getDistanceBetweenPoints(inner_coords[0][0], inner_coords[1][0]);
+	northLineDist = getDistanceBetweenPoints(inner_coords[0][0], inner_coords[0][1]);
+	eastLineDist = getDistanceBetweenPoints(inner_coords[0][1], inner_coords[1][1]);
+	southLineDist = getDistanceBetweenPoints(inner_coords[1][1], inner_coords[1][0]);
+	westLineDist = getDistanceBetweenPoints(inner_coords[0][0], inner_coords[1][0]);
 }
 
 void Block::setRealCoords() {
@@ -158,7 +159,7 @@ void Block::setRealCoords() {
 	Vector3 adjVec1 = vec01 - vec00;
 	Vector3 adjVec2 = vec10 - vec00;
 
-	westVec = adjVec1 = adjVec1.normalize();
+	northVec = adjVec1 = adjVec1.normalize();
 	adjVec1 = adjVec1.scale(ROAD_WIDTH + 20);
 
 	adjVec2 = adjVec2.normalize();
@@ -175,10 +176,10 @@ void Block::setRealCoords() {
 	adjVec1 = vec00 - vec01;
 	adjVec2 = vec11 - vec01;
 
-	northVec = adjVec1 = adjVec1.normalize();
+	adjVec1 = adjVec1.normalize();
 	adjVec1 = adjVec1.scale(ROAD_WIDTH + 20);
 
-	adjVec2 = adjVec2.normalize();
+	eastVec = adjVec2 = adjVec2.normalize();
 	adjVec2 = adjVec2.scale(ROAD_WIDTH + 20);
 
 	vecFinal = vec01 + adjVec1 + adjVec2;
@@ -190,7 +191,7 @@ void Block::setRealCoords() {
 	adjVec1 = vec00 - vec10;
 	adjVec2 = vec11 - vec10;
 
-	southVec = adjVec1 = adjVec1.normalize();
+	westVec = adjVec1 = adjVec1.normalize();
 	adjVec1 = adjVec1.scale(ROAD_WIDTH + 20);
 
 	adjVec2 = adjVec2.normalize();
@@ -205,10 +206,10 @@ void Block::setRealCoords() {
 	adjVec1 = vec01 - vec11;
 	adjVec2 = vec10 - vec11;
 
-	eastVec = adjVec1 = adjVec1.normalize();
+	adjVec1 = adjVec1.normalize();
 	adjVec1 = adjVec1.scale(ROAD_WIDTH + 20);
 
-	adjVec2 = adjVec2.normalize();
+	southVec = adjVec2 = adjVec2.normalize();
 	adjVec2 = adjVec2.scale(ROAD_WIDTH + 20);
 
 	vecFinal = vec11 + adjVec1 + adjVec2;
@@ -225,13 +226,22 @@ void Block::generateBuildings(std::pair<float, float> start, Vector3 direction, 
 
 	Vector3 startVector = Vector3(start.first, start.second, 0) + direction.scale(20);
 
-	direction = direction.scale(BUILDING_LENGTH);
+	Vector3 normal = Matrix4().makeRotateZ(3.14 / 2) * direction;
+	float diff = Vector3(0, 1, 0).angle(normal);
+	Matrix4 rotation;
+
+	if (normal[0] < 0)
+		rotation = Matrix4().makeRotateY(-diff);
+	else
+		rotation = Matrix4().makeRotateY(diff);
+
+	direction = direction.scale(distance / quantity);
 
 	for (int i = 0; i < quantity; i++) {
 
-		Vector3 loc = startVector + direction * i;
+		Vector3 loc = startVector + direction * (i + 0.5);
 
-		Buildings.push_back(new Building(loc[0], loc[1], Matrix4().makeRotateY(0), 0));
+		Buildings.push_back(new Building(loc[0], loc[1], rotation, 0));
 	}
 
 }

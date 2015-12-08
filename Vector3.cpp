@@ -129,6 +129,13 @@ Vector3 Vector3::operator * (Vector3 a)
 	return multiply(a);
 }
 
+bool Vector3::operator == (Vector3 a)
+{
+	return (m[0] == a.m[0] &&
+		    m[1] == a.m[1] &&
+		    m[2] == a.m[2]);
+}
+
 
 float Vector3::dot(Vector3 a)
 {
