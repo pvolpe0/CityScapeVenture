@@ -27,6 +27,7 @@ private:
 
 	void generateBuildings(std::pair<float, float>, Vector3, double);
 
+	int blockGrammar;
 public:
 
 

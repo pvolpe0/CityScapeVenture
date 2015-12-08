@@ -39,7 +39,6 @@ void Building::draw(DrawData& data)
 	toWorld = Matrix4().makeTranslate(xLoc, 0, zLoc) * toWorld * rot;
 	drawSize(data);
 	drawShape(data);
-	//drawAddition(data);
 	drawRoof(data);
 	drawDoor(data);
 	drawWindow(data);
@@ -303,8 +302,8 @@ void Building::drawSize(DrawData & data)
 		front = 10;
 		break;
 	case 1:
-		size = Matrix4().makeScale(10, 20, 10);
-		front = 10;
+		size = Matrix4().makeScale(12, 30, 12);
+		front = 12;
 		break;
 	case 2:
 		size = Matrix4().makeScale(15, 10, 10);

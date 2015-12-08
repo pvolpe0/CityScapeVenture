@@ -96,6 +96,14 @@ Block::Block(int xCenter, int yCenter, std::pair<int, int> topLeftCoord,
 	setRealCoords();
 	setLineDistances();
 
+	srand(xCenter);
+	int xseed = rand();
+	srand(yCenter);
+	int zseed = rand();
+	srand((xseed << 16) + zseed);
+	rand();
+	blockGrammar = rand() % 10;
+	std::cout << blockGrammar << std::endl;
 
 	generateBuildings(inner_coords[0][0], northVec, northLineDist);
 	generateBuildings(inner_coords[0][1], eastVec, eastLineDist);
@@ -241,7 +249,7 @@ void Block::generateBuildings(std::pair<float, float> start, Vector3 direction, 
 
 		Vector3 loc = startVector + direction * (i + 0.5);
 
-		Buildings.push_back(new Building(loc[0], loc[1], rotation, 0));
+		Buildings.push_back(new Building(loc[0], loc[1], rotation, blockGrammar));
 	}
 
 }
