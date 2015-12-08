@@ -35,9 +35,9 @@ void Camera::update()
 	Vector3 xc = (up.cross(zc)) * (1 / (up.cross(zc)).magnitude());
 	Vector3 yc = zc.cross(xc);
 	c.set(xc[0], xc[1], xc[2], 0,
-		yc[0], yc[1], yc[2], 0,
-		zc[0], zc[1], zc[2], 0,
-		e[0], e[1], e[2], 1);
+		  yc[0], yc[1], yc[2], 0,
+		  zc[0], zc[1], zc[2], 0,
+		   e[0],  e[1],  e[2], 1);
 	ci = c.rigidInverse();
 
 }
@@ -51,7 +51,7 @@ void Camera::set(Vector3& e, Vector3& d, Vector3& up)
 }
 
 // Transforms camera matrix based on passed in matrix
-void Camera::transform(Matrix4& transformation)
+void Camera::transform(Matrix4 transformation)
 {
 	c = c * transformation;
 	ci = c.rigidInverse();

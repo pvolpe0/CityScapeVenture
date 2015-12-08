@@ -147,6 +147,9 @@ void Window::keyboard(unsigned char key, int x, int y)
 	//Below code is for debug camera
 	switch(key)
 	{
+	case 27: //ESC
+		exit(0);
+		break;
 	case 'w':
 		Globals::camera.transform(Matrix4().makeTranslate(0, 0, -5));
 		break;

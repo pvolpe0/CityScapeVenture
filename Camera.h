@@ -28,8 +28,8 @@ public:
     Matrix4& getInverseMatrix(void);
     
     void set(Vector3&, Vector3&, Vector3&);
-	void transform(Matrix4& transformation);
-	void rotate(Matrix4 & rotation);
+	void transform(Matrix4 transformation);
+	void rotate(Matrix4& rotation);
 	void move(Vector3& movement);
 
 	void look(int dir);
