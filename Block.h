@@ -14,6 +14,8 @@ class Block : public Drawable
 private:
 
 	std::pair<int, int> coords[2][2];
+	std::pair<float, float> sidewalk_inner_coords[2][2];
+	std::pair<float, float> sidewalk_outer_coords[2][2];
 	std::pair<float, float> inner_coords[2][2];
 
 	std::vector<Building *> Buildings;

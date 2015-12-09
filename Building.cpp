@@ -7,6 +7,8 @@
 #include <GL/glut.h>
 #endif
 
+#define SIDEWALK_HEIGHT 3
+
 float pi = 3.14159263538979323846;
 
 Building::Building(int x, int z, Matrix4 rotation, int blockGrammar)
@@ -36,7 +38,7 @@ void Building::defineGrammar(int x, int z)
 void Building::draw(DrawData& data)
 {	
 	toWorld.identity();
-	toWorld = Matrix4().makeTranslate(xLoc, 0, zLoc) * toWorld * rot;
+	toWorld = Matrix4().makeTranslate(xLoc, SIDEWALK_HEIGHT, zLoc) * toWorld * rot;
 	drawSize(data);
 	drawShape(data);
 	drawRoof(data);
