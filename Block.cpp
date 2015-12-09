@@ -116,7 +116,6 @@ Block::Block(int xCenter, int yCenter, std::pair<int, int> topLeftCoord,
 	srand((xseed << 16) + zseed);
 	rand();
 	blockGrammar = rand() % 10;
-	std::cout << blockGrammar << std::endl;
 
 	generateBuildings(inner_coords[0][0], northVec, northLineDist);
 	generateBuildings(inner_coords[0][1], eastVec, eastLineDist);
