@@ -13,7 +13,7 @@
 Player::Player() : Drawable()
 {
 	x = y = 0;
-	sphere = new Sphere(5, 20, 20);
+	sphere = new Sphere(10, 20, 20);
 }
 
 Player::~Player()
