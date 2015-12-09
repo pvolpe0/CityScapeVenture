@@ -23,9 +23,9 @@ int mouseY;
 void Window::initialize(void)
 {
     //Setup the light
-    Vector4 lightPos = Globals::player.getLocation() + Vector4(0, 500, 0, 0);
+    Vector4 lightPos = Vector4(0.3, -1, -.2, 0);
     Globals::light.position = lightPos;
-    Globals::light.quadraticAttenuation = 0.00;
+    Globals::light.quadraticAttenuation = 0.0001;
     
     //Initialize cube matrix:
     Globals::cube.toWorld.identity();
@@ -99,6 +99,11 @@ void Window::displayCallback()
 	
 	//Globals::block.draw(Globals::drawData);
 	Globals::city.draw(Globals::drawData);
+
+	//glPushMatrix();
+	//glMultMatrixf(Matrix4().makeTranslate(Globals::light.position[0], Globals::light.position[1], Globals::light.position[2]).ptr());
+	//glutSolidSphere(20, 20, 20);
+	//glPopMatrix();
 	
 	/*srand(500);
 	for (int i = -250;i < 250;i += 40)
@@ -165,32 +170,32 @@ void Window::keyboard(unsigned char key, int x, int y)
 		break;
 	case 'i':
 
-		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(0, 0, 5);
+		//Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(0, 0, 5);
 		Globals::player.setDeltaLocation(0, 5);
 		if (Globals::player.y % 300 == 0)
 			Globals::city.generateRowNorth(); 
 		break;
 	case 'j':
-		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(5, 0, 0);
-		Globals::player.setDeltaLocation(-5, 0);
+		//Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(5, 0, 0);
+		Globals::player.setDeltaLocation(5, 0);
 		if (Globals::player.x % 300 == 0)
 			Globals::city.generateRowWest();
 		break;
 	case 'k':
-		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(0, 0, -5);
+		//Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(0, 0, -5);
 		Globals::player.setDeltaLocation(0, -5);
 		if (Globals::player.y % 300 == 0)
 			Globals::city.generateRowSouth();
 		break;
 	case 'l':
-		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(-5, 0, 0);
-		Globals::player.setDeltaLocation(5, 0);
+		//Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(-5, 0, 0);
+		Globals::player.setDeltaLocation(-5, 0);
 		if (Globals::player.x % 300 == 0)
 			Globals::city.generateRowEast();
 		break;
 	}
-	Vector4 lightPos = Globals::player.getLocation() + Vector4(0, 500, 0, 0);
-	Globals::light.position = lightPos;
+	//Vector4 lightPos = Globals::player.getLocation() + Vector4(0, 20, 0, 0);
+	//Globals::light.position = lightPos;
 
 }
 

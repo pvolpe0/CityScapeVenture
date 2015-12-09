@@ -2,6 +2,7 @@
 #include "Building.h"
 #include "Vector3.h"
 #include "math.h"
+#include "globals.h"
 #include <stdlib.h>
 #include <vector>
 
@@ -287,17 +288,13 @@ void Block::draw(DrawData& data)
 	glEnd();
 
 
-	
-	
-
-
-
-	
-
+	Color oldColor = material.color;
+	material.color = Color().grey();
 	glColor3f(2.0f, 2.0f, 2.0f);
 	glBegin(GL_QUADS);
 
 	// west roads
+	glNormal3i(0, 1, 0);
 	glVertex3i(coords[0][0].first, 0, coords[0][0].second);
 	glVertex3i(coords[0][0].first + ROAD_WIDTH, 0, coords[0][0].second);
 
@@ -306,6 +303,7 @@ void Block::draw(DrawData& data)
 
 
 	// north roads
+	glNormal3i(0, 1, 0);
 	glVertex3i(coords[0][1].first, 0, coords[0][1].second);
 	glVertex3i(coords[0][1].first, 0, coords[0][1].second - ROAD_WIDTH);
 
@@ -313,6 +311,7 @@ void Block::draw(DrawData& data)
 	glVertex3i(coords[1][1].first, 0, coords[1][1].second);
 
 	// east roads
+	glNormal3i(0, 1, 0);
 	glVertex3i(coords[1][1].first, 0, coords[1][1].second);
 	glVertex3i(coords[1][1].first - ROAD_WIDTH, 0, coords[1][1].second);
 
@@ -321,6 +320,7 @@ void Block::draw(DrawData& data)
 
 
 	// south roads
+	glNormal3i(0, 1, 0);
 	glVertex3i(coords[1][0].first, 0, coords[1][0].second);
 	glVertex3i(coords[1][0].first, 0, coords[1][0].second + ROAD_WIDTH);
 
@@ -330,6 +330,7 @@ void Block::draw(DrawData& data)
 
 	
 	glEnd();
+	material.color = oldColor;
 
 	// draw road lines
 	

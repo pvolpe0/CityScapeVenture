@@ -109,6 +109,11 @@ Color Color::lightBrown(void)
     return Color(0x99664499);
 }
 
+Color Color::grey(void)
+{
+	return Color(0x11111111);
+}
+
 Color Color::randomPastel(void)
 {
     unsigned int color =
