@@ -7,24 +7,29 @@
 #include "Vector3.h"
 
 #ifdef __APPLE__
+<<<<<<< HEAD
 #include <GLUT/glut.h>
 #else
 #include <GL/glut.h>
+=======
+    #include <GLUT/glut.h>
+#else
+    #include <GL/glut.h>
+>>>>>>> 683fb8ff0292346d4d451c017891821ca3f566bd
 #endif
 
 class LSystemTree : public Drawable
 {
 private:
-	int width, length, size;
-	Vector3 currentPos, direction, nextPos, nextDir, secondDir, thirdDir, fourthDir;
-	bool flipped;
-	char *str;
-	float angle, anglChange;
+	int width, length;
+	Vector3 currentPos, direction, nextPos, nextDir,
+			secondDir, thirdDir, fourthDir;
+	float angle;
 	Matrix4 rot;
 
 public:
 	LSystemTree();
-	LSystemTree(Vector3 position, Vector3 dir, int w);//char *s, int siz);
+	LSystemTree(Vector3 position, Vector3 dir, int w);
 	void draw(DrawData& data);
 };
 
