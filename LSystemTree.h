@@ -9,15 +9,9 @@
 #include "Sphere.h"
 
 #ifdef __APPLE__
-<<<<<<< HEAD
 #include <GLUT/glut.h>
 #else
 #include <GL/glut.h>
-=======
-    #include <GLUT/glut.h>
-#else
-    #include <GL/glut.h>
->>>>>>> 683fb8ff0292346d4d451c017891821ca3f566bd
 #endif
 
 class LSystemTree : public Drawable

@@ -18,9 +18,8 @@ LSystemTree::LSystemTree(Vector3 position, Vector3 dir, Matrix4 r, float w)//, c
 	rot1 = Matrix4().makeRotateX(angle);
 	nextDir = (rot1 * direction);//.scale(0.7);
 	
-	cyl = Cylinder(width, length, 20, 20);
+	cyl = Cylinder(width, length, 6, 6);
 	sph = Sphere(2, 5, 5);
-	model = &cyl;
 
 	angle = (rand() % 10)/8.f;
 	rot2 = Matrix4().makeRotateZ(angle);
@@ -43,9 +42,12 @@ void LSystemTree::draw(DrawData& data)
 	glMultMatrixf((Matrix4().makeTranslate(currentPos) *
 				   rotate *
 				   Matrix4().makeRotateX(-PI/2)).ptr());
-	//if(width > 0.7) 
-	cyl.draw(data);
-	//else if (width > 0.3) sph.draw(data);
+	
+	//cyl.draw(data);
+
+	if(width < 0.7) sph.draw(data);
+	else cyl.draw(data);
+
 	glPopMatrix();
 
 	if(length > 2 && width > 0.7)
