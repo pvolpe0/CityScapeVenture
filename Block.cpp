@@ -12,7 +12,7 @@
 #include <GL/glut.h>
 #endif
 
-#define DEBUG_LINES 0
+#define DEBUG_LINES 1
 
 #define BLOCK_LENGTH 2
 #define ROAD_WIDTH 15
@@ -26,10 +26,9 @@
 #define COORD_DIST_HALF COORD_DIST / 2
 #define COORD_DIST_QUARTER COORD_DIST / 4
 
-// line color
-#define LINE_RED 242
-#define LINE_GREEN 223
-#define LINE_BLUE 94
+#define TYPE_RANDOMNESS 15
+
+
 
 
 Block::Block(int xCenter, int yCenter) : Drawable()
@@ -37,7 +36,13 @@ Block::Block(int xCenter, int yCenter) : Drawable()
 
 	locX = xCenter;
 	locY = yCenter;
-	srand(locX + locY);
+	/*srand(locX + locY);*/
+
+	srand(xCenter);
+	int xseed = rand();
+	srand(yCenter);
+	int zseed = rand();
+	srand((xseed << 16) + zseed);
 
 	for (int i = 0; i < BLOCK_LENGTH; i++) {
 		for (int j = 0; j < BLOCK_LENGTH; j++) {
@@ -50,20 +55,25 @@ Block::Block(int xCenter, int yCenter) : Drawable()
 	setRealCoords();
 	setLineDistances();
 
-
-	srand(xCenter);
-	int xseed = rand();
-	srand(yCenter);
-	int zseed = rand();
-	srand((xseed << 16) + zseed);
-	rand();
 	blockGrammar = rand() % 10;
-	std::cout << blockGrammar << std::endl;
 
-	generateBuildings(inner_coords[0][0], northVec, northLineDist);
-	generateBuildings(inner_coords[0][1], eastVec, eastLineDist);
-	generateBuildings(inner_coords[1][1], southVec, southLineDist);
-	generateBuildings(inner_coords[1][0], westVec, westLineDist);
+
+	type = rand() % TYPE_RANDOMNESS;
+
+	if (type == 0) {
+		platformColor = Color(1.0f, 2.0f, 1.0f);
+		// generate trees here
+	}
+	else {
+
+		platformColor = Color(1.0f, 1.0f, 1.0f);
+		generateBuildings(inner_coords[0][0], northVec, northLineDist);
+		generateBuildings(inner_coords[0][1], eastVec, eastLineDist);
+		generateBuildings(inner_coords[1][1], southVec, southLineDist);
+		generateBuildings(inner_coords[1][0], westVec, westLineDist);
+	}
+
+
 	
 }
 
@@ -74,7 +84,13 @@ Block::Block(int xCenter, int yCenter, std::pair<int, int> topLeftCoord,
 
 	locX = xCenter;
 	locY = yCenter;
-	srand(locX + locY);
+	/*srand(locX + locY);*/
+
+	srand(xCenter);
+	int xseed = rand();
+	srand(yCenter);
+	int zseed = rand();
+	srand((xseed << 16) + zseed);
 
 	std::pair<int, int> null_pair = std::make_pair(NULL, NULL);
 
@@ -116,18 +132,22 @@ Block::Block(int xCenter, int yCenter, std::pair<int, int> topLeftCoord,
 	setRealCoords();
 	setLineDistances();
 
-	srand(xCenter);
-	int xseed = rand();
-	srand(yCenter);
-	int zseed = rand();
-	srand((xseed << 16) + zseed);
-	rand();
 	blockGrammar = rand() % 10;
 
-	generateBuildings(inner_coords[0][0], northVec, northLineDist);
-	generateBuildings(inner_coords[0][1], eastVec, eastLineDist);
-	generateBuildings(inner_coords[1][1], southVec, southLineDist);
-	generateBuildings(inner_coords[1][0], westVec, westLineDist);
+	type = rand() % TYPE_RANDOMNESS;
+
+	if (type == 0) {
+		platformColor = Color(1.0f, 2.0f, 1.0f);
+		// generate trees here
+	}
+	else {
+
+		platformColor = Color(1.0f, 1.0f, 1.0f);
+		generateBuildings(inner_coords[0][0], northVec, northLineDist);
+		generateBuildings(inner_coords[0][1], eastVec, eastLineDist);
+		generateBuildings(inner_coords[1][1], southVec, southLineDist);
+		generateBuildings(inner_coords[1][0], westVec, westLineDist);
+	}
 
 }
 
@@ -438,35 +458,43 @@ void Block::draw(DrawData& data)
 		// west roads
 		glNormal3i(0, 1, 0);
 		glVertex3i(coords[0][0].first, 0, coords[0][0].second);
+		glNormal3i(0, 1, 0);
 		glVertex3i(coords[0][0].first + ROAD_WIDTH + 3, 0, coords[0][0].second);
-
+		glNormal3i(0, 1, 0);
 		glVertex3i(coords[0][1].first + ROAD_WIDTH + 3, 0, coords[0][1].second);
+		glNormal3i(0, 1, 0);
 		glVertex3i(coords[0][1].first, 0, coords[0][1].second);
 
 
 		// north roads
 		glNormal3i(0, 1, 0);
 		glVertex3i(coords[0][1].first, 0, coords[0][1].second);
+		glNormal3i(0, 1, 0);
 		glVertex3i(coords[0][1].first, 0, coords[0][1].second - ROAD_WIDTH - 3);
-
+		glNormal3i(0, 1, 0);
 		glVertex3i(coords[1][1].first, 0, coords[1][1].second - ROAD_WIDTH - 3);
+		glNormal3i(0, 1, 0);
 		glVertex3i(coords[1][1].first, 0, coords[1][1].second);
 
 		// east roads
 		glNormal3i(0, 1, 0);
 		glVertex3i(coords[1][1].first, 0, coords[1][1].second);
+		glNormal3i(0, 1, 0);
 		glVertex3i(coords[1][1].first - ROAD_WIDTH - 3, 0, coords[1][1].second);
-
+		glNormal3i(0, 1, 0);
 		glVertex3i(coords[1][0].first - ROAD_WIDTH - 3, 0, coords[1][0].second);
+		glNormal3i(0, 1, 0);
 		glVertex3i(coords[1][0].first, 0, coords[1][0].second);
 
 
 		// south roads
 		glNormal3i(0, 1, 0);
 		glVertex3i(coords[1][0].first, 0, coords[1][0].second);
+		glNormal3i(0, 1, 0);
 		glVertex3i(coords[1][0].first, 0, coords[1][0].second + ROAD_WIDTH + 3);
-
+		glNormal3i(0, 1, 0);
 		glVertex3i(coords[0][0].first, 0, coords[0][0].second + ROAD_WIDTH + 3);
+		glNormal3i(0, 1, 0);
 		glVertex3i(coords[0][0].first, 0, coords[0][0].second);
 
 
@@ -508,7 +536,7 @@ void Block::draw(DrawData& data)
 		glBegin(GL_QUADS);
 
 
-		glColor3f(1.0f, 1.0f, 1.0f);
+		glColor3f(platformColor[0], platformColor[1], platformColor[2]);
 		// draw top
 		glNormal3i(0, 1, 0);
 		glVertex3i(sidewalk_inner_coords[0][0].first, PLATFORM_HEIGHT, sidewalk_inner_coords[0][0].second);
@@ -525,7 +553,7 @@ void Block::draw(DrawData& data)
 		glVertex3i(coords[1][0].first, -1, coords[1][0].second);
 
 		// draw sides
-		glColor3f(1.0f, 1.0f, 1.0f);
+		glColor3f(platformColor[0], platformColor[1], platformColor[2]);
 
 		// draw east
 		//glNormal3i(0, 1, 0);

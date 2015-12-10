@@ -20,6 +20,8 @@ private:
 
 	std::vector<Building *> Buildings;
 
+	Color platformColor;
+
 	double northLineDist, southLineDist, westLineDist, eastLineDist;
 	Vector3 westVec, northVec, eastVec, southVec;
 
@@ -30,6 +32,7 @@ private:
 	void generateBuildings(std::pair<float, float>, Vector3, double);
 
 	int blockGrammar;
+	int type;
 public:
 
 
