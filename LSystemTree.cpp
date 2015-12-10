@@ -3,7 +3,7 @@
 
 LSystemTree::LSystemTree(){}
 
-LSystemTree::LSystemTree(Vector3 position, Vector3 dir, int w)//, char *s, int siz)
+LSystemTree::LSystemTree(Vector3 position, Vector3 dir, Matrix4 r, float w)//, char *s, int siz)
 {
 	srand(((int)position[0] << 16) + ((int)position[2]));
 	currentPos = position;
@@ -15,37 +15,48 @@ LSystemTree::LSystemTree(Vector3 position, Vector3 dir, int w)//, char *s, int s
 	glLineWidth(width);
 	
 	angle = (rand() % 10)/8.f;
-	rot = Matrix4().makeRotateX(angle);
-	nextDir = (rot * direction).scale(0.7);
+	rot1 = Matrix4().makeRotateX(angle);
+	nextDir = (rot1 * direction);//.scale(0.7);
 	
-	angle = (rand() % 10)/8.f;
-	rot = Matrix4().makeRotateZ(angle);
-	secondDir = (rot * direction).scale(0.7);
+	cyl = Cylinder(width, length, 20, 20);
+	sph = Sphere(2, 5, 5);
+	model = &cyl;
 
 	angle = (rand() % 10)/8.f;
-	rot = Matrix4().makeRotateX(-angle);
-	thirdDir = (rot * direction).scale(0.7);
+	rot2 = Matrix4().makeRotateZ(angle);
+	secondDir = (rot2 * direction);//.scale(0.7);
+
+	angle = (rand() % 10)/8.f;
+	rot3 = Matrix4().makeRotateX(-angle);
+	thirdDir = (rot3 * direction);//.scale(0.7);
 	
 	angle = (rand() % 10)/8.f;
-	rot = Matrix4().makeRotateZ(-angle);
-	fourthDir = (rot * direction).scale(0.7);
+	rot4 = Matrix4().makeRotateZ(-angle);
+	fourthDir = (rot4 * direction);//.scale(0.7);
+
+	rotate = r;
 }
 
 void LSystemTree::draw(DrawData& data)
 {
 	glPushMatrix();
-	glMultMatrixf(toWorld.ptr());
-	glBegin(GL_LINES);
-	glVertex3f(currentPos[0], currentPos[1], currentPos[2]);
-	glVertex3f(nextPos[0],	  nextPos[1],	 nextPos[2]);
-	glEnd();
+	glMultMatrixf((Matrix4().makeTranslate(currentPos) *
+				   rotate *
+				   Matrix4().makeRotateX(-PI/2)).ptr());
+	//if(width > 0.7) 
+	cyl.draw(data);
+	//else if (width > 0.3) sph.draw(data);
 	glPopMatrix();
 
-	if(length > 2 && width > 0)
+	if(length > 2 && width > 0.7)
 	{
-		if(rand() % 10 > 2) LSystemTree(nextPos, nextDir, width-1).draw(data);
-		if(rand() % 10 > 2) LSystemTree(nextPos, secondDir, width-1).draw(data);
-		if(rand() % 10 > 2) LSystemTree(nextPos, thirdDir, width-1).draw(data);
-		if(rand() % 10 > 2) LSystemTree(nextPos, fourthDir, width-1).draw(data);
+		//if(rand() % 10 > 2)
+			LSystemTree(nextPos, nextDir, rot1 * rotate, width-0.2).draw(data);
+		//if(rand() % 10 > 2)
+			LSystemTree(nextPos, secondDir, rot2 * rotate, width-0.2).draw(data);
+		//if(rand() % 10 > 2)
+			LSystemTree(nextPos, thirdDir, rot3 * rotate, width-0.2).draw(data);
+		//if(rand() % 10 > 2)
+			LSystemTree(nextPos, fourthDir, rot4 * rotate, width-0.2).draw(data);
 	}
 }

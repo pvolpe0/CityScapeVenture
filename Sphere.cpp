@@ -6,12 +6,14 @@
     #include <GL/glut.h>
 #endif
 
+Sphere::Sphere() : Drawable(){}
 
 Sphere::Sphere(double radius, int slices, int stacks) : Drawable()
 {
     this->radius = radius;
     this->slices = slices;
     this->stacks = stacks;
+    material.color = Color::green();
 }
 
 void Sphere::draw(DrawData& data)
@@ -20,12 +22,12 @@ void Sphere::draw(DrawData& data)
     
     glMatrixMode(GL_MODELVIEW);
     
-    glPushMatrix();
-    glMultMatrixf(toWorld.ptr());
+    //glPushMatrix();
+    //glMultMatrixf(toWorld.ptr());
     
     glutSolidSphere(radius, slices, stacks);
     
-    glPopMatrix();
+    //glPopMatrix();
 }
 
 
