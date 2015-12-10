@@ -52,13 +52,13 @@ void LSystemTree::draw(DrawData& data)
 
 	if(length > 2 && width > 0.7)
 	{
-		//if(rand() % 10 > 2)
+		if(rand() % 10 > 2)
 			LSystemTree(nextPos, nextDir, rot1 * rotate, width-0.2).draw(data);
-		//if(rand() % 10 > 2)
+		if(rand() % 10 > 2)
 			LSystemTree(nextPos, secondDir, rot2 * rotate, width-0.2).draw(data);
-		//if(rand() % 10 > 2)
+		if(rand() % 10 > 2)
 			LSystemTree(nextPos, thirdDir, rot3 * rotate, width-0.2).draw(data);
-		//if(rand() % 10 > 2)
+		if(rand() % 10 > 2)
 			LSystemTree(nextPos, fourthDir, rot4 * rotate, width-0.2).draw(data);
 	}
 }
