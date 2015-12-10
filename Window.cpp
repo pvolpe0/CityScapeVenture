@@ -12,13 +12,14 @@
 #include "Globals.h"
 #include "Block.h"
 #include "Building.h"
+#include "LSystemTree.h"
 
 int Window::width  = 512;   //Set window width in pixels here
 int Window::height = 512;   //Set window height in pixels here
 int mouseButton;
 int mouseX;
 int mouseY;
-
+LSystemTree tree;
 
 void Window::initialize(void)
 {
@@ -34,6 +35,7 @@ void Window::initialize(void)
 	Globals::skybox->left = new Texture("hills_rt.ppm");
 	Globals::skybox->right = new Texture("hills_lf.ppm");
 	Globals::skybox->top = new Texture("hills_up.ppm");
+	tree = LSystemTree(Vector3(init.first+10, 0, init.second), Vector3(0, 9, 0), 10);
 
     //Setup the light
 	Vector4 lightPos = Vector4(0.0, -3.0, 0.0, 0) + Globals::camera.getDirection();
@@ -107,6 +109,7 @@ void Window::displayCallback()
     //Globals::cube.draw(Globals::drawData);
 	Globals::player.draw(Globals::drawData);
 	Globals::skybox->draw();
+	tree.draw(Globals::drawData);
 	//Globals::player.draw(Globals::drawData);
 	
 	//Globals::block.draw(Globals::drawData);

@@ -9,13 +9,15 @@ class LSystemTree : public Drawable
 {
 private:
 	int width, length, size;
-	Vector3 currentPos, direction;
+	Vector3 currentPos, direction, nextPos, nextDir, secondDir, thirdDir, fourthDir;
 	bool flipped;
 	char *str;
 	float angle, anglChange;
+	Matrix4 rot;
 
 public:
-	LSystemTree(Vector3 position, Vector3 dir);//char *s, int siz);
+	LSystemTree();
+	LSystemTree(Vector3 position, Vector3 dir, int w);//char *s, int siz);
 	void draw(DrawData& data);
 };
 
