@@ -4,6 +4,7 @@
 #include "Drawable.h"
 #include "Building.h"
 #include "Vector3.h"
+#include "LSystemTree.h"
 #include <vector>
 #include <utility>
 #include <tuple>
@@ -24,6 +25,7 @@ private:
 	std::pair<float, float> east_road_coords[2];
 
 	std::vector<Building *> Buildings;
+	std::vector<LSystemTree *> Trees;
 
 	Color platformColor;
 
@@ -35,6 +37,8 @@ private:
 	void setLineDistances();
 
 	void generateBuildings(std::pair<float, float>, Vector3, double);
+
+	void generateTrees(std::pair<float, float> start, Vector3 direction, double distance);
 
 	int blockGrammar;
 	int type;

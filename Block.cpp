@@ -62,7 +62,10 @@ Block::Block(int xCenter, int yCenter) : Drawable()
 
 	if (type == 0) {
 		platformColor = Color(1.0f, 2.0f, 1.0f);
-		// generate trees here
+		generateTrees(inner_coords[0][0], northVec, northLineDist);
+		generateTrees(inner_coords[0][1], eastVec, eastLineDist);
+		generateTrees(inner_coords[1][1], southVec, southLineDist);
+		generateTrees(inner_coords[1][0], westVec, westLineDist);
 	}
 	else {
 
@@ -138,7 +141,10 @@ Block::Block(int xCenter, int yCenter, std::pair<int, int> topLeftCoord,
 
 	if (type == 0) {
 		platformColor = Color(1.0f, 2.0f, 1.0f);
-		// generate trees here
+		generateTrees(inner_coords[0][0], northVec, northLineDist);
+		generateTrees(inner_coords[0][1], eastVec, eastLineDist);
+		generateTrees(inner_coords[1][1], southVec, southLineDist);
+		generateTrees(inner_coords[1][0], westVec, westLineDist);
 	}
 	else {
 
@@ -477,6 +483,23 @@ void Block::generateBuildings(std::pair<float, float> start, Vector3 direction, 
 	rotation = Matrix4().makeRotateY(3.14 / 4) * rotation;
 	Buildings.push_back(new Building(loc[0], loc[1], rotation, blockGrammar));
 
+
+}
+
+void Block::generateTrees(std::pair<float, float> start, Vector3 direction, double distance)
+{
+	int quantity = distance / 80;
+
+	Vector3 startVector = Vector3(start.first, start.second, 0) + direction.scale(20);
+
+	direction = direction.scale(distance / quantity);
+
+	for (int i = 0; i < quantity; i++) {
+
+		Vector3 loc = startVector + direction * (i);
+
+		Trees.push_back(new LSystemTree(Vector3(loc[0], 0, loc[1]), Vector3(0, 9, 0), Matrix4().makeRotateZ(0), 1.2));
+	}
 
 }
 
@@ -910,6 +933,11 @@ void Block::draw(DrawData& data)
 	for (int i = 0; i < Buildings.size(); i++) {
 
 		Buildings[i]->draw(data);
+	}
+
+	for (int i = 0;i < Trees.size(); i++)
+	{
+		Trees[i]->draw(data);
 	}
 
 

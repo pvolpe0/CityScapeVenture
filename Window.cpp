@@ -35,7 +35,7 @@ void Window::initialize(void)
 	Globals::skybox->left = new Texture("hills_rt.ppm");
 	Globals::skybox->right = new Texture("hills_lf.ppm");
 	Globals::skybox->top = new Texture("hills_up.ppm");
-	tree = LSystemTree(Vector3(init.first+10, 0, init.second), Vector3(0, 9, 0), Matrix4().makeRotateZ(0), 1.2);
+	//tree = LSystemTree(Vector3(init.first+10, 0, init.second), Vector3(0, 9, 0), Matrix4().makeRotateZ(0), 1.2);
 
     //Setup the light
 	Vector4 lightPos = Vector4(0.0, -3.0, 0.0, 0) + Globals::camera.getDirection();
@@ -109,7 +109,7 @@ void Window::displayCallback()
     //Globals::cube.draw(Globals::drawData);
 	Globals::player.draw(Globals::drawData);
 	Globals::skybox->draw();
-	tree.draw(Globals::drawData);
+	//tree.draw(Globals::drawData);
 	//Globals::player.draw(Globals::drawData);
 	
 	//Globals::block.draw(Globals::drawData);
