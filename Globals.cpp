@@ -13,3 +13,4 @@ UpdateData Globals::updateData;
 //Block Globals::block(0,0);
 
 City Globals::city;
+Skybox * Globals::skybox;

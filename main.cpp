@@ -28,6 +28,7 @@ int main(int argc, char *argv[])
     glDisable(GL_CULL_FACE);                                    //Disable backface culling to render both sides of polygons
     glShadeModel(GL_SMOOTH);                                    //Set shading to smooth
     
+	glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
     glEnable(GL_COLOR_MATERIAL);                                //Enable color materials
     glEnable(GL_LIGHTING);                                      //Enable lighting
     glEnable(GL_NORMALIZE);                                     //Auto normalize surface normals

@@ -12,7 +12,7 @@
 #include <GL/glut.h>
 #endif
 
-#define DEBUG_LINES 1
+#define DEBUG_LINES 0
 
 #define BLOCK_LENGTH 2
 #define ROAD_WIDTH 15

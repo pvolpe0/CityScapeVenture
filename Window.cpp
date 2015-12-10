@@ -22,6 +22,15 @@ int mouseY;
 
 void Window::initialize(void)
 {
+
+	Globals::skybox = new Skybox();
+	Globals::skybox->back = new Texture("C:\\Users\\Pablo\\Documents\\hills_bk.ppm");
+	Globals::skybox->base = new Texture("C:\\Users\\Pablo\\Documents\\hills_dn.ppm");
+	Globals::skybox->front = new Texture("C:\\Users\\Pablo\\Documents\\hills_ft.ppm");
+	Globals::skybox->left = new Texture("C:\\Users\\Pablo\\Documents\\hills_rt.ppm");
+	Globals::skybox->right = new Texture("C:\\Users\\Pablo\\Documents\\hills_lf.ppm");
+	Globals::skybox->top = new Texture("C:\\Users\\Pablo\\Documents\\hills_up.ppm");
+
     //Setup the light
 	Vector4 lightPos = Vector4(0.0, -3.0, 0.0, 0) + Globals::camera.getDirection();
     Globals::light.position = lightPos;
@@ -67,7 +76,7 @@ void Window::reshapeCallback(int w, int h)
     glViewport(0, 0, w, h);                                          //Set new viewport size
     glMatrixMode(GL_PROJECTION);                                     //Set the OpenGL matrix mode to Projection
     glLoadIdentity();                                                //Clear the projection matrix by loading the identity
-    gluPerspective(60.0, double(width)/(double)height, 1.0, 1000.0); //Set perspective projection viewing frustum
+    gluPerspective(60.0, double(width)/(double)height, 1.0, 1700.0); //Set perspective projection viewing frustum
 }
 
 //----------------------------------------------------------------------------
@@ -96,8 +105,13 @@ void Window::displayCallback()
     
     //Draw the cube!
     //Globals::cube.draw(Globals::drawData);
+<<<<<<< HEAD
+	Globals::player.draw(Globals::drawData);
+	Globals::skybox->draw();
+=======
 	//Globals::player.draw(Globals::drawData);
 	
+>>>>>>> 3cd6fd6cbe3dae32638f2ca6c827bac81aaef541
 	//Globals::block.draw(Globals::drawData);
 	Globals::city.draw(Globals::drawData);
 
