@@ -6,6 +6,7 @@
     #include <GL/glut.h>
 #endif
 
+Cylinder::Cylinder() : Drawable(){}
 
 Cylinder::Cylinder(double radius, double height, int slices, int stacks) : Drawable()
 {
@@ -13,6 +14,7 @@ Cylinder::Cylinder(double radius, double height, int slices, int stacks) : Drawa
     this->height = height;
     this->slices = slices;
     this->stacks = stacks;
+    material.color = Color::lightBrown();
 }
 
 void Cylinder::draw(DrawData& data)
@@ -21,13 +23,13 @@ void Cylinder::draw(DrawData& data)
     
     glMatrixMode(GL_MODELVIEW);
     
-    glPushMatrix();
-    glMultMatrixf(toWorld.ptr());
-    
-    gluCylinder(gluNewQuadric(), radius, radius, height, slices, stacks);
+    //glPushMatrix();
+    //glMultMatrixf(toWorld.ptr());
+    //if(radius <= 0.2) radius = 0.21;
+    gluCylinder(gluNewQuadric(), radius, radius-0.2, height, slices, stacks);
     //gluDisk(gluNewQuadric(), 0, 3, 40, 1);
     
-    glPopMatrix();
+    //glPopMatrix();
 }
 
 

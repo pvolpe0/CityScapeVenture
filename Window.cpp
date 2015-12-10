@@ -35,7 +35,7 @@ void Window::initialize(void)
 	Globals::skybox->left = new Texture("hills_rt.ppm");
 	Globals::skybox->right = new Texture("hills_lf.ppm");
 	Globals::skybox->top = new Texture("hills_up.ppm");
-	tree = LSystemTree(Vector3(init.first+10, 0, init.second), Vector3(0, 9, 0), 10);
+	tree = LSystemTree(Vector3(init.first+10, 0, init.second), Vector3(0, 9, 0), Matrix4().makeRotateZ(0), 1.2);
 
     //Setup the light
 	Vector4 lightPos = Vector4(0.0, -3.0, 0.0, 0) + Globals::camera.getDirection();

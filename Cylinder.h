@@ -12,6 +12,7 @@ public:
     double radius, height;
     int slices, stacks;
     
+    Cylinder();
     Cylinder(double, double, int, int);
     
     virtual void draw(DrawData&);

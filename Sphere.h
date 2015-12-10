@@ -12,6 +12,7 @@ public:
     double radius;
     int slices, stacks;
     
+    Sphere();
     Sphere(double, int, int);
     
     virtual void draw(DrawData&);

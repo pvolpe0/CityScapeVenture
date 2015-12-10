@@ -4,6 +4,8 @@
 #include "Drawable.h"
 #include "Matrix4.h"
 #include "Vector3.h"
+#include "Cylinder.h"
+#include "Sphere.h"
 
 #ifdef __APPLE__
     #include <GLUT/glut.h>
@@ -14,15 +16,19 @@
 class LSystemTree : public Drawable
 {
 private:
-	int width, length;
+	float width, length;
 	Vector3 currentPos, direction, nextPos, nextDir,
 			secondDir, thirdDir, fourthDir;
+	Drawable *model;
+	Cylinder cyl;
+	Sphere sph;
+	Matrix4 rot1, rot2, rot3, rot4;
 	float angle;
-	Matrix4 rot;
+	Matrix4 rotate;
 
 public:
 	LSystemTree();
-	LSystemTree(Vector3 position, Vector3 dir, int w);
+	LSystemTree(Vector3 position, Vector3 dir, Matrix4 r, float w);
 	void draw(DrawData& data);
 };
 
