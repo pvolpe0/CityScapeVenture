@@ -392,12 +392,17 @@ void Block::generateBuildings(std::pair<float, float> start, Vector3 direction, 
 
 	direction = direction.scale(distance / quantity);
 
-	for (int i = 0; i < quantity; i++) {
+	for (int i = 0; i < quantity - 1; i++) {
 
 		Vector3 loc = startVector + direction * (i + 0.5);
 
 		Buildings.push_back(new Building(loc[0], loc[1], rotation, blockGrammar));
 	}
+
+	Vector3 loc = startVector + direction * (quantity - 0.5);
+	rotation = Matrix4().makeRotateY(3.14 / 4) * rotation;
+	Buildings.push_back(new Building(loc[0], loc[1], rotation, blockGrammar));
+
 
 }
 
