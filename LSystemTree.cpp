@@ -1,12 +1,6 @@
 #include "LSystemTree.h"
 #include <math.h>
 
-#ifdef __APPLE__
-#include <GLUT/glut.h>
-#else
-#include <GL/glut.h>
-#endif
-
 LSystemTree::LSystemTree(Vector3 position, Vector3 dir)//, char *s, int siz)
 {
 	//str = s;

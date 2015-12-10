@@ -200,7 +200,6 @@ void Window::keyboard(unsigned char key, int x, int y)
 	}
 	//Vector4 lightPos = Globals::player.getLocation() + Vector4(0, 20, 0, 0);
 	//Globals::light.position = lightPos;
-	std::cout << Globals::player.getLocation()[0] << " " << Globals::player.getLocation()[2] << std::endl;
 }
 
 void Window::onMouseClick(int button, int state, int x, int y)
