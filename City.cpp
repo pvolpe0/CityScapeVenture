@@ -8,12 +8,12 @@
 #endif
 
 #define CITY_LENGTH 5
-#define BLOCK_DIST 300
+#define BLOCK_DIST 400
 
 City::City() : Drawable()
 {
 	// create starting block
-	blocks[0][0] = new Block(-600, -600);
+	blocks[0][0] = new Block(-800, -800);
 
 	
 	// generate first row of blocks
@@ -47,7 +47,6 @@ void City::generateSingleEast(int row, int col, std::pair<int, int> topCoord, st
 
 // used for city construction
 void City::generateRowNorth(int row) {
-	std::cout << "Generating" << std::endl;
 
 	int newYLoc = blocks[row][0]->locY + BLOCK_DIST;
 
@@ -92,7 +91,6 @@ void City::generateRowNorth(int row) {
 
 // used dynamically
 void City::generateRowNorth() {
-	std::cout << "Generating" << std::endl;
 
 	Block * one = blocks[0][0];
 	Block * two = blocks[0][1];

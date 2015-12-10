@@ -22,7 +22,7 @@
 #define SIDEWALK_HEIGHT 2
 #define PLATFORM_HEIGHT SIDEWALK_HEIGHT + 1
 #define BUILDING_LENGTH 40
-#define COORD_DIST 300
+#define COORD_DIST 400
 #define COORD_DIST_HALF COORD_DIST / 2
 #define COORD_DIST_QUARTER COORD_DIST / 4
 
@@ -391,6 +391,60 @@ void Block::setRealCoords() {
 
 	sidewalk_outer_coords[1][1] = std::make_pair(vecFinal[0], vecFinal[1]);
 
+	/* set road line coords */
+	// find south_road_coords
+	Vector3 directionalVec = northVec.normalize();
+	directionalVec = directionalVec.scale(ROAD_WIDTH);
+
+	Vector3 coord1 = Vector3(directionalVec[0] + coords[0][0].first, directionalVec[1] + coords[0][0].second, 0);
+
+	directionalVec = directionalVec.scale(-1);
+	Vector3 coord2 = Vector3(directionalVec[0] + coords[0][1].first, directionalVec[1] + coords[0][1].second, 0);
+
+	south_road_coords[0] = std::make_pair(coord1[0], coord1[1]);
+	south_road_coords[1] = std::make_pair(coord2[0], coord2[1]);
+
+	// find east_road_coords
+
+	directionalVec = eastVec.normalize();
+	directionalVec = directionalVec.scale(ROAD_WIDTH);
+
+	coord1 = Vector3(directionalVec[0] + coords[0][1].first, directionalVec[1] + coords[0][1].second, 0);
+	
+	directionalVec = directionalVec.scale(-1);
+
+	coord2 = Vector3(directionalVec[0] + coords[1][1].first, directionalVec[1] + coords[1][1].second, 0);
+
+	east_road_coords[0] = std::make_pair(coord1[0], coord1[1]);
+	east_road_coords[1] = std::make_pair(coord2[0], coord2[1]);
+
+	// find north_road_coords
+
+	directionalVec = southVec.normalize();
+	directionalVec = directionalVec.scale(ROAD_WIDTH);
+
+	coord1 = Vector3(directionalVec[0] + coords[1][1].first, directionalVec[1] + coords[1][1].second, 0);
+
+	directionalVec = directionalVec.scale(-1);
+
+	coord2 = Vector3(directionalVec[0] + coords[1][0].first, directionalVec[1] + coords[1][0].second, 0);
+
+	north_road_coords[0] = std::make_pair(coord1[0], coord1[1]);
+	north_road_coords[1] = std::make_pair(coord2[0], coord2[1]);
+
+	// find west_road_coords
+
+	directionalVec = westVec.normalize();
+	directionalVec = directionalVec.scale(ROAD_WIDTH);
+
+	coord1 = Vector3(directionalVec[0] + coords[1][0].first, directionalVec[1] + coords[1][0].second, 0);
+
+	directionalVec = directionalVec.scale(-1);
+
+	coord2 = Vector3(directionalVec[0] + coords[0][0].first, directionalVec[1] + coords[0][0].second, 0);
+
+	west_road_coords[0] = std::make_pair(coord1[0], coord1[1]);
+	west_road_coords[1] = std::make_pair(coord2[0], coord2[1]);
 }
 
 
@@ -515,8 +569,26 @@ void Block::draw(DrawData& data)
 
 		glBegin(GL_LINES);
 
-		glVertex3i(coords[0][0].first, 0, coords[0][0].second);
+		/*glVertex3i(south_road_coords[0].first, 0, south_road_coords[0].second);
+		glVertex3i(south_road_coords[1].first, 0, south_road_coords[1].second);
+
+		glVertex3i(north_road_coords[0].first, 0, north_road_coords[0].second);
+		glVertex3i(north_road_coords[1].first, 0, north_road_coords[1].second);
+
+		glVertex3i(east_road_coords[0].first, 0, east_road_coords[0].second);
+		glVertex3i(east_road_coords[1].first, 0, east_road_coords[1].second);
+
+		glVertex3i(west_road_coords[0].first, 0, west_road_coords[0].second);
+		glVertex3i(west_road_coords[1].first, 0, west_road_coords[1].second);
+		*/
+
+
+
+
+
+		
 		glVertex3i(coords[0][1].first, 0, coords[0][1].second);
+		glVertex3i(coords[0][0].first, 0, coords[0][0].second);
 
 		glVertex3i(coords[0][0].first, 0, coords[0][0].second);
 		glVertex3i(coords[1][0].first, 0, coords[1][0].second);
@@ -826,6 +898,7 @@ void Block::draw(DrawData& data)
 
 		glVertex3i(sidewalk_outer_coords[1][1].first, 0, sidewalk_outer_coords[1][1].second);
 		glVertex3i(sidewalk_outer_coords[1][1].first, 10, sidewalk_outer_coords[1][1].second);
+
 	}
 	
 

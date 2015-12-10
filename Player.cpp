@@ -20,10 +20,10 @@ Player::Player() : Drawable()
 	northInt = Vector3(Globals::city.blocks[2][3]->getBotLeftCoord().first, 0, Globals::city.blocks[2][3]->getBotLeftCoord().second);
 	westInt = Vector3(Globals::city.blocks[1][2]->getBotLeftCoord().first, 0, Globals::city.blocks[1][2]->getBotLeftCoord().second);
 	eastInt = Vector3(Globals::city.blocks[3][2]->getBotLeftCoord().first, 0, Globals::city.blocks[3][2]->getBotLeftCoord().second);
-	northMove = (northInt - currInt).scale(0.2);
-	southMove = (southInt - currInt).scale(0.2);
-	westMove = (westInt - currInt).scale(0.2);
-	eastMove = (eastInt - currInt).scale(0.2);
+	northMove = (northInt - currInt).scale(0.1);
+	southMove = (southInt - currInt).scale(0.1);
+	westMove = (westInt - currInt).scale(0.1);
+	eastMove = (eastInt - currInt).scale(0.1);
 }
 
 Player::~Player()
@@ -76,7 +76,7 @@ void Player::moveNorth()
 	if (atIntersection)
 	{
 		southInt = currInt;
-		southMove = (southInt - northInt).scale(0.2);
+		southMove = (southInt - northInt).scale(0.1);
 		eastMove = Vector3(0, 0, 0);
 		westMove = Vector3(0, 0, 0);
 		atIntersection = 0;
@@ -89,7 +89,6 @@ void Player::moveNorth()
 		if (currInt[0] != Globals::city.blocks[2][2]->getBotLeftCoord().first
 			|| currInt[2] != Globals::city.blocks[2][2]->getBotLeftCoord().second)
 		{
-			std::cout << "Intersection hit" << std::endl;
 			Globals::city.generateRowWest();
 		}
 		currInt = Vector3(Globals::city.blocks[2][2]->getBotLeftCoord().first, 0, Globals::city.blocks[2][2]->getBotLeftCoord().second);
@@ -97,10 +96,10 @@ void Player::moveNorth()
 		northInt = Vector3(Globals::city.blocks[2][3]->getBotLeftCoord().first, 0, Globals::city.blocks[2][3]->getBotLeftCoord().second);
 		westInt = Vector3(Globals::city.blocks[1][2]->getBotLeftCoord().first, 0, Globals::city.blocks[1][2]->getBotLeftCoord().second);
 		eastInt = Vector3(Globals::city.blocks[3][2]->getBotLeftCoord().first, 0, Globals::city.blocks[3][2]->getBotLeftCoord().second);
-		northMove = (northInt - currInt).scale(0.2);
-		southMove = (southInt - currInt).scale(0.2);
-		westMove = (westInt - currInt).scale(0.2);
-		eastMove = (eastInt - currInt).scale(0.2);;
+		northMove = (northInt - currInt).scale(0.1);
+		southMove = (southInt - currInt).scale(0.1);
+		westMove = (westInt - currInt).scale(0.1);
+		eastMove = (eastInt - currInt).scale(0.1);;
 		atIntersection = 1;
 
 	}
@@ -114,7 +113,7 @@ void Player::moveSouth()
 	if (atIntersection)
 	{
 		northInt = currInt;
-		northMove = (northInt - southInt).scale(0.2);
+		northMove = (northInt - southInt).scale(0.1);
 		eastMove = Vector3(0, 0, 0);
 		westMove = Vector3(0, 0, 0);
 		atIntersection = 0;
@@ -127,7 +126,6 @@ void Player::moveSouth()
 		if (currInt[0] != Globals::city.blocks[2][2]->getBotLeftCoord().first
 			|| currInt[2] != Globals::city.blocks[2][2]->getBotLeftCoord().second)
 		{
-			std::cout << "Intersection hit" << std::endl;
 			Globals::city.generateRowEast();
 		}
 		currInt = Vector3(Globals::city.blocks[2][2]->getBotLeftCoord().first, 0, Globals::city.blocks[2][2]->getBotLeftCoord().second);
@@ -135,10 +133,10 @@ void Player::moveSouth()
 		northInt = Vector3(Globals::city.blocks[2][3]->getBotLeftCoord().first, 0, Globals::city.blocks[2][3]->getBotLeftCoord().second);
 		westInt = Vector3(Globals::city.blocks[1][2]->getBotLeftCoord().first, 0, Globals::city.blocks[1][2]->getBotLeftCoord().second);
 		eastInt = Vector3(Globals::city.blocks[3][2]->getBotLeftCoord().first, 0, Globals::city.blocks[3][2]->getBotLeftCoord().second);
-		northMove = (northInt - currInt).scale(0.2);
-		southMove = (southInt - currInt).scale(0.2);
-		westMove = (westInt - currInt).scale(0.2);
-		eastMove = (eastInt - currInt).scale(0.2);;
+		northMove = (northInt - currInt).scale(0.1);
+		southMove = (southInt - currInt).scale(0.1);
+		westMove = (westInt - currInt).scale(0.1);
+		eastMove = (eastInt - currInt).scale(0.1);;
 		atIntersection = 1;
 
 	}
@@ -153,7 +151,7 @@ void Player::moveWest()
 	if (atIntersection)
 	{
 		eastInt = currInt;
-		eastMove = (eastInt - westInt).scale(0.2);
+		eastMove = (eastInt - westInt).scale(0.1);
 		southMove = Vector3(0, 0, 0);
 		northMove = Vector3(0, 0, 0);
 		atIntersection = 0;
@@ -166,7 +164,6 @@ void Player::moveWest()
 		if (currInt[0] != Globals::city.blocks[2][2]->getBotLeftCoord().first
 			|| currInt[2] != Globals::city.blocks[2][2]->getBotLeftCoord().second)
 		{
-			std::cout << "Intersection hit" << std::endl;
 			Globals::city.generateRowSouth();
 		}
 		currInt = Vector3(Globals::city.blocks[2][2]->getBotLeftCoord().first, 0, Globals::city.blocks[2][2]->getBotLeftCoord().second);
@@ -174,10 +171,10 @@ void Player::moveWest()
 		northInt = Vector3(Globals::city.blocks[2][3]->getBotLeftCoord().first, 0, Globals::city.blocks[2][3]->getBotLeftCoord().second);
 		westInt = Vector3(Globals::city.blocks[1][2]->getBotLeftCoord().first, 0, Globals::city.blocks[1][2]->getBotLeftCoord().second);
 		eastInt = Vector3(Globals::city.blocks[3][2]->getBotLeftCoord().first, 0, Globals::city.blocks[3][2]->getBotLeftCoord().second);
-		northMove = (northInt - currInt).scale(0.2);
-		southMove = (southInt - currInt).scale(0.2);
-		westMove = (westInt - currInt).scale(0.2);
-		eastMove = (eastInt - currInt).scale(0.2);;
+		northMove = (northInt - currInt).scale(0.1);
+		southMove = (southInt - currInt).scale(0.1);
+		westMove = (westInt - currInt).scale(0.1);
+		eastMove = (eastInt - currInt).scale(0.1);;
 		atIntersection = 1;
 
 	}
@@ -191,7 +188,7 @@ void Player::moveEast()
 	if (atIntersection)
 	{
 		westInt = currInt;
-		westMove = (westInt - eastInt).scale(0.2);
+		westMove = (westInt - eastInt).scale(0.1);
 		southMove = Vector3(0, 0, 0);
 		northMove = Vector3(0, 0, 0);
 		atIntersection = 0;
@@ -204,7 +201,6 @@ void Player::moveEast()
 		if (currInt[0] != Globals::city.blocks[2][2]->getBotLeftCoord().first
 			|| currInt[2] != Globals::city.blocks[2][2]->getBotLeftCoord().second)
 		{
-			std::cout << "Intersection hit" << std::endl;
 			Globals::city.generateRowNorth();
 		}
 		currInt = Vector3(Globals::city.blocks[2][2]->getBotLeftCoord().first, 0, Globals::city.blocks[2][2]->getBotLeftCoord().second);
@@ -212,10 +208,10 @@ void Player::moveEast()
 		northInt = Vector3(Globals::city.blocks[2][3]->getBotLeftCoord().first, 0, Globals::city.blocks[2][3]->getBotLeftCoord().second);
 		westInt = Vector3(Globals::city.blocks[1][2]->getBotLeftCoord().first, 0, Globals::city.blocks[1][2]->getBotLeftCoord().second);
 		eastInt = Vector3(Globals::city.blocks[3][2]->getBotLeftCoord().first, 0, Globals::city.blocks[3][2]->getBotLeftCoord().second);
-		northMove = (northInt - currInt).scale(0.2);
-		southMove = (southInt - currInt).scale(0.2);
-		westMove = (westInt - currInt).scale(0.2);
-		eastMove = (eastInt - currInt).scale(0.2);;
+		northMove = (northInt - currInt).scale(0.1);
+		southMove = (southInt - currInt).scale(0.1);
+		westMove = (westInt - currInt).scale(0.1);
+		eastMove = (eastInt - currInt).scale(0.1);;
 		atIntersection = 1;
 
 	}

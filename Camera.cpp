@@ -4,7 +4,7 @@ Camera::Camera()
 {
     c.identity();
     e.set(0.0, 10.0, 0.0);
-    d.set(0.0, 10.0, 1.0);
+    d.set(1.0, 10.0, 0.0);
     up.set(0.0, 1.0, 0.0);
     
     //Pre-define a camera matrix (and its inverse) that are shifted 'e' from the origin

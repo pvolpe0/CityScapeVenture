@@ -18,6 +18,11 @@ private:
 	std::pair<float, float> sidewalk_outer_coords[2][2];
 	std::pair<float, float> inner_coords[2][2];
 
+	std::pair<float, float> west_road_coords[2];
+	std::pair<float, float> south_road_coords[2];
+	std::pair<float, float> north_road_coords[2];
+	std::pair<float, float> east_road_coords[2];
+
 	std::vector<Building *> Buildings;
 
 	Color platformColor;
