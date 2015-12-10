@@ -7,9 +7,10 @@
 #endif
 
 
-Cylinder::Cylinder(double radius, int slices, int stacks) : Drawable()
+Cylinder::Cylinder(double radius, double height, int slices, int stacks) : Drawable()
 {
     this->radius = radius;
+    this->height = height;
     this->slices = slices;
     this->stacks = stacks;
 }
@@ -23,7 +24,8 @@ void Cylinder::draw(DrawData& data)
     glPushMatrix();
     glMultMatrixf(toWorld.ptr());
     
-    //gluCylinder(radius, slices, stacks);
+    gluCylinder(gluNewQuadric(), radius, radius, height, slices, stacks);
+    //gluDisk(gluNewQuadric(), 0, 3, 40, 1);
     
     glPopMatrix();
 }

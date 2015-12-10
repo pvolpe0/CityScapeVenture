@@ -9,10 +9,10 @@ class Cylinder : public Drawable
     
 public:
     
-    double radius;
+    double radius, height;
     int slices, stacks;
     
-    Cylinder(double, int, int);
+    Cylinder(double, double, int, int);
     
     virtual void draw(DrawData&);
     virtual void update(UpdateData&);
