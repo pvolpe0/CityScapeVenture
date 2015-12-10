@@ -103,8 +103,11 @@ void LSystemTree::draw(DrawData& data)
 	//Open a polygon
 	glBegin(GL_LINES);
 	glVertex3f(currentPos[0], currentPos[1], currentPos[2]);
-	currentPos = currentPos + direction;
-	glVertex3f(currentPos[0], currentPos[1], currentPos[2]);
+	//currentPos = currentPos + direction;
+	glVertex3f( currentPos[0] + direction[0],
+				currentPos[1] + direction[1],
+				currentPos[2] + direction[2]);
+	glEnd();
 	direction = Matrix4().makeRotateX(angle) * direction;
 	direction.scale(0.9);
 	glLineWidth(--width);
@@ -115,6 +118,6 @@ void LSystemTree::draw(DrawData& data)
 		LSystemTree(currentPos, direction).draw(data);
 	}
 	//Close the polygon
-	glEnd();
+	//glEnd();
 
 }
