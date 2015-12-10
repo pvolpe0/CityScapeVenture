@@ -41,6 +41,8 @@ public:
     static Color black(void);
     static Color lightBrown(void);
 	static Color grey(void);
+
+	Color lightGrey(void);
     
     //Randomized Colors
     static Color randomPastel(void);

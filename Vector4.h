@@ -26,6 +26,8 @@ public:
     
     Vector4 add(Vector4&);
     Vector4 operator + (Vector4);
+
+	Vector4 operator+(Vector3 a);
     
     Vector4 subtract(Vector4&);
     Vector4 operator - (Vector4);

@@ -60,6 +60,11 @@ Vector4 Vector4::operator + (Vector4 a)
 	return add(a);
 }
 
+Vector4 Vector4::operator + (Vector3 a)
+{
+	return add(a.toVector4(0));
+}
+
 Vector4 Vector4::subtract(Vector4& a)
 {
 	Vector4 b;
