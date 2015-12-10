@@ -488,7 +488,7 @@ void Block::generateBuildings(std::pair<float, float> start, Vector3 direction, 
 
 void Block::generateTrees(std::pair<float, float> start, Vector3 direction, double distance)
 {
-	int quantity = distance / 80;
+	int quantity = distance / 30;
 
 	Vector3 startVector = Vector3(start.first, start.second, 0) + direction.scale(20);
 
