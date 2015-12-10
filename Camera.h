@@ -32,7 +32,9 @@ public:
 	void rotate(Matrix4& rotation);
 	void move(Vector3& movement);
 
-	void look(int dir);
+	void look(float dir);
+
+	Vector3 getDirection(void);
     
 };
 

@@ -111,7 +111,12 @@ Color Color::lightBrown(void)
 
 Color Color::grey(void)
 {
-	return Color(0x11111111);
+	return Color(0x99999999);
+}
+
+Color Color::lightGrey(void)
+{
+	return Color(0xffffffff);
 }
 
 Color Color::randomPastel(void)

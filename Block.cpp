@@ -412,12 +412,17 @@ void Block::generateBuildings(std::pair<float, float> start, Vector3 direction, 
 
 	direction = direction.scale(distance / quantity);
 
-	for (int i = 0; i < quantity; i++) {
+	for (int i = 0; i < quantity - 1; i++) {
 
 		Vector3 loc = startVector + direction * (i + 0.5);
 
 		Buildings.push_back(new Building(loc[0], loc[1], rotation, blockGrammar));
 	}
+
+	Vector3 loc = startVector + direction * (quantity - 0.5);
+	rotation = Matrix4().makeRotateY(3.14 / 4) * rotation;
+	Buildings.push_back(new Building(loc[0], loc[1], rotation, blockGrammar));
+
 
 }
 
@@ -444,10 +449,11 @@ void Block::draw(DrawData& data)
 
 	Color oldColor = material.color;
 	material.color = Color().grey();
+	material.apply();
 
 	/* draw roads*/
 	{
-		glColor3f(2.0f, 2.0f, 2.0f);
+		//glColor3f(2.0f, 2.0f, 2.0f);
 		glBegin(GL_QUADS);
 
 		// west roads
@@ -585,7 +591,7 @@ void Block::draw(DrawData& data)
 		glVertex3i(sidewalk_inner_coords[1][0].first, 0, sidewalk_inner_coords[1][0].second);
 
 
-
+		glEnd();
 
 	}
 
@@ -594,54 +600,64 @@ void Block::draw(DrawData& data)
 	{
 		glColor3f(3.0f, 3.0f, 3.0f);
 
+		glBegin(GL_QUADS);
 		//south sidewalk top
+		glNormal3f(0, 1, 0);
 		glVertex3i(sidewalk_outer_coords[0][0].first, SIDEWALK_HEIGHT, sidewalk_outer_coords[0][0].second);
 		glVertex3i(sidewalk_outer_coords[1][0].first, SIDEWALK_HEIGHT, sidewalk_outer_coords[1][0].second);
 		glVertex3i(sidewalk_inner_coords[1][0].first, SIDEWALK_HEIGHT, sidewalk_inner_coords[1][0].second);
 		glVertex3i(sidewalk_inner_coords[0][0].first, SIDEWALK_HEIGHT, sidewalk_inner_coords[0][0].second);
 
 		//west sidewalk top
+		glNormal3f(0, 1, 0);
 		glVertex3i(sidewalk_outer_coords[1][0].first, SIDEWALK_HEIGHT, sidewalk_outer_coords[1][0].second);
 		glVertex3i(sidewalk_outer_coords[1][1].first, SIDEWALK_HEIGHT, sidewalk_outer_coords[1][1].second);
 		glVertex3i(sidewalk_inner_coords[1][1].first, SIDEWALK_HEIGHT, sidewalk_inner_coords[1][1].second);
 		glVertex3i(sidewalk_inner_coords[1][0].first, SIDEWALK_HEIGHT, sidewalk_inner_coords[1][0].second);
 
 		//north sidewalk top
+		glNormal3f(0, 1, 0);
 		glVertex3i(sidewalk_outer_coords[1][1].first, SIDEWALK_HEIGHT, sidewalk_outer_coords[1][1].second);
 		glVertex3i(sidewalk_outer_coords[0][1].first, SIDEWALK_HEIGHT, sidewalk_outer_coords[0][1].second);
 		glVertex3i(sidewalk_inner_coords[0][1].first, SIDEWALK_HEIGHT, sidewalk_inner_coords[0][1].second);
 		glVertex3i(sidewalk_inner_coords[1][1].first, SIDEWALK_HEIGHT, sidewalk_inner_coords[1][1].second);
 
 		//east sidewalk top
+		glNormal3f(0, 1, 0);
 		glVertex3i(sidewalk_outer_coords[0][1].first, SIDEWALK_HEIGHT, sidewalk_outer_coords[0][1].second);
 		glVertex3i(sidewalk_outer_coords[0][0].first, SIDEWALK_HEIGHT, sidewalk_outer_coords[0][0].second);
 		glVertex3i(sidewalk_inner_coords[0][0].first, SIDEWALK_HEIGHT, sidewalk_inner_coords[0][0].second);
 		glVertex3i(sidewalk_inner_coords[0][1].first, SIDEWALK_HEIGHT, sidewalk_inner_coords[0][1].second);
 
 		// south vertical
+		glNormal3f(0, 0, -1);
 		glVertex3i(sidewalk_outer_coords[0][0].first, 0, sidewalk_outer_coords[0][0].second);
 		glVertex3i(sidewalk_outer_coords[1][0].first, 0, sidewalk_outer_coords[1][0].second);
 		glVertex3i(sidewalk_outer_coords[1][0].first, SIDEWALK_HEIGHT, sidewalk_outer_coords[1][0].second);
 		glVertex3i(sidewalk_outer_coords[0][0].first, SIDEWALK_HEIGHT, sidewalk_outer_coords[0][0].second);
 
 		// east vertical
+		glNormal3f(1, 0, 0);
 		glVertex3i(sidewalk_outer_coords[1][0].first, 0, sidewalk_outer_coords[1][0].second);
 		glVertex3i(sidewalk_outer_coords[1][1].first, 0, sidewalk_outer_coords[1][1].second);
 		glVertex3i(sidewalk_outer_coords[1][1].first, SIDEWALK_HEIGHT, sidewalk_outer_coords[1][1].second);
 		glVertex3i(sidewalk_outer_coords[1][0].first, SIDEWALK_HEIGHT, sidewalk_outer_coords[1][0].second);
 
 		// north vertical
+		glNormal3f(0, 0, 1);
 		glVertex3i(sidewalk_outer_coords[1][1].first, 0, sidewalk_outer_coords[1][1].second);
 		glVertex3i(sidewalk_outer_coords[0][1].first, 0, sidewalk_outer_coords[0][1].second);
 		glVertex3i(sidewalk_outer_coords[0][1].first, SIDEWALK_HEIGHT, sidewalk_outer_coords[0][1].second);
 		glVertex3i(sidewalk_outer_coords[1][1].first, SIDEWALK_HEIGHT, sidewalk_outer_coords[1][1].second);
 
 		// west vertical
+		glNormal3f(-1, 0, 0);
 		glVertex3i(sidewalk_outer_coords[0][1].first, 0, sidewalk_outer_coords[0][1].second);
 		glVertex3i(sidewalk_outer_coords[0][0].first, 0, sidewalk_outer_coords[0][0].second);
 		glVertex3i(sidewalk_outer_coords[0][0].first, SIDEWALK_HEIGHT, sidewalk_outer_coords[0][0].second);
 		glVertex3i(sidewalk_outer_coords[0][1].first, SIDEWALK_HEIGHT, sidewalk_outer_coords[0][1].second);
 
+		material.color = oldColor;
 	}
 	glEnd();
 

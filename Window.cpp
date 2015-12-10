@@ -32,9 +32,9 @@ void Window::initialize(void)
 	Globals::skybox->top = new Texture("C:\\Users\\Pablo\\Documents\\hills_up.ppm");
 
     //Setup the light
-    Vector4 lightPos = Vector4(0.3, -1, -.2, 0);
+	Vector4 lightPos = Vector4(0.0, -3.0, 0.0, 0) + Globals::camera.getDirection();
     Globals::light.position = lightPos;
-    Globals::light.quadraticAttenuation = 0.0001;
+    Globals::light.quadraticAttenuation = 0.000;
     
     //Initialize cube matrix:
     Globals::cube.toWorld.identity();
@@ -104,8 +104,13 @@ void Window::displayCallback()
     
     //Draw the cube!
     //Globals::cube.draw(Globals::drawData);
+<<<<<<< HEAD
 	Globals::player.draw(Globals::drawData);
 	Globals::skybox->draw();
+=======
+	//Globals::player.draw(Globals::drawData);
+	
+>>>>>>> 3cd6fd6cbe3dae32638f2ca6c827bac81aaef541
 	//Globals::block.draw(Globals::drawData);
 	Globals::city.draw(Globals::drawData);
 
@@ -165,7 +170,7 @@ void Window::keyboard(unsigned char key, int x, int y)
 	case 27: //ESC
 		exit(0);
 		break;
-	case 'w':
+	/*case 'w':
 		Globals::camera.transform(Matrix4().makeTranslate(0, 0, -5));
 		break;
 	case 'a':
@@ -176,36 +181,40 @@ void Window::keyboard(unsigned char key, int x, int y)
 		break;
 	case 'd':
 		Globals::camera.transform(Matrix4().makeTranslate(5, 0, 0));
-		break;
-	case 'i':
+		break;*/
+	case 'w':
 
 		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(0, 0, 5);
 		Globals::player.setDeltaLocation(0, 5);
-		if (Globals::player.y % 300 == 0)
+		Globals::camera.move(Vector3(0, 0, 5));
+		if (abs(155 - Globals::player.y) % 300 == 0)
 			Globals::city.generateRowNorth(); 
 		break;
-	case 'j':
+	case 'a':
 		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(5, 0, 0);
 		Globals::player.setDeltaLocation(5, 0);
-		if (Globals::player.x % 300 == 0)
+		Globals::camera.move(Vector3(5, 0, 0));
+		if (abs(155 - Globals::player.x) % 300 == 0)
 			Globals::city.generateRowWest();
 		break;
-	case 'k':
+	case 's':
 		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(0, 0, -5);
 		Globals::player.setDeltaLocation(0, -5);
-		if (Globals::player.y % 300 == 0)
+		Globals::camera.move(Vector3(0, 0, -5));
+		if (abs(Globals::player.y) % 300 == 150)
 			Globals::city.generateRowSouth();
 		break;
-	case 'l':
+	case 'd':
 		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(-5, 0, 0);
 		Globals::player.setDeltaLocation(-5, 0);
-		if (Globals::player.x % 300 == 0)
+		Globals::camera.move(Vector3(-5, 0, 0));
+		if (abs(Globals::player.x) % 300 == 150)
 			Globals::city.generateRowEast();
 		break;
 	}
 	//Vector4 lightPos = Globals::player.getLocation() + Vector4(0, 20, 0, 0);
 	//Globals::light.position = lightPos;
-
+	std::cout << Globals::player.getLocation()[0] << " " << Globals::player.getLocation()[2] << std::endl;
 }
 
 void Window::onMouseClick(int button, int state, int x, int y)
@@ -221,12 +230,14 @@ void Window::onMouseMove(int x, int y)
 	float movedy = y - mouseY;
 	mouseX = x;
 	mouseY = y;
-	/*
-	Globals::camera.rotate(Matrix4().makeRotateY(-movedx / 50));
-	Globals::camera.look(-movedy / 2.0);
-	*/
+	
+	Globals::camera.rotate(Matrix4().makeRotateY(-movedx / 150));
+	Globals::camera.look(-movedy / 150.0);
+	Vector4 lightPos = Vector4(0.0, -3.0, 0.0, 0) + Globals::camera.getDirection();
+	Globals::light.position = lightPos;
+	
 
-	Globals::camera.transform(Matrix4().makeRotateY(-movedx / 50) * Matrix4().makeRotateX(-movedy / 50));
+	//Globals::camera.transform(Matrix4().makeRotateY(-movedx / 50) * Matrix4().makeRotateX(-movedy / 50));
 }
 
 //TODO: Keyboard callbacks!

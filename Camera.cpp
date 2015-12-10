@@ -3,8 +3,8 @@
 Camera::Camera()
 {
     c.identity();
-    e.set(0.0, 500, 20.0);
-    d.set(0.0, 3.5, 0.0);
+    e.set(0.0, 10.0, 0.0);
+    d.set(0.0, 10.0, 1.0);
     up.set(0.0, 1.0, 0.0);
     
     //Pre-define a camera matrix (and its inverse) that are shifted 'e' from the origin
@@ -72,7 +72,7 @@ void Camera::move(Vector3& movement)
 	update();
 }
 
-void Camera::look(int dir)
+void Camera::look(float dir)
 {
 	if (d[1] + dir > 40)
 		d[1] = 40;
@@ -80,4 +80,9 @@ void Camera::look(int dir)
 		d[1] = -40;
 	else
 		d[1] += dir;
+}
+
+Vector3 Camera::getDirection(void)
+{
+	return (Vector3(e[0] - d[0], 0, e[2] - d[2])).normalize();
 }
