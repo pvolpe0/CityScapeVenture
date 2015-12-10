@@ -43,7 +43,7 @@ float& Vector4::operator [] (int loc)
 	return m[loc];
 }
 
-Vector4 Vector4::add(Vector4& a)
+Vector4 Vector4::add(Vector4 a)
 {
 	Vector4 b;
 
@@ -65,7 +65,7 @@ Vector4 Vector4::operator + (Vector3 a)
 	return add(a.toVector4(0));
 }
 
-Vector4 Vector4::subtract(Vector4& a)
+Vector4 Vector4::subtract(Vector4 a)
 {
 	Vector4 b;
 

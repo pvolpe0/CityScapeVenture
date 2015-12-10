@@ -58,14 +58,14 @@ void Camera::transform(Matrix4 transformation)
 }
 
 // Rotates camera about camera position
-void Camera::rotate(Matrix4& rotation)
+void Camera::rotate(Matrix4 rotation)
 {
 	d = (rotation * (d - e)) + e;
 	update();
 }
 
 // Moves camera based on movement vector
-void Camera::move(Vector3& movement)
+void Camera::move(Vector3 movement)
 {
 	this->e = this->e + movement;
 	this->d = this->d + movement;
