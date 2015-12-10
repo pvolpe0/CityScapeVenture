@@ -10,6 +10,7 @@
 #include "Player.h"
 #include "Block.h"
 #include "City.h"
+#include "Skybox.h"
 
 class Globals
 {
@@ -24,8 +25,8 @@ public:
     static UpdateData updateData;
     //Feel free to add more member variables as needed
 
-	static Block block;
 	static City city;
+	static Skybox * skybox;
 
 };
 

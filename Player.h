@@ -2,6 +2,7 @@
 #define CSE167_Player_h
 
 #include "Drawable.h"
+#include "Skybox.h"
 #include "Sphere.h"
 #include "Vector4.h"
 
@@ -14,6 +15,7 @@ public:
 	int prevX, prevY;
 
 	Sphere * sphere;
+	//Skybox * skybox;
 
 	Player();
 	virtual ~Player(void);
