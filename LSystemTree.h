@@ -1,6 +1,7 @@
 #ifndef CSE167_LSystemTree_h
 #define CSE167_LSystemTree_h
 
+
 #include "Drawable.h"
 #include "Matrix4.h"
 #include "Vector3.h"
@@ -8,9 +9,15 @@
 #include "Sphere.h"
 
 #ifdef __APPLE__
+<<<<<<< HEAD
+#include <GLUT/glut.h>
+#else
+#include <GL/glut.h>
+=======
     #include <GLUT/glut.h>
 #else
     #include <GL/glut.h>
+>>>>>>> 683fb8ff0292346d4d451c017891821ca3f566bd
 #endif
 
 class LSystemTree : public Drawable
