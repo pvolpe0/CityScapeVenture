@@ -14,6 +14,12 @@ public:
 	int x, y;
 	int prevX, prevY;
 
+	bool atIntersection;
+	Vector3 * northMove;
+	Vector3 * EastMove;
+	Vector3 * westMove;
+	Vector3 * southMove;
+
 	Sphere * sphere;
 	//Skybox * skybox;
 

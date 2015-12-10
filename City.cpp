@@ -298,14 +298,6 @@ void City::generateRowWest() {
 
 
 
-
-
-
-
-
-
-
-
 void City::draw(DrawData& data)
 {
 
@@ -331,6 +323,11 @@ void City::draw(DrawData& data)
 void City::update(UpdateData& data)
 {
 	//
+}
+
+std::pair<int, int> City::getMiddle()
+{
+	return blocks[2][2]->getBotLeftCoord();
 }
 
 

@@ -23,13 +23,17 @@ int mouseY;
 void Window::initialize(void)
 {
 
-	Globals::skybox = new Skybox();
-	Globals::skybox->back = new Texture("C:\\Users\\Pablo\\Documents\\hills_bk.ppm");
-	Globals::skybox->base = new Texture("C:\\Users\\Pablo\\Documents\\hills_dn.ppm");
-	Globals::skybox->front = new Texture("C:\\Users\\Pablo\\Documents\\hills_ft.ppm");
-	Globals::skybox->left = new Texture("C:\\Users\\Pablo\\Documents\\hills_rt.ppm");
-	Globals::skybox->right = new Texture("C:\\Users\\Pablo\\Documents\\hills_lf.ppm");
-	Globals::skybox->top = new Texture("C:\\Users\\Pablo\\Documents\\hills_up.ppm");
+	std::pair<int, int> init = Globals::city.getMiddle();
+	Globals::player.setDeltaLocation(init.first, init.second);
+	Globals::camera.move(Vector3(init.first, 0, init.second));
+
+	Globals::skybox = new Skybox(Matrix4().makeTranslate(init.first, 0, init.second));
+	Globals::skybox->back = new Texture("hills_bk.ppm");
+	Globals::skybox->base = new Texture("hills_dn.ppm");
+	Globals::skybox->front = new Texture("hills_ft.ppm");
+	Globals::skybox->left = new Texture("hills_rt.ppm");
+	Globals::skybox->right = new Texture("hills_lf.ppm");
+	Globals::skybox->top = new Texture("hills_up.ppm");
 
     //Setup the light
 	Vector4 lightPos = Vector4(0.0, -3.0, 0.0, 0) + Globals::camera.getDirection();
@@ -37,10 +41,6 @@ void Window::initialize(void)
     Globals::light.quadraticAttenuation = 0.000;
     
     //Initialize cube matrix:
-    Globals::cube.toWorld.identity();
-	std::pair<int, int> init = Globals::city.getMiddle();
-	Globals::player.setDeltaLocation(init.first, init.second);
-	Globals::camera.move(Vector3(init.first, 0, init.second));
 
     //Setup the cube's material properties
     Color color(0x23ff27ff);
@@ -105,13 +105,10 @@ void Window::displayCallback()
     
     //Draw the cube!
     //Globals::cube.draw(Globals::drawData);
-<<<<<<< HEAD
 	Globals::player.draw(Globals::drawData);
 	Globals::skybox->draw();
-=======
 	//Globals::player.draw(Globals::drawData);
 	
->>>>>>> 3cd6fd6cbe3dae32638f2ca6c827bac81aaef541
 	//Globals::block.draw(Globals::drawData);
 	Globals::city.draw(Globals::drawData);
 
@@ -188,6 +185,7 @@ void Window::keyboard(unsigned char key, int x, int y)
 		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(0, 0, 5);
 		Globals::player.setDeltaLocation(0, 5);
 		Globals::camera.move(Vector3(0, 0, 5));
+		Globals::skybox->toWorld = Globals::skybox->toWorld * Matrix4().makeTranslate(0, 0, 5);
 		if (abs(155 - Globals::player.y) % 300 == 0)
 			Globals::city.generateRowNorth(); 
 		break;
@@ -195,6 +193,7 @@ void Window::keyboard(unsigned char key, int x, int y)
 		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(5, 0, 0);
 		Globals::player.setDeltaLocation(5, 0);
 		Globals::camera.move(Vector3(5, 0, 0));
+		Globals::skybox->toWorld = Globals::skybox->toWorld * Matrix4().makeTranslate(5, 0, 0);
 		if (abs(155 - Globals::player.x) % 300 == 0)
 			Globals::city.generateRowWest();
 		break;
@@ -202,6 +201,7 @@ void Window::keyboard(unsigned char key, int x, int y)
 		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(0, 0, -5);
 		Globals::player.setDeltaLocation(0, -5);
 		Globals::camera.move(Vector3(0, 0, -5));
+		Globals::skybox->toWorld = Globals::skybox->toWorld * Matrix4().makeTranslate(0, 0, -5);
 		if (abs(Globals::player.y) % 300 == 150)
 			Globals::city.generateRowSouth();
 		break;
@@ -209,6 +209,7 @@ void Window::keyboard(unsigned char key, int x, int y)
 		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(-5, 0, 0);
 		Globals::player.setDeltaLocation(-5, 0);
 		Globals::camera.move(Vector3(-5, 0, 0));
+		Globals::skybox->toWorld = Globals::skybox->toWorld * Matrix4().makeTranslate(-5, 0, 0);
 		if (abs(Globals::player.x) % 300 == 150)
 			Globals::city.generateRowEast();
 		break;

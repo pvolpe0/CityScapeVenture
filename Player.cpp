@@ -13,14 +13,11 @@
 Player::Player() : Drawable()
 {
 	x = y = 0;
-	sphere = new Sphere(10, 20, 20);
-
 }
 
 Player::~Player()
 {
 	delete sphere;
-	//delete skybox;
 }
 
 
@@ -35,9 +32,9 @@ void Player::draw(DrawData& data)
 	glPushMatrix();
 	glMultMatrixf(toWorld.ptr());
 
-	sphere->draw(data);
-	//skybox->draw();
 
+	//The above glBegin, glEnd, glNormal and glVertex calls can be replaced with a glut convenience function
+	//glutSolidCube(size);
 
 	//Pop the save state off the matrix stack
 	//This will undo the multiply we did earlier
@@ -59,4 +56,5 @@ Vector4 Player::getLocation(void)
 {
 	return Vector4(x, 0, y, 1);
 }
+
 

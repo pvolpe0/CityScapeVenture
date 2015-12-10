@@ -6,16 +6,18 @@
 #include <GL/glut.h>
 #endif
 
-#define SKYBOX_LENGTH 1000
+#define SKYBOX_LENGTH 800
 
-Skybox::Skybox()
+Skybox::Skybox(Matrix4 init) : Drawable()
 {
-
+	toWorld = init;
 }
 
 void Skybox::draw()
 {
 	// set the current drawing color to white to use original texture colors
+	glPushMatrix();
+	glMultMatrixf(toWorld.ptr());
 	glColor3f(1, 1, 1);
 
 	{	// front
@@ -28,6 +30,7 @@ void Skybox::draw()
 
 		// specify texture coordinates for each vertex
 		// note that textures are stored "upside down"
+		glNormal3f(0, -1, 0);
 		glTexCoord2f(0, 1); glVertex3f(-SKYBOX_LENGTH, -SKYBOX_LENGTH, -SKYBOX_LENGTH);
 		glTexCoord2f(1, 1); glVertex3f(SKYBOX_LENGTH, -SKYBOX_LENGTH, -SKYBOX_LENGTH);
 		glTexCoord2f(1, 0); glVertex3f(SKYBOX_LENGTH, SKYBOX_LENGTH, -SKYBOX_LENGTH);
@@ -59,6 +62,7 @@ void Skybox::draw()
 
 		// specify texture coordinates for each vertex
 		// note that textures are stored "upside down"
+		glNormal3f(0, -1, 0);
 		glTexCoord2f(0, 0); glVertex3f(-SKYBOX_LENGTH, SKYBOX_LENGTH, SKYBOX_LENGTH );
 		glTexCoord2f(1, 0); glVertex3f(-SKYBOX_LENGTH, SKYBOX_LENGTH, -SKYBOX_LENGTH);
 		glTexCoord2f(1, 1); glVertex3f(-SKYBOX_LENGTH, -SKYBOX_LENGTH, -SKYBOX_LENGTH);
@@ -80,6 +84,7 @@ void Skybox::draw()
 
 		// specify texture coordinates for each vertex
 		// note that textures are stored "upside down"
+		glNormal3f(0, -1, 0);
 		glTexCoord2f(0, 0); glVertex3f(SKYBOX_LENGTH, SKYBOX_LENGTH, -SKYBOX_LENGTH);
 		glTexCoord2f(1, 0); glVertex3f(SKYBOX_LENGTH, SKYBOX_LENGTH, SKYBOX_LENGTH);
 		glTexCoord2f(1, 1); glVertex3f(SKYBOX_LENGTH, -SKYBOX_LENGTH, SKYBOX_LENGTH);
@@ -102,6 +107,7 @@ void Skybox::draw()
 
 		// specify texture coordinates for each vertex
 		// note that textures are stored "upside down"
+		glNormal3f(0, -1, 0);
 		glTexCoord2f(1, 1); glVertex3f(-SKYBOX_LENGTH, SKYBOX_LENGTH, -SKYBOX_LENGTH);
 		glTexCoord2f(1, 0); glVertex3f(SKYBOX_LENGTH, SKYBOX_LENGTH, -SKYBOX_LENGTH);
 		glTexCoord2f(0, 0); glVertex3f(SKYBOX_LENGTH, SKYBOX_LENGTH, SKYBOX_LENGTH );
@@ -123,6 +129,7 @@ void Skybox::draw()
 
 		// specify texture coordinates for each vertex
 		// note that textures are stored "upside down"
+		glNormal3f(0, -1, 0);
 		glTexCoord2f(0, 0); glVertex3f(-SKYBOX_LENGTH, -SKYBOX_LENGTH, -SKYBOX_LENGTH);
 		glTexCoord2f(1, 0); glVertex3f(SKYBOX_LENGTH, -SKYBOX_LENGTH, -SKYBOX_LENGTH);
 		glTexCoord2f(1, 1); glVertex3f(SKYBOX_LENGTH, -SKYBOX_LENGTH, SKYBOX_LENGTH);
@@ -145,6 +152,7 @@ void Skybox::draw()
 
 		// specify texture coordinates for each vertex
 		// note that textures are stored "upside down"
+		glNormal3f(0, -1, 0);
 		glTexCoord2f(0, 0); glVertex3f(SKYBOX_LENGTH, SKYBOX_LENGTH, SKYBOX_LENGTH );
 		glTexCoord2f(1, 0); glVertex3f(-SKYBOX_LENGTH, SKYBOX_LENGTH, SKYBOX_LENGTH );
 		glTexCoord2f(1, 1); glVertex3f(-SKYBOX_LENGTH, -SKYBOX_LENGTH, SKYBOX_LENGTH );
@@ -155,6 +163,8 @@ void Skybox::draw()
 
 		back->unbind();
 	}
+
+	glPopMatrix();
 	
 }
 

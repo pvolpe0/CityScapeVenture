@@ -2,8 +2,9 @@
 #define CSE167_Skybox_h
 
 #include "Texture.h"
+#include "Drawable.h"
 
-class Skybox
+class Skybox: public Drawable
 {
 
 public:
@@ -15,7 +16,7 @@ public:
 	Texture * right;
 	Texture * top;
 
-	Skybox();
+	Skybox(Matrix4 init);
 	void draw();
 
 };

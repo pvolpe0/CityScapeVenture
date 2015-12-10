@@ -42,6 +42,7 @@ public:
 	virtual void draw(DrawData&);
 	virtual void update(UpdateData&);
 
+	std::pair<int, int> getMiddle();
 
 
 };
