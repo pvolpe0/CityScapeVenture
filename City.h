@@ -11,7 +11,7 @@ class City : public Drawable
 private:
 
 	// std::pair<int, int> coords[5][5];
-	Block * blocks[5][5];
+
 
 
 public:
@@ -29,7 +29,7 @@ public:
 	void generateRowSouth();
 	void generateRowWest();
 	void generateRowEast();
-
+	Block * blocks[5][5];
 	/*
 	
 	probably dont need these

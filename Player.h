@@ -5,20 +5,26 @@
 #include "Skybox.h"
 #include "Sphere.h"
 #include "Vector4.h"
+#include "Vector3.h"
 
 class Player : public Drawable
 {
 
 public:
 
-	int x, y;
+	float x, y;
 	int prevX, prevY;
 
 	bool atIntersection;
-	Vector3 * northMove;
-	Vector3 * EastMove;
-	Vector3 * westMove;
-	Vector3 * southMove;
+	Vector3 northMove;
+	Vector3 eastMove;
+	Vector3 westMove;
+	Vector3 southMove;
+	Vector3 northInt;
+	Vector3 southInt;
+	Vector3 westInt;
+	Vector3 eastInt;
+	Vector3 currInt;
 
 	Sphere * sphere;
 	//Skybox * skybox;
@@ -26,12 +32,16 @@ public:
 	Player();
 	virtual ~Player(void);
 
-	void setDeltaLocation(int, int);
+	void setDeltaLocation(float, float);
 
 	virtual void draw(DrawData&);
 	virtual void update(UpdateData&);
 
 	Vector4 getLocation(void);
+	void moveNorth();
+	void moveSouth();
+	void moveWest();
+	void moveEast();
 
 
 };

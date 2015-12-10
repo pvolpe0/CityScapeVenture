@@ -3,7 +3,6 @@
 Camera Globals::camera;
 
 Cube Globals::cube(10.0);
-Player Globals::player;
 
 Light Globals::light;
 
@@ -13,4 +12,5 @@ UpdateData Globals::updateData;
 //Block Globals::block(0,0);
 
 City Globals::city;
+Player Globals::player;
 Skybox * Globals::skybox;

@@ -19,13 +19,13 @@ public:
     
     static Camera camera;
     static Cube cube;
-	static Player player;
     static Light light;
     static DrawData drawData;
     static UpdateData updateData;
     //Feel free to add more member variables as needed
 
 	static City city;
+	static Player player;
 	static Skybox * skybox;
 
 };

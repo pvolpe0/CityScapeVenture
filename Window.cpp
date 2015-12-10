@@ -182,36 +182,20 @@ void Window::keyboard(unsigned char key, int x, int y)
 		break;*/
 	case 'w':
 
-		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(0, 0, 5);
-		Globals::player.setDeltaLocation(0, 5);
-		Globals::camera.move(Vector3(0, 0, 5));
-		Globals::skybox->toWorld = Globals::skybox->toWorld * Matrix4().makeTranslate(0, 0, 5);
-		if (abs(155 - Globals::player.y) % 300 == 0)
-			Globals::city.generateRowNorth(); 
+		Globals::player.moveNorth();
+
 		break;
 	case 'a':
-		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(5, 0, 0);
-		Globals::player.setDeltaLocation(5, 0);
-		Globals::camera.move(Vector3(5, 0, 0));
-		Globals::skybox->toWorld = Globals::skybox->toWorld * Matrix4().makeTranslate(5, 0, 0);
-		if (abs(155 - Globals::player.x) % 300 == 0)
-			Globals::city.generateRowWest();
+		Globals::player.moveWest();
+
 		break;
 	case 's':
-		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(0, 0, -5);
-		Globals::player.setDeltaLocation(0, -5);
-		Globals::camera.move(Vector3(0, 0, -5));
-		Globals::skybox->toWorld = Globals::skybox->toWorld * Matrix4().makeTranslate(0, 0, -5);
-		if (abs(Globals::player.y) % 300 == 150)
-			Globals::city.generateRowSouth();
+		Globals::player.moveSouth();
+
 		break;
 	case 'd':
-		Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(-5, 0, 0);
-		Globals::player.setDeltaLocation(-5, 0);
-		Globals::camera.move(Vector3(-5, 0, 0));
-		Globals::skybox->toWorld = Globals::skybox->toWorld * Matrix4().makeTranslate(-5, 0, 0);
-		if (abs(Globals::player.x) % 300 == 150)
-			Globals::city.generateRowEast();
+		Globals::player.moveEast();
+
 		break;
 	}
 	//Vector4 lightPos = Globals::player.getLocation() + Vector4(0, 20, 0, 0);

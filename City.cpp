@@ -47,6 +47,7 @@ void City::generateSingleEast(int row, int col, std::pair<int, int> topCoord, st
 
 // used for city construction
 void City::generateRowNorth(int row) {
+	std::cout << "Generating" << std::endl;
 
 	int newYLoc = blocks[row][0]->locY + BLOCK_DIST;
 
@@ -91,7 +92,7 @@ void City::generateRowNorth(int row) {
 
 // used dynamically
 void City::generateRowNorth() {
-
+	std::cout << "Generating" << std::endl;
 
 	Block * one = blocks[0][0];
 	Block * two = blocks[0][1];
