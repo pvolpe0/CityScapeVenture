@@ -29,8 +29,9 @@ void Window::initialize(void)
     
     //Initialize cube matrix:
     Globals::cube.toWorld.identity();
-	Globals::player.toWorld.identity();
-	Globals::player.toWorld = Globals::player.toWorld * Matrix4().makeTranslate(0, 3, 10);
+	std::pair<int, int> init = Globals::city.getMiddle();
+	Globals::player.setDeltaLocation(init.first, init.second);
+	Globals::camera.move(Vector3(init.first, 0, init.second));
 
     //Setup the cube's material properties
     Color color(0x23ff27ff);
