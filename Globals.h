@@ -28,6 +28,12 @@ public:
 	static Player player;
 	static Skybox * skybox;
 
+	static bool BUILDINGS;
+	static bool STREETS;
+	static bool TREES;
+	static bool SKYBOX;
+	static bool DEBUG;
+		
 };
 
 #endif

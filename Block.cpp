@@ -22,9 +22,13 @@
 #define SIDEWALK_HEIGHT 2
 #define PLATFORM_HEIGHT SIDEWALK_HEIGHT + 1
 #define BUILDING_LENGTH 40
+
+
 #define COORD_DIST 400
 #define COORD_DIST_HALF COORD_DIST / 2
 #define COORD_DIST_QUARTER COORD_DIST / 4
+
+
 
 #define TYPE_RANDOMNESS 15
 
@@ -47,7 +51,7 @@ Block::Block(int xCenter, int yCenter) : Drawable()
 	for (int i = 0; i < BLOCK_LENGTH; i++) {
 		for (int j = 0; j < BLOCK_LENGTH; j++) {
 
-			coords[i][j] = std::make_pair(xCenter - COORD_DIST_HALF + COORD_DIST * i, yCenter - COORD_DIST_HALF + COORD_DIST * j);
+			coords[i][j] = std::make_pair(xCenter - (COORD_DIST_HALF * (1 + Globals::STREETS)) + (COORD_DIST - 1 * !Globals::STREETS) * i, yCenter - (COORD_DIST_HALF * (1 + Globals::STREETS)) + (COORD_DIST - 1 * !Globals::STREETS) * j);
 			setCoordDisplacement(coords[i][j]);
 		}
 	}
@@ -60,21 +64,32 @@ Block::Block(int xCenter, int yCenter) : Drawable()
 
 	type = rand() % TYPE_RANDOMNESS;
 
+	std::cout << (COORD_DIST - 1 * Globals::STREETS) << std::endl;
+
+
 	if (type == 0) {
+
 		platformColor = Color(1.0f, 2.0f, 1.0f);
-		generateTrees(inner_coords[0][0], northVec, northLineDist);
-		generateTrees(inner_coords[0][1], eastVec, eastLineDist);
-		generateTrees(inner_coords[1][1], southVec, southLineDist);
-		generateTrees(inner_coords[1][0], westVec, westLineDist);
+
+		if (Globals::TREES){
+			generateTrees(inner_coords[0][0], northVec, northLineDist);
+			generateTrees(inner_coords[0][1], eastVec, eastLineDist);
+			generateTrees(inner_coords[1][1], southVec, southLineDist);
+			generateTrees(inner_coords[1][0], westVec, westLineDist);
+		}
 	}
 	else {
 
 		platformColor = Color(1.0f, 1.0f, 1.0f);
-		generateBuildings(inner_coords[0][0], northVec, northLineDist);
-		generateBuildings(inner_coords[0][1], eastVec, eastLineDist);
-		generateBuildings(inner_coords[1][1], southVec, southLineDist);
-		generateBuildings(inner_coords[1][0], westVec, westLineDist);
+
+		if (Globals::BUILDINGS){
+			generateBuildings(inner_coords[0][0], northVec, northLineDist);
+			generateBuildings(inner_coords[0][1], eastVec, eastLineDist);
+			generateBuildings(inner_coords[1][1], southVec, southLineDist);
+			generateBuildings(inner_coords[1][0], westVec, westLineDist);
+		}
 	}
+	
 
 
 	
@@ -101,7 +116,7 @@ Block::Block(int xCenter, int yCenter, std::pair<int, int> topLeftCoord,
 
 	if (botLeftCoord == null_pair) {
 
-		coords[0][0] = std::make_pair(xCenter - COORD_DIST_HALF, yCenter - COORD_DIST_HALF);
+		coords[0][0] = std::make_pair(xCenter - (COORD_DIST_HALF * (1 +  Globals::STREETS)), yCenter - (COORD_DIST_HALF * (1 +  Globals::STREETS)));
 		setCoordDisplacement(coords[0][0]);
 	}
 	else
@@ -109,7 +124,7 @@ Block::Block(int xCenter, int yCenter, std::pair<int, int> topLeftCoord,
 
 	if (botRightCoord == null_pair) {
 
-		coords[1][0] = std::make_pair(xCenter + COORD_DIST_HALF, yCenter - COORD_DIST_HALF);
+		coords[1][0] = std::make_pair(xCenter + (COORD_DIST_HALF * (1 +  Globals::STREETS)), yCenter - (COORD_DIST_HALF * (1 +  Globals::STREETS)));
 		setCoordDisplacement(coords[1][0]);
 	}
 	else
@@ -117,7 +132,7 @@ Block::Block(int xCenter, int yCenter, std::pair<int, int> topLeftCoord,
 
 	if (topLeftCoord == null_pair) {
 
-		coords[0][1] = std::make_pair(xCenter - COORD_DIST_HALF, yCenter + COORD_DIST_HALF);
+		coords[0][1] = std::make_pair(xCenter - (COORD_DIST_HALF * (1 +  Globals::STREETS)), yCenter + (COORD_DIST_HALF * (1 +  Globals::STREETS)));
 		setCoordDisplacement(coords[0][1]);
 	}
 	else
@@ -125,7 +140,7 @@ Block::Block(int xCenter, int yCenter, std::pair<int, int> topLeftCoord,
 
 	if (topRightCoord == null_pair) {
 
-		coords[1][1] = std::make_pair(xCenter + COORD_DIST_HALF, yCenter + COORD_DIST_HALF);
+		coords[1][1] = std::make_pair(xCenter + (COORD_DIST_HALF * (1 +  Globals::STREETS)), yCenter + (COORD_DIST_HALF * (1 +  Globals::STREETS)));
 		setCoordDisplacement(coords[1][1]);
 	}
 	else
@@ -140,19 +155,27 @@ Block::Block(int xCenter, int yCenter, std::pair<int, int> topLeftCoord,
 	type = rand() % TYPE_RANDOMNESS;
 
 	if (type == 0) {
+		
 		platformColor = Color(1.0f, 2.0f, 1.0f);
-		generateTrees(inner_coords[0][0], northVec, northLineDist);
-		generateTrees(inner_coords[0][1], eastVec, eastLineDist);
-		generateTrees(inner_coords[1][1], southVec, southLineDist);
-		generateTrees(inner_coords[1][0], westVec, westLineDist);
+
+		if (Globals::TREES){
+			generateTrees(inner_coords[0][0], northVec, northLineDist);
+			generateTrees(inner_coords[0][1], eastVec, eastLineDist);
+			generateTrees(inner_coords[1][1], southVec, southLineDist);
+			generateTrees(inner_coords[1][0], westVec, westLineDist);
+		}
 	}
 	else {
 
 		platformColor = Color(1.0f, 1.0f, 1.0f);
-		generateBuildings(inner_coords[0][0], northVec, northLineDist);
-		generateBuildings(inner_coords[0][1], eastVec, eastLineDist);
-		generateBuildings(inner_coords[1][1], southVec, southLineDist);
-		generateBuildings(inner_coords[1][0], westVec, westLineDist);
+
+		if (Globals::BUILDINGS){
+			generateBuildings(inner_coords[0][0], northVec, northLineDist);
+			generateBuildings(inner_coords[0][1], eastVec, eastLineDist);
+			generateBuildings(inner_coords[1][1], southVec, southLineDist);
+			generateBuildings(inner_coords[1][0], westVec, westLineDist);
+		}
+		
 	}
 
 }
@@ -860,7 +883,7 @@ void Block::draw(DrawData& data)
 	/*                                   */
 	/*************************************/
 	
-	if (DEBUG_LINES)
+	if ( Globals::DEBUG )
 	{
 		glColor3f(255.0f, 0.0f, 255.0f);
 		glLineWidth(2.0);
@@ -868,6 +891,7 @@ void Block::draw(DrawData& data)
 		glVertex3i(locX, 0, locY);
 		glVertex3i(locX, 100, locY);
 
+		glColor3f(255.0f, 255.0f, 0.0f);
 		// inner coords lines
 		glVertex3f(inner_coords[0][0].first, 0, inner_coords[0][0].second);
 		glVertex3f(inner_coords[0][0].first, 50, inner_coords[0][0].second);
@@ -881,7 +905,7 @@ void Block::draw(DrawData& data)
 		glVertex3f(inner_coords[1][1].first, 0, inner_coords[1][1].second);
 		glVertex3f(inner_coords[1][1].first, 50, inner_coords[1][1].second);
 
-
+		glColor3f(0.0f, 0.0f, 255.0f);
 		// block coords lines
 		glVertex3i(coords[0][0].first, 0, coords[0][0].second);
 		glVertex3i(coords[0][0].first, 75, coords[0][0].second);
@@ -895,7 +919,7 @@ void Block::draw(DrawData& data)
 		glVertex3i(coords[1][1].first, 0, coords[1][1].second);
 		glVertex3i(coords[1][1].first, 75, coords[1][1].second);
 
-
+		glColor3f(0.0f, 255.0f, 0.0f);
 		// inner_sidewalk coords lines
 		glVertex3i(sidewalk_inner_coords[0][0].first, 0, sidewalk_inner_coords[0][0].second);
 		glVertex3i(sidewalk_inner_coords[0][0].first, 10, sidewalk_inner_coords[0][0].second);
@@ -909,6 +933,7 @@ void Block::draw(DrawData& data)
 		glVertex3i(sidewalk_inner_coords[1][1].first, 0, sidewalk_inner_coords[1][1].second);
 		glVertex3i(sidewalk_inner_coords[1][1].first, 10, sidewalk_inner_coords[1][1].second);
 
+		glColor3f(0.0f, 255.0f, 255.0f);
 		// outer_sidewalk coords lines
 		glVertex3i(sidewalk_outer_coords[0][0].first, 0, sidewalk_outer_coords[0][0].second);
 		glVertex3i(sidewalk_outer_coords[0][0].first, 10, sidewalk_outer_coords[0][0].second);
@@ -953,7 +978,7 @@ void Block::update(UpdateData& data)
 
 void Block::setCoordDisplacement(std::pair<int, int>& coord ) {
 
-	coord.first += rand() % COORD_DIST_HALF - COORD_DIST_QUARTER;
-	coord.second += rand() % COORD_DIST_HALF - COORD_DIST_QUARTER;
+	coord.first += rand() % (COORD_DIST_HALF * (1 +  Globals::STREETS)) - (COORD_DIST_QUARTER * (1 +  Globals::STREETS));
+	coord.second += rand() % (COORD_DIST_HALF * (1 +  Globals::STREETS)) - (COORD_DIST_QUARTER * (1 +  Globals::STREETS));
 
 }

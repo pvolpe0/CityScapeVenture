@@ -13,8 +13,70 @@
 #include "Matrix4.h"
 #include "Globals.h"
 
+void runIntro() {
+
+	bool finished;
+
+	std::cout << "Welcome to CityScape Venture, before we jump in, lets enter some preferences.\n\n" << std::endl;
+
+	std::cout << "Enter 1 to begin the finished product, Enter 0 for custom options." << std::endl;
+	std::cin >> finished;
+
+	if (!finished) {
+
+		std::cout << "You chose custom options\n" << std::endl;
+		std::cout << "Generate buildings?" << std::endl;
+		std::cout << "Enter 1 for yes, enter 0 for no" << std::endl;
+
+		std::cin >> Globals::BUILDINGS;
+
+		std::cout << "Generate trees?" << std::endl;
+		std::cout << "Note: Having this off will greatly improve performance" << std::endl;
+
+		std::cout << "Enter 1 for yes, enter 0 for no" << std::endl;
+
+		std::cin >> Globals::TREES;
+
+		if (!Globals::BUILDINGS && !Globals::TREES) {
+
+			std::cout << "Street randomness" << std::endl;
+			std::cout << "Enter 1 for standard grid-like, enter 0 for random streets" << std::endl;
+
+			std::cin >> Globals::STREETS;
+
+			Globals::STREETS = !Globals::STREETS;
+		}
+
+		std::cout << "Render Block debug lines?" << std::endl;
+		std::cout << "Enter 1 for yes, enter 0 for no" << std::endl;
+
+		std::cin >> Globals::DEBUG;
+
+		if (Globals::DEBUG) {
+
+			std::cout << "\n\nYou've seleceted debug lines on" << std::endl;
+			std::cout << "\nFive sets of lines will be shown" << std::endl;
+
+			std::cout << "\t1. Purple - Geographic center of a block, RNG seed value for the block is based on these x,y values" << std::endl;
+			std::cout << "\t2. Blue - Corners of block objects" << std::endl;
+			std::cout << "\t3. Light Blue - Sidewalk outer corners" << std::endl;
+			std::cout << "\t4. Green - Sidewalk inner corners" << std::endl;
+			std::cout << "\t5. Yellow - Buidling generation starting location\n" << std::endl;
+
+
+
+
+		}
+	}
+}
+
 int main(int argc, char *argv[])
 {
+
+
+
+	runIntro();
+
     //GLUT and OpenGL Configuration
     glutInit(&argc, argv);                                      //Initialize GLUT
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);   //Open an OpenGL context with double buffering, RGB colors, and depth buffering

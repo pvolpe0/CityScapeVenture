@@ -1,4 +1,5 @@
 #include "City.h"
+#include "Globals.h"
 #include <stdlib.h>
 
 #ifdef __APPLE__
@@ -36,7 +37,7 @@ City::~City() {}
 
 void City::generateSingleEast(int row, int col, std::pair<int, int> topCoord, std::pair<int, int> botCoord){
 
-	int newXLoc = blocks[row][col]->locX + BLOCK_DIST;
+	int newXLoc = blocks[row][col]->locX + (BLOCK_DIST - 1 * !Globals::STREETS);
 	int newYLoc = blocks[row][col]->locY;
 
 	blocks[row][col + 1] = new Block(newXLoc, newYLoc, topCoord,
@@ -48,7 +49,7 @@ void City::generateSingleEast(int row, int col, std::pair<int, int> topCoord, st
 // used for city construction
 void City::generateRowNorth(int row) {
 
-	int newYLoc = blocks[row][0]->locY + BLOCK_DIST;
+	int newYLoc = blocks[row][0]->locY + (BLOCK_DIST - 1 * !Globals::STREETS);
 
 	blocks[row + 1][0] = new Block(blocks[row][0]->locX,
 		                           newYLoc,
@@ -115,7 +116,7 @@ void City::generateRowNorth() {
 	delete four;
 	delete five;
 
-	int newYLoc = blocks[3][0]->locY + BLOCK_DIST;
+	int newYLoc = blocks[3][0]->locY + (BLOCK_DIST - 1 * !Globals::STREETS);
 
 	
 	blocks[4][0] = new Block(blocks[3][0]->locX,
@@ -164,7 +165,7 @@ void City::generateRowSouth() {
 	delete four;
 	delete five;
 
-	int newYLoc = blocks[1][0]->locY - BLOCK_DIST;
+	int newYLoc = blocks[1][0]->locY - (BLOCK_DIST - 1 * !Globals::STREETS);
 
 
 	blocks[0][0] = new Block(blocks[1][0]->locX,
@@ -215,7 +216,7 @@ void City::generateRowEast() {
 	delete four;
 	delete five;
 
-	int newXLoc = blocks[1][0]->locX - BLOCK_DIST;
+	int newXLoc = blocks[1][0]->locX - (BLOCK_DIST - 1 * !Globals::STREETS);
 
 
 	blocks[0][0] = new Block(newXLoc,
@@ -270,7 +271,7 @@ void City::generateRowWest() {
 	delete four;
 	delete five;
 
-	int newXLoc = blocks[0][3]->locX + BLOCK_DIST;
+	int newXLoc = blocks[0][3]->locX + (BLOCK_DIST - 1 * !Globals::STREETS);
 
 
 	blocks[0][4] = new Block(newXLoc,
